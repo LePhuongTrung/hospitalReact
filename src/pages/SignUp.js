@@ -7,7 +7,6 @@ import * as yup from "yup";
 import { useDispatch } from "react-redux";
 
 /* Import service */
-import auth from "../services/User/auth.service";
 
 /* Import component */
 import CustomInput from "../components/CustomInput/index";
@@ -38,7 +37,7 @@ export default function Login() {
   const onSubmit = async (data) => {
     console.log("🚀 ~ file: SignUp.js ~ line 40 ~ onSubmit ~ data", data);
     try {
-      const response = await auth.Signup(data);
+      const response = await register(data);
       console.log(
         "🚀 ~ file: SignUp.js ~ line 43 ~ onSubmit ~ response",
         response

@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../redux/auth/LoginStatus";
 
 /* Import service */
-import auth from "../services/User/auth.service";
+import { login } from "../services/User/auth.service";
 
 /* Import component */
 import CustomInput from "../components/CustomInput/index";
@@ -37,7 +37,7 @@ export default function Login() {
   const onSubmit = async (data) => {
     console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
     try {
-      const response = await auth.login(data);
+      const response = await login(data);
       console.log(
         "🚀 ~ file: Login.js ~ line 41 ~ onSubmit ~ response",
         response
