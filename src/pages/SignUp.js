@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 /* Import service */
 
 /* Import component */
-import CustomInput from "../components/CustomInput/index";
+import CustomInput from "../components/Public/CustomInput";
 
 const schemaValidation = yup
   .object()
@@ -80,25 +80,25 @@ export default function Login() {
               <CustomInput
                 label="Email Address"
                 type="email"
-                errors={errors}
+                errors={errors.email}
                 {...register("email")}
               />
 
               <CustomInput
                 label="Password"
                 type="password"
-                errors={errors}
+                errors={errors.password}
                 {...register("password")}
               />
               <CustomInput
                 label="Full Name"
-                errors={errors}
+                errors={errors.fullName}
                 {...register("fullName")}
               />
               <CustomInput
                 label="Phone Number"
                 type="phoneNumber"
-                errors={errors}
+                errors={errors.phoneNumber}
                 {...register("phoneNumber")}
               />
               <div>

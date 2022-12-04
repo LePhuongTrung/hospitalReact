@@ -11,7 +11,7 @@ import { setLoggedInUser } from "../redux/auth/LoginStatus";
 import { login } from "../services/User/auth.service";
 
 /* Import component */
-import CustomInput from "../components/CustomInput/index";
+import CustomInput from "../components/Public/CustomInput";
 
 const schemaValidation = yup
   .object()
@@ -82,14 +82,14 @@ export default function Login() {
               <CustomInput
                 label="Email Address"
                 type="email"
-                errors={errors}
+                errors={errors.email}
                 {...register("email")}
               />
 
               <CustomInput
                 label="Password"
                 type="password"
-                errors={errors}
+                errors={errors.password}
                 {...register("password")}
               />
               <div className="flex items-center justify-between">

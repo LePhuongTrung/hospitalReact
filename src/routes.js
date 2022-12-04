@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
-import Manager from "./pages/Manager/homeManager";
+import AddRoom from "./pages/Manager/AddRoom";
+import Manager from "./pages/Manager/ListRoom";
 import Signup from "./pages/SignUp";
 import User from "./pages/User/User";
 // login => list of books
@@ -14,6 +15,7 @@ const AppRouter = () => (
       <Route path="SignUp" element={<Signup />} />
       <Route path="user" element={<User />}></Route>
       <Route path="Manager" element={<Manager />}></Route>
+      <Route path="AddRoom" element={<AddRoom />} />
 
       {/* <Route path="/products" element={<ListProduct />} /> */}
       {/* </Route> */}
