@@ -5,19 +5,19 @@ import * as yup from "yup";
 
 /* Import redux */
 import { useDispatch } from "react-redux";
+import { setLoggedInUser } from "../../redux/auth/LoginStatus";
 
 /* Import service */
+import { login } from "../../services/User/auth.service";
 
 /* Import component */
-import CustomInput from "../components/Public/CustomInput";
+import CustomInput from "../../components/Public/CustomInput";
 
 const schemaValidation = yup
   .object()
   .shape({
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
-    fullName: yup.string().required(),
-    phoneNumber: yup.string().min(10).max(10).required(),
   })
   .required();
 
@@ -32,22 +32,24 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schemaValidation),
   });
-  console.log("🚀 ~ file: SignUp.js ~ line 37 ~ Login ~ errors", errors);
+  console.log("🚀 ~ file: Login.js ~ line 35 ~ Login ~ errors", errors);
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: SignUp.js ~ line 40 ~ onSubmit ~ data", data);
+    console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
     try {
-      const response = await register(data);
+      const response = await login(data);
       console.log(
-        "🚀 ~ file: SignUp.js ~ line 43 ~ onSubmit ~ response",
+        "🚀 ~ file: Login.js ~ line 41 ~ onSubmit ~ response",
         response
       );
 
       if (response.status !== 200) return;
 
-      navigate("/Login", { replace: true });
+      localStorage.setItem("access_token", response.data.token);
+      dispatch(setLoggedInUser(response.data.payload));
+      navigate("/products", { replace: true });
     } catch (error) {
-      console.log("🚀 ~ file: SignUp.js ~ line 52 ~ onSubmit ~ error", error);
+      console.log("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }
   };
 
@@ -61,15 +63,15 @@ export default function Login() {
             alt="Workflow"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Register your account
+            Sign in to your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            You have Account?{" "}
+            Or{" "}
             <a
-              href="/Login"
+              href="/SignUp"
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
-              Sign in now
+              Sign Up now
             </a>
           </p>
         </div>
@@ -90,24 +92,39 @@ export default function Login() {
                 errors={errors.password}
                 {...register("password")}
               />
-              <CustomInput
-                label="Full Name"
-                errors={errors.fullName}
-                {...register("fullName")}
-              />
-              <CustomInput
-                label="Phone Number"
-                type="phoneNumber"
-                errors={errors.phoneNumber}
-                {...register("phoneNumber")}
-              />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  />
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-900"
+                  >
+                    Remember me
+                  </label>
+                </div>
+
+                <div className="text-sm">
+                  <a
+                    href="#"
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
+
               <div>
                 <button
                   type="submit"
                   // onClick={handleLogin}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign up
+                  Sign in
                 </button>
               </div>
             </form>
@@ -119,10 +136,11 @@ export default function Login() {
                 </div>
                 <div className="relative flex justify-center text-sm">
                   <span className="px-2 bg-white text-gray-500">
-                    Or sign in with
+                    Or continue with
                   </span>
                 </div>
               </div>
+
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a

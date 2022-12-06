@@ -6,7 +6,9 @@ import * as yup from "yup";
 
 /* Import component */
 import CustomInput from "../Public/CustomInput";
+import RadioButton from "../Public/RadioButton";
 import SelectComponent from "../Public/SelectComponent";
+
 const schemaValidation = yup
   .object()
   .shape({
@@ -48,7 +50,7 @@ export default function AddRoom() {
               errors={errors}
               {...register("DoctorName")}
             />
-            <CustomInput
+            <RadioButton
               label="Prioritized"
               type="boolean"
               errors={errors}

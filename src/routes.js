@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Login from "./pages/Login";
 import AddRoom from "./pages/Manager/AddRoom";
 import Manager from "./pages/Manager/ListRoom";
-import Signup from "./pages/SignUp";
+import ERROR from "./pages/public/Error/404";
+import Login from "./pages/public/Login";
+import Signup from "./pages/public/SignUp";
 import User from "./pages/User/User";
 // login => list of books
 
@@ -16,6 +17,7 @@ const AppRouter = () => (
       <Route path="user" element={<User />}></Route>
       <Route path="Manager" element={<Manager />}></Route>
       <Route path="AddRoom" element={<AddRoom />} />
+      <Route path="ERROR" element={<ERROR />} />
 
       {/* <Route path="/products" element={<ListProduct />} /> */}
       {/* </Route> */}
