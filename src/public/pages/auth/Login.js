@@ -58,7 +58,7 @@ export default function Login() {
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
-            className="mx-auto h-12 w-auto"
+            className="mx-auto h-28 w-auto"
             src="https://i.pinimg.com/236x/42/91/b2/4291b20ea51111b355229602405ba1c3.jpg"
             alt="Workflow"
           />
