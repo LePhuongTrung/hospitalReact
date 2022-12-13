@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarManager from "../../../components/manager/navbarManager";
-import RoomHeader from "../../../components/manager/RoomHeader";
 import AddRoom from "../../components/AddRoom";
+import NavbarManager from "../../components/navbarManager";
+import RoomHeader from "../../components/RoomHeader";
 
 function homeManager() {
   return (

@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../../redux/auth/LoginStatus";
 
 /* Import service */
-import { login } from "../../services/User/auth.service";
+import { login } from "../../user/services/auth.service";
 
 /* Import component */
-import CustomInput from "../../components/Public/CustomInput";
+import CustomInput from "../components/CustomInput";
 
 const schemaValidation = yup
   .object()

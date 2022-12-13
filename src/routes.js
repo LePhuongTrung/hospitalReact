@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import AddRoom from "./pages/Manager/AddRoom";
-import Manager from "./pages/Manager/ListRoom";
-import ERROR from "./pages/public/Error/404";
-import Login from "./pages/public/Login";
-import Signup from "./pages/public/SignUp";
-import User from "./pages/User/User";
+import AddRoom from "./manager/pages/room/AddRoom";
+import Manager from "./manager/pages/room/ListRoom";
+import ERROR from "./public/pages/Error/404";
+import Login from "./public/pages/Login";
+import Signup from "./public/pages/SignUp";
+import User from "./user/pages/User";
 // login => list of books
 
 const AppRouter = () => (

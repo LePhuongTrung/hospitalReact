@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { findAll } from "../../services/room.service";
+import { findAll } from "../services/room.service";
 
 function RoomHeader() {
   const [Rooms, setRooms] = useState([]);
