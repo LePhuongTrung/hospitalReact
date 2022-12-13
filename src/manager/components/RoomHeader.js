@@ -1,25 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { findAll } from "../services/room.service";
+import React from "react";
 
 function RoomHeader() {
-  const [Rooms, setRooms] = useState([]);
-  const getRoom = async (page) => {
-    try {
-      if (!page) {
-        page = 1;
-      }
-      const response = await findAll(page);
-      console.log("🚀 ~ file: ListRoom.js:9 ~ findAll ~ response", response);
-      if (response.status !== 200) return;
-      setRooms(response.data.docs);
-      console.log("🚀 ~ file: ListRoom.js:15 ~ getRoom ~ Rooms", Rooms);
-    } catch (error) {
-      console.log("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
-    }
-  };
-  useEffect(() => {
-    getRoom();
-  }, []);
   return (
     <div class="flex flex-col">
       <div className="px-4 md:px-10 py-4 md:py-7">
@@ -30,14 +11,20 @@ function RoomHeader() {
 
           <div className="mt-4 sm:mt-0">
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-              <p className="text-sm font-medium leading-none text-white">
+              <a
+                href="/manager/ListRoom"
+                className="text-sm font-medium leading-none text-white"
+              >
                 ListRoom
-              </p>
+              </a>
             </button>
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-              <p className="text-sm font-medium leading-none text-white">
+              <a
+                href="/manager/AddRoom"
+                className="text-sm font-medium leading-none text-white"
+              >
                 Add room
-              </p>
+              </a>
             </button>
           </div>
         </div>

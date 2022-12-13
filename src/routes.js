@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import Manager from "./manager/pages/Manager";
 import AddRoom from "./manager/pages/room/AddRoom";
-import Manager from "./manager/pages/room/ListRoom";
+import ListRoom from "./manager/pages/room/ListRoom";
+
 import ERROR from "./public/pages/Error/404";
 import ERROR1 from "./public/pages/Error/noPermission";
 
@@ -17,8 +19,11 @@ const AppRouter = () => (
       <Route path="Login" element={<Login />} />
       <Route path="SignUp" element={<Signup />} />
       <Route path="user" element={<User />}></Route>
-      <Route path="Manager" element={<Manager />}></Route>
-      <Route path="AddRoom" element={<AddRoom />} />
+      <Route path="Manager" element={<Manager />}>
+        <Route path="AddRoom" element={<AddRoom />} />
+        <Route path="ListRoom" element={<ListRoom />} />
+      </Route>
+
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
 
