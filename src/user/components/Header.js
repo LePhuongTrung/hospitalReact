@@ -1,65 +1,100 @@
-import React from "react";
+import { useState } from "react";
 
-export default function HeaderComponent({ fixed }) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+export default function NavBar() {
+  const [navbar, setNavbar] = useState(false);
+
   return (
-    <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-pink-500 mb-3">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-              href="#pablo"
-            >
-              pink Tailwind Starter Kit
-            </a>
-            <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
-            >
-              <i className="fas fa-bars"></i>
-            </button>
-          </div>
-          <div
-            className={
-              "lg:flex flex-grow items-center" +
-              (navbarOpen ? " flex" : " hidden")
-            }
-            id="example-navbar-danger"
-          >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
-                >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Share</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
-                >
-                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Tweet</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
-                >
-                  <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Pin</span>
-                </a>
-              </li>
-            </ul>
+    <nav className="w-full bg-purple-500 shadow">
+      <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
+        <div>
+          <div className="flex items-center justify-between py-3 md:py-5 md:block">
+            <img
+              class="w-10 h-10 rounded-full"
+              src="https://i.pinimg.com/236x/42/91/b2/4291b20ea51111b355229602405ba1c3.jpg"
+              alt="Rounded avatar"
+            />
+            <div className="md:hidden">
+              <button
+                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+                onClick={() => setNavbar(!navbar)}
+              >
+                {navbar ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </nav>
-    </>
+        <div>
+          <div
+            className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+              navbar ? "block" : "hidden"
+            }`}
+          >
+            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+              <li className="text-white hover:text-indigo-200">
+                <a href="javascript:void(0)">Take care</a>
+              </li>
+              <li className="text-white hover:text-indigo-200">
+                <a href="javascript:void(0)">Home</a>
+              </li>
+              <li className="text-white hover:text-indigo-200">
+                <a href="javascript:void(0)">Contact US</a>
+              </li>
+            </ul>
+
+            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
+              <a
+                href="javascript:void(0)"
+                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+              >
+                Sign in
+              </a>
+              <a
+                href="javascript:void(0)"
+                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+              >
+                Sign up
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="hidden space-x-2 md:inline-block">
+          <a href="/user/profile">
+            <img
+              class="w-10 h-10 rounded-full"
+              src="https://photo-cms-plo.epicdn.me/w850/Uploaded/2022/tmuihk/2022_05_12/avt-stills1-8041.jpg"
+              alt="Rounded avatar"
+            />
+          </a>
+        </div>
+      </div>
+    </nav>
   );
 }

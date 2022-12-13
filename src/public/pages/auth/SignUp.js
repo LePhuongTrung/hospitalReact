@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 /* Import service */
 
 /* Import component */
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
   .object()

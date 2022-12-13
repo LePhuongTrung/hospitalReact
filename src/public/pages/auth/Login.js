@@ -5,13 +5,13 @@ import * as yup from "yup";
 
 /* Import redux */
 import { useDispatch } from "react-redux";
-import { setLoggedInUser } from "../../redux/auth/LoginStatus";
+import { setLoggedInUser } from "../../../redux/auth/LoginStatus";
 
 /* Import service */
-import { login } from "../../user/services/auth.service";
+import { login } from "../../../user/services/auth.service";
 
 /* Import component */
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
   .object()
