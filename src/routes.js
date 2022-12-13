@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AddRoom from "./manager/pages/room/AddRoom";
 import Manager from "./manager/pages/room/ListRoom";
 import ERROR from "./public/pages/Error/404";
+import ERROR1 from "./public/pages/Error/noPermission";
+
 import Login from "./public/pages/Login";
 import Signup from "./public/pages/SignUp";
 import User from "./user/pages/User";
@@ -18,6 +20,7 @@ const AppRouter = () => (
       <Route path="Manager" element={<Manager />}></Route>
       <Route path="AddRoom" element={<AddRoom />} />
       <Route path="ERROR" element={<ERROR />} />
+      <Route path="NoPermission" element={<ERROR1 />} />
 
       {/* <Route path="/products" element={<ListProduct />} /> */}
       {/* </Route> */}
