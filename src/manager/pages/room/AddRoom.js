@@ -1,5 +1,5 @@
 import React from "react";
-import AddRoom from "../../components/AddRoom";
+import AddRoom from "../../components/room/AddRoom";
 
 function homeManager() {
   return (

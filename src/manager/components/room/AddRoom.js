@@ -5,9 +5,9 @@ import * as yup from "yup";
 /* Import redux */
 
 /* Import component */
-import CustomInput from "../../public/components/CustomInput";
-import RadioButton from "../../public/components/RadioButton";
-import SelectComponent from "../../public/components/SelectComponent";
+import CustomInput from "../../../public/components/CustomInput";
+import RadioButton from "../../../public/components/RadioButton";
+import SelectComponent from "../../../public/components/SelectComponent";
 
 const schemaValidation = yup
   .object()

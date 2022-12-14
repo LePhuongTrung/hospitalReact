@@ -19,7 +19,7 @@ const AppRouter = () => (
     <Routes>
       {/* <Route path="/"> */}
       <Route path="Login" element={<Login />} />
-      <Route path="verification" element={<VerificationSuccess />} />
+      <Route path="verification/:Link" element={<VerificationSuccess />} />
 
       <Route path="SignUp" element={<Signup />} />
       <Route path="user" element={<User />}></Route>

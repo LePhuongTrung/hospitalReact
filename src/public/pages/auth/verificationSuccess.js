@@ -1,6 +1,9 @@
 import React from "react";
-
 function verificationPage() {
+  // let { Link } = useParams();
+  const checkConfirm = async () => {
+    // const confirm = await confirm(Link);
+  };
   return (
     <div class="h-screen w-screen bg-sky-400 border-2">
       <div class=" mt-4 mx-40 rounded-md border-2 bg-white ">

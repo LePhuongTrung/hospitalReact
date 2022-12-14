@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import RoomHeader from "../../components/RoomHeader";
+import RoomHeader from "../../components/room/RoomHeader";
 
 function Room() {
   return (
