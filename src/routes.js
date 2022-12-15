@@ -12,6 +12,8 @@ import Login from "./public/pages/auth/Login";
 import Signup from "./public/pages/auth/SignUp";
 import VerificationSuccess from "./public/pages/auth/verificationSuccess";
 import User from "./user/pages/User";
+
+import AuthenticationRoutes from "./middleware/authentication";
 // login => list of books
 
 const AppRouter = () => (
@@ -20,15 +22,16 @@ const AppRouter = () => (
       {/* <Route path="/"> */}
       <Route path="Login" element={<Login />} />
       <Route path="verification/:Link" element={<VerificationSuccess />} />
-
-      <Route path="SignUp" element={<Signup />} />
-      <Route path="user" element={<User />}></Route>
-      <Route path="Manager" element={<Manager />}>
-        <Route path="Room" element={<Room />}>
-          <Route path="AddRoom" element={<AddRoom />} />
-          <Route path="ListRoom" element={<ListRoom />} />
+      <Route element={<AuthenticationRoutes />}>
+        <Route path="user" element={<User />}></Route>
+        <Route path="Manager" element={<Manager />}>
+          <Route path="Room" element={<Room />}>
+            <Route path="AddRoom" element={<AddRoom />} />
+            <Route path="ListRoom" element={<ListRoom />} />
+          </Route>
         </Route>
       </Route>
+      <Route path="SignUp" element={<Signup />} />
 
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />

@@ -32,7 +32,6 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schemaValidation),
   });
-  console.log("🚀 ~ file: Login.js ~ line 35 ~ Login ~ errors", errors);
 
   const onSubmit = async (data) => {
     console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
