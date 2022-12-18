@@ -2,13 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { SignUp } from "../../../user/services/auth.service";
 
-/* Import redux */
-import { useDispatch } from "react-redux";
-
-/* Import service */
-
-/* Import component */
 import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
@@ -16,15 +11,15 @@ const schemaValidation = yup
   .shape({
     email: yup.string().email().required(),
     password: yup.string().min(6).required(),
-    fullName: yup.string().required(),
-    phoneNumber: yup.string().min(10).max(10).required(),
+    retypePassword: yup
+      .string()
+      .required("Please retype your password.")
+      .oneOf([yup.ref("password")], "Your passwords do not match."),
   })
   .required();
 
 export default function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
@@ -32,22 +27,18 @@ export default function Login() {
   } = useForm({
     resolver: yupResolver(schemaValidation),
   });
-  console.log("🚀 ~ file: SignUp.js ~ line 37 ~ Login ~ errors", errors);
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: SignUp.js ~ line 40 ~ onSubmit ~ data", data);
+    console.log("🚀 ~ file: SignUp.js:29 ~ onSubmit ~ data", data);
     try {
-      const response = await register(data);
-      console.log(
-        "🚀 ~ file: SignUp.js ~ line 43 ~ onSubmit ~ response",
-        response
-      );
+      const response = await SignUp(data);
+      console.log("🚀 ~ file: SignUp.js:35 ~ onSubmit ~ response", response);
 
       if (response.status !== 200) return;
 
       navigate("/Login", { replace: true });
     } catch (error) {
-      console.log("🚀 ~ file: SignUp.js ~ line 52 ~ onSubmit ~ error", error);
+      console.error("🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error", error);
     }
   };
 
@@ -91,23 +82,44 @@ export default function Login() {
                 {...register("password")}
               />
               <CustomInput
-                label="Full Name"
-                errors={errors.fullName}
-                {...register("fullName")}
+                label="Enter Password again"
+                type="password"
+                errors={errors.retypePassword}
+                {...register("retypePassword")}
               />
-              <CustomInput
-                label="Phone Number"
-                type="phoneNumber"
-                errors={errors.phoneNumber}
-                {...register("phoneNumber")}
-              />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    id="remember-me"
+                    name="remember-me"
+                    type="checkbox"
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                  />
+                  <label
+                    htmlFor="remember-me"
+                    className="ml-2 block text-sm text-gray-900"
+                  >
+                    Remember me
+                  </label>
+                </div>
+
+                <div className="text-sm">
+                  <a
+                    href=""
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
+
               <div>
                 <button
                   type="submit"
                   // onClick={handleLogin}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign up
+                  Sign in
                 </button>
               </div>
             </form>
