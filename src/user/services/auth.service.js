@@ -1,7 +1,9 @@
 import axios from "axios";
+const API_URL = "http://localhost:3333/";
 
-export const login = (payload) =>
-  axios.post("http://localhost:3333/user/Login", payload);
+export const login = (data) => axios.post(API_URL + "user/Login", data);
 
-export const SignUp = (payload) =>
-  axios.post("http://localhost:3333/user/register", payload);
+export const SignUp = (data) => axios.post(API_URL + "user/register", data);
+
+export const ForgetPassword = (data) =>
+  axios.post(API_URL + "user/forgetPassword", data);

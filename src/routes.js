@@ -8,8 +8,10 @@ import Room from "./manager/pages/room/Room";
 
 import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
+import ForgetPassword from "./public/pages/Error/forgetPassword";
 import ERROR1 from "./public/pages/Error/noPermission";
 
+import ATO from "./public/pages/auth/ATO";
 import Login from "./public/pages/auth/Login";
 import Signup from "./public/pages/auth/SignUp";
 
@@ -23,8 +25,13 @@ const AppRouter = () => (
     <Routes>
       {/* <Route path="/"> */}
       <Route path="Login" element={<Login />} />
+
+      <Route path="forgetPassword" element={<ForgetPassword />} />
+      <Route path="verification" element={<VerificationSuccess />} />
+
+      <Route path="ATO" element={<ATO />} />
       <Route
-        path="verification/:Gmail/:Code"
+        path="resetPassword/:Gmail/:Code"
         element={<VerificationSuccess />}
       />
       <Route element={<AuthenticationRoutes />}>

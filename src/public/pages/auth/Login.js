@@ -37,18 +37,13 @@ export default function Login() {
     console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
     try {
       const response = await login(data);
-      console.log(
-        "🚀 ~ file: Login.js ~ line 41 ~ onSubmit ~ response",
-        response
-      );
-
       if (response.status !== 200) return;
 
       localStorage.setItem("access_token", response.data.token);
       dispatch(setLoggedInUser(response.data.payload));
       navigate("/products", { replace: true });
     } catch (error) {
-      console.log("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
+      console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }
   };
 

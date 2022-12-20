@@ -32,7 +32,6 @@ export default function Login() {
     console.log("🚀 ~ file: SignUp.js:29 ~ onSubmit ~ data", data);
     try {
       const response = await SignUp(data);
-      console.log("🚀 ~ file: SignUp.js:35 ~ onSubmit ~ response", response);
 
       if (response.status !== 200) return;
 
