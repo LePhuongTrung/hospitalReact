@@ -11,8 +11,8 @@ import ERROR from "./public/pages/Error/404";
 import ForgetPassword from "./public/pages/Error/forgetPassword";
 import ERROR1 from "./public/pages/Error/noPermission";
 
-import ATO from "./public/pages/auth/ATO";
 import Login from "./public/pages/auth/Login";
+import ResetPassword from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
 import User from "./user/pages/User";
@@ -29,11 +29,7 @@ const AppRouter = () => (
       <Route path="forgetPassword" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
 
-      <Route path="ATO" element={<ATO />} />
-      <Route
-        path="resetPassword/:Gmail/:Code"
-        element={<VerificationSuccess />}
-      />
+      <Route path="resetPassword" element={<ResetPassword />} />
       <Route element={<AuthenticationRoutes />}>
         <Route path="user" element={<User />}></Route>
         <Route path="Manager" element={<Manager />}>

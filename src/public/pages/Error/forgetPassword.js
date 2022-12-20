@@ -32,11 +32,6 @@ export default function Login() {
     setLoading(true);
     try {
       const response = await ForgetPassword(data);
-      console.log(
-        "🚀 ~ file: forgetPassword.js:35 ~ onSubmit ~ response",
-        response
-      );
-
       if (response.status === 200) {
         setTimeout(() => {
           message.success(
@@ -53,11 +48,12 @@ export default function Login() {
         : setTimeout(() => {
             message.error("Register reset password failed!");
           }, 2000);
+      setLoading(false);
+
       console.error(
         "🚀 ~ file: forgetPassword.js:61 ~ onSubmit ~ error",
         error
       );
-      setLoading(false);
     }
   };
 
