@@ -43,17 +43,16 @@ export default function Login() {
             "Register reset password successfully, please check your email."
           );
         }, 2000);
-      } else if (response.status === 403) {
-        setTimeout(() => {
-          message.warning("Email not registered account");
-        }, 2000);
-      } else {
-        setTimeout(() => {
-          message.error("Register reset password failed!");
-        }, 2000);
       }
       setLoading(false);
     } catch (error) {
+      error.response.status === 403
+        ? setTimeout(() => {
+            message.warning("Email not registered account");
+          }, 2000)
+        : setTimeout(() => {
+            message.error("Register reset password failed!");
+          }, 2000);
       console.error(
         "🚀 ~ file: forgetPassword.js:61 ~ onSubmit ~ error",
         error
