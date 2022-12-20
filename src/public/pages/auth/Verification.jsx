@@ -12,7 +12,7 @@ const VerificationPage = () => {
 
   useEffect(() => {
     Verification();
-  }, []);
+  });
   const Verification = async () => {
     const link = "?email=" + Gmail + "&token=" + Code;
     console.log("🚀 ~ file: Verification.js:18 ~ GetParams ~ link", link);

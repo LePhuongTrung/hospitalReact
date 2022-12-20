@@ -17,6 +17,8 @@ import Signup from "./public/pages/auth/SignUp";
 
 import User from "./user/pages/User";
 
+import Assistant from "./assistant/pages/assistant";
+
 import AuthenticationRoutes from "./middleware/authentication";
 // login => list of books
 
@@ -32,6 +34,8 @@ const AppRouter = () => (
       <Route path="resetPassword" element={<ResetPassword />} />
       <Route element={<AuthenticationRoutes />}>
         <Route path="user" element={<User />}></Route>
+        <Route path="Assistant" element={<Assistant />}></Route>
+
         <Route path="Manager" element={<Manager />}>
           <Route path="Room" element={<Room />}>
             <Route path="AddRoom" element={<AddRoom />} />

@@ -40,8 +40,16 @@ export default function Login() {
       if (response.status !== 200) return;
 
       localStorage.setItem("access_token", response.data.token);
+      localStorage.setItem("role", response.data.role);
+
       dispatch(setLoggedInUser(response.data.payload));
-      navigate("/products", { replace: true });
+      if (response.data.role === "user") {
+        navigate("/user", { replace: true });
+      } else if (response.data.role === "manager") {
+        navigate("/manager", { replace: true });
+      } else {
+        navigate("/assistant", { replace: true });
+      }
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }

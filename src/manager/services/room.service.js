@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../redux/auth/Header";
 
 export const findAll = (page) =>
   axios.get(`http://localhost:3333/room/findAll/${page}/10`);

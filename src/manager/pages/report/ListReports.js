@@ -1,5 +1,4 @@
 import React from "react";
-import Pagination from "../../../public/components/pagination";
 
 function Index() {
   return (
@@ -32,9 +31,7 @@ function Index() {
               </tbody>
             </table>
           </div>
-          <div class="ml-418 mt-6">
-            <Pagination />
-          </div>
+          <div class="ml-418 mt-6"></div>
         </div>
       </div>
     </>

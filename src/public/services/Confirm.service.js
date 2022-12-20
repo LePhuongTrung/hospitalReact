@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../redux/auth/Header";
 const API_URL = "http://localhost:3333/";
 
 export const Confirm = async (Link) => {

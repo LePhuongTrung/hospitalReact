@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Pagination from "../../../public/components/pagination";
+import ReactPaginate from "react-paginate";
 import { findAll } from "../../services/room.service";
 
 function Index() {
@@ -50,6 +50,8 @@ function Index() {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }
   };
+
+  const handlePageClick = async () => {};
   useEffect(() => {
     if (CurrentNumber === 1) {
       setNumber1(CurrentNumber);
@@ -124,13 +126,18 @@ function Index() {
             </tbody>
           </table>
         </div>
-        <div class="ml-418 mt-6">
-          <Pagination
-            text1={Number1}
-            text2={Number2}
-            text3={Number3}
-            text4={Number4}
-            text5={Number5}
+        <div class="flex justify-center items-center	">
+          <ReactPaginate
+            className="flex justify-center"
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            pageCount={totalNumber}
+            onPageChange={handlePageClick}
+            containerClassName={"paginationBttns"}
+            previousLinkClassName={"previousBttn"}
+            nextLinkClassName={"nextBttn"}
+            disabledClassName={"paginationDisabled"}
+            activeClassName={"paginationActive"}
           />
         </div>
       </div>
