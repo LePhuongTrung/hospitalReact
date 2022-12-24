@@ -1,4 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -11,6 +12,7 @@ import { setLoggedInUser } from "../../../redux/auth/AuthStatus";
 import { login } from "../../../user/services/auth.service";
 
 /* Import component */
+import Alert from "../../components/AlertError";
 import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
@@ -22,6 +24,9 @@ const schemaValidation = yup
   .required();
 
 export default function Login() {
+  const [error, setError] = useState("");
+  const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -45,21 +50,50 @@ export default function Login() {
 
       const role = response.data.role;
       dispatch(setLoggedInUser({ token, role }));
-      // if (role === "user") {
-      //   navigate("/user", { replace: true });
-      // } else if (role === "manager") {
-      //   navigate("/manager", { replace: true });
-      // } else {
-      //   navigate("/assistant", { replace: true });
-      // }
+      if (role === "user") {
+        navigate("/user", { replace: true });
+      } else if (role === "manager") {
+        navigate("/manager", { replace: true });
+      } else {
+        navigate("/assistant", { replace: true });
+      }
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
+      if (!error?.originalStatus) {
+        setError("No Server Response!");
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 5000);
+      } else if (error.originalStatus === 400) {
+        setError("Missing Username or Password");
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 5000);
+      } else if (error.originalStatus === 401) {
+        setError("Unauthorized");
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 5000);
+      } else {
+        setError("Login Failed");
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 5000);
+      }
     }
   };
 
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div onClick={() => setOpen(false)}>
+          <Alert text={error} display={open} />
+        </div>
+
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             className="mx-auto h-28 w-auto"
@@ -79,7 +113,6 @@ export default function Login() {
             </a>
           </p>
         </div>
-
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
@@ -114,7 +147,7 @@ export default function Login() {
 
                 <div className="text-sm">
                   <a
-                    href=""
+                    href="/forgetPassword"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot your password?
@@ -148,7 +181,7 @@ export default function Login() {
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a
-                    href="#"
+                    href="/a"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Facebook</span>
@@ -169,7 +202,7 @@ export default function Login() {
 
                 <div>
                   <a
-                    href="#"
+                    href="/#"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Twitter</span>
@@ -186,7 +219,7 @@ export default function Login() {
 
                 <div>
                   <a
-                    href="#"
+                    href="/#"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with GitHub</span>

@@ -20,5 +20,8 @@ export const { setLoggedInUser, logOut } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const selectCurrentRole = (state) => state.auth.role;
-export const selectCurrentToken = (state) => state.auth.token;
+export const selectCurrentRole = (state) => state.role;
+export const selectCurrentToken = (state) => state.token;
+export const checkToken = (state) => {
+  console.log("🚀 ~ file: AuthStatus.js:26 ~ state.auth.token", state.token);
+};

@@ -6,6 +6,7 @@ import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
 
+import CheckError from "./CheckError";
 import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
 import ForgetPassword from "./public/pages/Error/forgetPassword";
@@ -30,6 +31,7 @@ const AppRouter = () => (
     <Routes>
       {/* <Route path="/"> */}
       <Route path="Login" element={<Login />} />
+      <Route path="CheckError" element={<CheckError />} />
 
       <Route path="forgetPassword" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
