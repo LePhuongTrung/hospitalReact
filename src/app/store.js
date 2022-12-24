@@ -10,7 +10,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import loginReducer from "../redux/auth/LoginStatus";
+import loginReducer from "../redux/auth/AuthStatus";
 
 const presistConfigure = {
   key: "root",

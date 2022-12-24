@@ -5,7 +5,7 @@ import * as yup from "yup";
 
 /* Import redux */
 import { useDispatch } from "react-redux";
-import { setLoggedInUser } from "../../../redux/auth/LoginStatus";
+import { setLoggedInUser } from "../../../redux/auth/AuthStatus";
 
 /* Import service */
 import { login } from "../../../user/services/auth.service";
@@ -34,7 +34,6 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
     try {
       const response = await login(data);
       if (response.status !== 200) return;
@@ -42,14 +41,17 @@ export default function Login() {
       localStorage.setItem("access_token", response.data.token);
       localStorage.setItem("role", response.data.role);
 
-      dispatch(setLoggedInUser(response.data.payload));
-      if (response.data.role === "user") {
-        navigate("/user", { replace: true });
-      } else if (response.data.role === "manager") {
-        navigate("/manager", { replace: true });
-      } else {
-        navigate("/assistant", { replace: true });
-      }
+      const token = response.data.token;
+
+      const role = response.data.role;
+      dispatch(setLoggedInUser({ token, role }));
+      // if (role === "user") {
+      //   navigate("/user", { replace: true });
+      // } else if (role === "manager") {
+      //   navigate("/manager", { replace: true });
+      // } else {
+      //   navigate("/assistant", { replace: true });
+      // }
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }

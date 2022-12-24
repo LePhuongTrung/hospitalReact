@@ -15,11 +15,14 @@ import Login from "./public/pages/auth/Login";
 import ResetPassword from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
+import Information from "./user/pages/profile/information";
+import Profile from "./user/pages/profile/Profile";
+
 import User from "./user/pages/User";
 
 import Assistant from "./assistant/pages/assistant";
 
-import AuthenticationRoutes from "./middleware/authentication";
+import AuthenticationRoutes from "./redux/auth/authentication";
 // login => list of books
 
 const AppRouter = () => (
@@ -34,6 +37,9 @@ const AppRouter = () => (
       <Route path="resetPassword" element={<ResetPassword />} />
       <Route element={<AuthenticationRoutes />}>
         <Route path="user" element={<User />}></Route>
+        <Route path="profile" element={<Profile />}>
+          <Route path="information" element={<Information />} />
+        </Route>
         <Route path="Assistant" element={<Assistant />}></Route>
 
         <Route path="Manager" element={<Manager />}>

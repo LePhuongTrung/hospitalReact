@@ -1,11 +1,12 @@
 import React from "react";
-// import FooterComponent from "../../components/user/Footer";
-// import HeaderComponent from "../../components/user/Header";
+import { Outlet } from "react-router-dom";
+
+import HeaderComponent from "../components/Header";
 function homeUser() {
   return (
     <div>
-      {/* <HeaderComponent />
-      <FooterComponent /> */}
+      <HeaderComponent />
+      <Outlet />
     </div>
   );
 }

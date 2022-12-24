@@ -68,25 +68,10 @@ export default function NavBar() {
                 <a href="javascript:void(0)">Contact US</a>
               </li>
             </ul>
-
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-              >
-                Sign in
-              </a>
-              <a
-                href="javascript:void(0)"
-                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-              >
-                Sign up
-              </a>
-            </div>
           </div>
         </div>
         <div className="hidden space-x-2 md:inline-block">
-          <a href="/user/profile">
+          <a href="/profile">
             <img
               class="w-10 h-10 rounded-full"
               src="https://photo-cms-plo.epicdn.me/w850/Uploaded/2022/tmuihk/2022_05_12/avt-stills1-8041.jpg"
