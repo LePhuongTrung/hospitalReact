@@ -1,8 +1,11 @@
-import { UilKeySkeletonAlt, UilSignout } from "@iconscout/react-unicons";
+import {
+  UilHeartMedical,
+  UilKeySkeletonAlt,
+  UilSignout,
+} from "@iconscout/react-unicons";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/AuthStatus";
-
 export default function SideBarProfile() {
   const dispatch = useDispatch();
 
@@ -60,9 +63,11 @@ export default function SideBarProfile() {
             </a>
           </li>
           <li>
-            <a class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+            <a
+              href="/user/Health"
+              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            >
+              <UilHeartMedical
                 class="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -74,8 +79,8 @@ export default function SideBarProfile() {
                   stroke-width="2"
                   d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                 ></path>
-              </svg>
-              <span>Important</span>
+              </UilHeartMedical>
+              <span>Health</span>
             </a>
           </li>
           <li>
