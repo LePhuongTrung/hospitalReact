@@ -13,10 +13,11 @@ import ForgetPassword from "./public/pages/Error/forgetPassword";
 import ERROR1 from "./public/pages/Error/noPermission";
 
 import Login from "./public/pages/auth/Login";
-import ResetPassword from "./public/pages/auth/ResetPassword";
+import ResetPasswordIdentify from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
 import Information from "./user/pages/information";
+import ResetPassword from "./user/pages/ResetPassword";
 import User from "./user/pages/User";
 
 import Assistant from "./assistant/pages/assistant";
@@ -31,13 +32,14 @@ const AppRouter = () => (
       <Route path="Login" element={<Login />} />
       <Route path="CheckError" element={<CheckError />} />
 
-      <Route path="forgetPassword" element={<ForgetPassword />} />
+      <Route path="identify" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
 
-      <Route path="resetPassword" element={<ResetPassword />} />
+      <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
       <Route element={<AuthenticationRoutes />}>
         <Route path="User" element={<User />}>
           <Route path="information" element={<Information />} />
+          <Route path="ResetPassword" element={<ResetPassword />} />
         </Route>
         <Route path="Assistant" element={<Assistant />}></Route>
 

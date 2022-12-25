@@ -1,6 +1,5 @@
-import { UilSignout } from "@iconscout/react-unicons";
+import { UilKeySkeletonAlt, UilSignout } from "@iconscout/react-unicons";
 import { CgProfile } from "react-icons/cg";
-
 import { useDispatch } from "react-redux";
 import { logOut } from "../../redux/auth/AuthStatus";
 
@@ -41,11 +40,10 @@ export default function SideBarProfile() {
 
           <li>
             <a
-              href="/user/information"
+              href="/user/ResetPassword"
               class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
+              <UilKeySkeletonAlt
                 class="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -57,8 +55,8 @@ export default function SideBarProfile() {
                   stroke-width="2"
                   d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
-              </svg>
-              <span>Snoozed</span>
+              </UilKeySkeletonAlt>
+              <span>Reset Password</span>
             </a>
           </li>
           <li>
