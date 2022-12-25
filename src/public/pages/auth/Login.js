@@ -43,11 +43,9 @@ export default function Login() {
       const response = await login(data);
       if (response.status !== 200) return;
 
-      localStorage.setItem("access_token", response.data.token);
-      localStorage.setItem("role", response.data.role);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       const token = response.data.token;
-
       const role = response.data.role;
       dispatch(setLoggedInUser({ token, role }));
       if (role === "user") {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import VerificationFailed from "../../components/VerificationFailed";
-import VerificationSuccess from "../../components/VerificationSuccess";
+import VerificationFailed from "../../components/verificationFailed";
+import VerificationSuccess from "../../components/verificationSuccess";
 
 import { Confirm } from "../../services/Confirm.service";
 

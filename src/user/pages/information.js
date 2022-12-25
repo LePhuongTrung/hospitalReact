@@ -1,8 +1,8 @@
 import React from "react";
-import CustomInput from "../../../public/components/CustomInput";
+import CustomInput from "../../public/components/CustomInput";
 function Index() {
   return (
-    <div class="w-full space-y-9">
+    <div class="w-full space-y-9 mt-10 mr-4">
       <div class="flex space-x-10">
         <div class="w-1/2">
           <CustomInput
