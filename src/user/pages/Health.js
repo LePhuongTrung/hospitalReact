@@ -8,6 +8,7 @@ function Index() {
   const [BMI, setBMI] = useState(0.001);
   const [safe, setSafe] = useState(0.001);
   const [color, setColor] = useState("");
+  const [recommendation, setRecommendation] = useState("");
 
   useEffect(() => {
     setHeight(170);
@@ -22,6 +23,25 @@ function Index() {
     console.log("🚀 ~ file: Health.js:22 ~ CalculateBMI ~ heightM", heightM);
     const bmi = weight / (heightM * heightM);
     setBMI(bmi.toFixed(3));
+    if (24.5 < BMI < 27) {
+      setRecommendation("You should exercise and eat healthier");
+    } else if (BMI >= 27 && BMI < 30) {
+      setRecommendation(
+        "You should exercise and and reduce the intake of foods high in sugar and fat"
+      );
+    } else if (BMI >= 30) {
+      setRecommendation(
+        "You are already obese, go to the hospital for the most suitable advice"
+      );
+    } else if (BMI < 18.5) {
+      setRecommendation(
+        "You have been malnourished, go to the hospital for the most appropriate advice"
+      );
+    } else {
+      setRecommendation(
+        "Your body is doing pretty well, try to maintain a healthy lifestyle."
+      );
+    }
   };
   const CalculateHealth = () => {
     const health = Math.abs(BMI - 22);
@@ -150,6 +170,15 @@ function Index() {
                   BMI
                 </th>
                 <td class="py-4 px-6">{BMI}</td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th
+                  scope="row"
+                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Recommendation
+                </th>
+                <td class="py-4 px-6">{recommendation}</td>
               </tr>
             </tbody>
           </table>
