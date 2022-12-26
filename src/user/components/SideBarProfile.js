@@ -1,16 +1,22 @@
 import {
+  UilClipboardAlt,
   UilHeartMedical,
   UilKeySkeletonAlt,
   UilSignout,
 } from "@iconscout/react-unicons";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch } from "react-redux";
+import { Navigate } from "react-router-dom";
 import { logOut } from "../../redux/auth/AuthStatus";
 export default function SideBarProfile() {
   const dispatch = useDispatch();
 
   const LogOut = () => {
-    dispatch(logOut());
+    try {
+      localStorage.removeItem("user");
+      dispatch(logOut());
+      Navigate("/login", { replace: true });
+    } catch (err) {}
   };
 
   return (
@@ -84,10 +90,12 @@ export default function SideBarProfile() {
             </a>
           </li>
           <li>
-            <a class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 rotate-90"
+            <a
+              href="/user/MedicalHistory"
+              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            >
+              <UilClipboardAlt
+                class="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -96,10 +104,10 @@ export default function SideBarProfile() {
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                 ></path>
-              </svg>
-              <span>Sent</span>
+              </UilClipboardAlt>
+              <span>Medical History</span>
             </a>
           </li>
           <li>
@@ -146,7 +154,7 @@ export default function SideBarProfile() {
             </a>
           </li>
           <li>
-            <a
+            <div
               onClick={LogOut}
               class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
             >
@@ -164,7 +172,7 @@ export default function SideBarProfile() {
                 ></path>
               </UilSignout>
               <span>Log out</span>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
