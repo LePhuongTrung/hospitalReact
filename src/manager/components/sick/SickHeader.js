@@ -12,18 +12,18 @@ function RoomHeader() {
           <div className="mt-4 sm:mt-0">
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
               <a
-                href="/Manager/room/ListRoom"
+                href="/Manager/sick/ListSick"
                 className="text-sm font-medium leading-none text-white"
               >
-                List Room
+                List Sick
               </a>
             </button>
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
               <a
-                href="/Manager/room/AddRoom"
+                href="/Manager/sick/AddSick"
                 className="text-sm font-medium leading-none text-white"
               >
-                Add room
+                Add Sick
               </a>
             </button>
           </div>

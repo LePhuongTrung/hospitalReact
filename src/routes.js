@@ -6,6 +6,10 @@ import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
 
+import AddSick from "./manager/pages/sick/AddSick";
+import ListSick from "./manager/pages/sick/ListSick";
+import Sick from "./manager/pages/sick/Sick";
+
 import CheckError from "./CheckError";
 import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
@@ -51,6 +55,10 @@ const AppRouter = () => (
         <Route path="Assistant" element={<Assistant />}></Route>
 
         <Route path="Manager" element={<Manager />}>
+          <Route path="Sick" element={<Sick />}>
+            <Route path="AddSick" element={<AddSick />} />
+            <Route path="ListSick" element={<ListSick />} />
+          </Route>
           <Route path="Room" element={<Room />}>
             <Route path="AddRoom" element={<AddRoom />} />
             <Route path="ListRoom" element={<ListRoom />} />

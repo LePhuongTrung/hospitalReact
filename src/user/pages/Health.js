@@ -2,27 +2,32 @@ import React, { useEffect, useState } from "react";
 import { Circle } from "react-circle";
 
 function Index() {
-  const [height, setHeight] = useState(0.001);
+  const [height, setHeight] = useState(170);
   const [age, setAge] = useState();
-  const [weight, setWeight] = useState();
+  const [weight, setWeight] = useState(68);
   const [BMI, setBMI] = useState(0.001);
   const [safe, setSafe] = useState(0.001);
   const [color, setColor] = useState("");
   const [recommendation, setRecommendation] = useState("");
 
   useEffect(() => {
-    setHeight(170);
-    setWeight(68);
     setAge(22);
     CalculateBMI();
+    SetRecommendation();
+  }, [height, weight]);
+
+  useEffect(() => {
     CalculateHealth();
-  }, []);
+  }, [BMI]);
 
   const CalculateBMI = () => {
     const heightM = (height / 100).toFixed(2);
-    console.log("🚀 ~ file: Health.js:22 ~ CalculateBMI ~ heightM", heightM);
     const bmi = weight / (heightM * heightM);
+    console.log("🚀 ~ file: Health.js:25 ~ CalculateBMI ~ bmi", bmi);
     setBMI(bmi.toFixed(3));
+  };
+
+  const SetRecommendation = () => {
     if (24.5 < BMI < 27) {
       setRecommendation("You should exercise and eat healthier");
     } else if (BMI >= 27 && BMI < 30) {
@@ -43,10 +48,9 @@ function Index() {
       );
     }
   };
+
   const CalculateHealth = () => {
     const health = Math.abs(BMI - 22);
-    console.log("🚀 ~ file: Health.js:28 ~ CalculateHealth ~ BMI", BMI);
-    console.log("🚀 ~ file: Health.js:28 ~ CalculateHealth ~ health", health);
     let percent;
     health > 22
       ? (percent = 100)
@@ -55,6 +59,7 @@ function Index() {
     if (percent > 100) {
       percent = 100;
     }
+
     setSafe(percent.toFixed(2));
     if (percent >= 92) {
       setColor("#068815");
@@ -75,14 +80,16 @@ function Index() {
 
   const changeHeight = (e) => {
     setHeight(e.target.value);
-    CalculateBMI();
-    CalculateHealth();
+    // CalculateBMI();
+    // SetRecommendation();
+    // CalculateHealth();
   };
 
   const changeWeight = (e) => {
     setWeight(e.target.value);
-    CalculateBMI();
-    CalculateHealth();
+    // CalculateBMI();
+    // SetRecommendation();
+    // CalculateHealth();
   };
 
   return (
