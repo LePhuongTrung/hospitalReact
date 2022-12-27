@@ -10,6 +10,10 @@ import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
 import Sick from "./manager/pages/sick/Sick";
 
+import AddSale from "./manager/pages/Sales/AddSales";
+import Sale from "./manager/pages/Sales/Sales";
+import Week from "./manager/pages/Sales/Week";
+
 import CheckError from "./CheckError";
 import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
@@ -62,6 +66,10 @@ const AppRouter = () => (
           <Route path="Room" element={<Room />}>
             <Route path="AddRoom" element={<AddRoom />} />
             <Route path="ListRoom" element={<ListRoom />} />
+          </Route>
+          <Route path="Sale" element={<Sale />}>
+            <Route path="AddSale" element={<AddSale />} />
+            <Route path="Week" element={<Week />} />
           </Route>
           <Route path="Report" element={<Report />}></Route>
         </Route>

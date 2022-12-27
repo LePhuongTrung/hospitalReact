@@ -1,14 +1,14 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import SickHeader from "../../components/sick/SickHeader";
+import SaleHeader from "../../components/Sale/SaleHeader";
 
-function Sick() {
+function Sales() {
   return (
     <div className="xl:w-3/4 2xl:w-4/5 w-full">
-      <SickHeader />
+      <SaleHeader />
       <Outlet />
     </div>
   );
 }
 
-export default Sick;
+export default Sales;
