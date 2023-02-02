@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { findAll } from "../../services/room.service";
+import { findAll } from "../../api/room.service";
 
 function Index() {
   useEffect(() => {

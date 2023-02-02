@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import PieChart from "../../components/Sale/PieCharts";
 import Recharts from "../../components/Sale/Recharts";
 
 function Index() {
   const data = [
     {
       date: "MonDay",
-      internalDiseases: 32,
+      internal: 32,
       surgicalDiseases: 37,
       obstetrics: 60,
       emergency: 20,
@@ -13,7 +14,7 @@ function Index() {
     },
     {
       date: "TueDay",
-      internalDiseases: 42,
+      internal: 42,
       surgicalDiseases: 42,
       obstetrics: 54,
       emergency: 10,
@@ -21,7 +22,7 @@ function Index() {
     },
     {
       date: "Wednesday",
-      internalDiseases: 51,
+      internal: 51,
       surgicalDiseases: 41,
       obstetrics: 54,
       emergency: 35,
@@ -29,7 +30,7 @@ function Index() {
     },
     {
       date: "Thursday",
-      internalDiseases: 60,
+      internal: 60,
       surgicalDiseases: 37,
       obstetrics: 28,
       emergency: 2,
@@ -37,7 +38,7 @@ function Index() {
     },
     {
       date: "Friday",
-      internalDiseases: 51,
+      internal: 51,
       surgicalDiseases: 31,
       obstetrics: 27,
       emergency: 5,
@@ -45,32 +46,41 @@ function Index() {
     },
     {
       date: "Saturday",
-      internalDiseases: 95,
-      surgicalDiseases: 44,
-      obstetrics: 49,
+      internal: 0,
+      surgicalDiseases: 0,
+      obstetrics: 0,
       emergency: 7,
       Infectious: 0,
     },
     {
       date: "Sunday",
-      internalDiseases: 95,
-      surgicalDiseases: 44,
-      obstetrics: 49,
+      internal: 0,
+      surgicalDiseases: 0,
+      obstetrics: 0,
       emergency: 2,
       Infectious: 0,
     },
   ];
+  useEffect(() => {
+    return () => {
+      calculation();
+    };
+  }, []);
+  const calculation = () => {
+    let sumInternalDiseases = 0;
+    data.forEach(myFunction);
+
+    function myFunction(item) {
+      sumInternalDiseases += item.internal;
+    }
+  };
   return (
     <>
       <div className="bg-white px-4 md:px-10 pb-5">
         <div className="overflow-x-auto ">
-          <div className="flex ">
+          <div>
             <Recharts data={data} />
-            <div className="border-l-4 ml-10">
-              <div className="rounded-lg-4 border-slate-100 h-72 w-96 ml-10 shadow-2xl">
-                <p>a</p>
-              </div>
-            </div>
+            <PieChart data={data} />
           </div>
         </div>
       </div>

@@ -13,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.0.7",
+    "apexcharts": "^3.36.3",
     "axios": "^1.2.0",
     "chart.js": "^4.1.1",
     "npm": "^9.2.0",
@@ -32,7 +33,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3456 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

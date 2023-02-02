@@ -45,3 +45,11 @@ export const Data = [
     Diagnostic: "high blood pressure",
   },
 ];
+
+export const typeSick = [
+  { sick: "internal diseases" },
+  { sick: "surgical disease" },
+  { sick: "obstetrics" },
+  { sick: "emergency" },
+  { sick: "Department of Infectious Diseases" },
+];

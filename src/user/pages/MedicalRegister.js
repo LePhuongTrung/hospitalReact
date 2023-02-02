@@ -26,7 +26,7 @@ function Index() {
   };
   return (
     <div class="w-full space-y-9 mt-10 mr-4">
-      {navbar === true ? (
+      {navbar === false ? (
         <Register />
       ) : (
         <Wait

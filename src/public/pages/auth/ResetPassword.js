@@ -6,7 +6,7 @@ import { FadeLoader } from "react-spinners";
 import * as yup from "yup";
 
 /* Import service */
-import { ResetPassword } from "../../../user/services/auth.service";
+import { ResetPassword } from "../../../user/api/auth.service";
 
 /* Import component */
 import CustomInput from "../../components/CustomInput";
