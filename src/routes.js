@@ -34,6 +34,8 @@ import User from "./user/pages/User";
 
 import Assistant from "./assistant/pages/assistant";
 
+import Doctor from "./doctor/pages/Doctor";
+
 import AuthenticationRoutes from "./redux/auth/authentication";
 // login => list of books
 
@@ -48,6 +50,9 @@ const AppRouter = () => (
       <Route path="verification" element={<VerificationSuccess />} />
 
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
+
+      <Route path="Doctor" element={<Doctor />} />
+
       <Route element={<AuthenticationRoutes />}>
         <Route path="User" element={<User />}>
           <Route path="information" element={<Information />} />
