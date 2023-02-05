@@ -34,7 +34,7 @@ import User from "./user/pages/User";
 
 import Assistant from "./assistant/pages/assistant";
 
-import Doctor from "./doctor/pages/Doctor";
+import Doctor from "./doctor/pages/DoctorLearn";
 
 import AuthenticationRoutes from "./redux/auth/authentication";
 // login => list of books

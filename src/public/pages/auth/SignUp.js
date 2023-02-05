@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import { SignUp } from "../../../user/api/auth.service";
+import { SignUp } from "../../../public/api/auth.service";
 
 import CustomInput from "../../components/CustomInput";
 
@@ -104,7 +104,7 @@ export default function Login() {
 
                 <div className="text-sm">
                   <a
-                    href=""
+                    href="/a"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot your password?
@@ -118,7 +118,7 @@ export default function Login() {
                   // onClick={handleLogin}
                   className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                  Sign in
+                  Sign up
                 </button>
               </div>
             </form>
@@ -137,7 +137,7 @@ export default function Login() {
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div>
                   <a
-                    href="#"
+                    href="/#"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Facebook</span>
@@ -158,7 +158,7 @@ export default function Login() {
 
                 <div>
                   <a
-                    href="#"
+                    href="/#"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with Twitter</span>
@@ -175,7 +175,7 @@ export default function Login() {
 
                 <div>
                   <a
-                    href="#"
+                    href="/#"
                     className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                   >
                     <span className="sr-only">Sign in with GitHub</span>
