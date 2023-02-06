@@ -34,7 +34,9 @@ import User from "./user/pages/User";
 
 import Assistant from "./assistant/pages/assistant";
 
-import Doctor from "./doctor/pages/DoctorLearn";
+import Doctor from "./doctor/pages/Doctor";
+
+import Staff from "./staff/pages/staff";
 
 import AuthenticationRoutes from "./redux/auth/authentication";
 // login => list of books
@@ -45,16 +47,17 @@ const AppRouter = () => (
       {/* <Route path="/"> */}
       <Route path="Login" element={<Login />} />
       <Route path="CheckError" element={<CheckError />} />
-
       <Route path="identify" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
-
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
-
       <Route path="Doctor" element={<Doctor />} />
-
+      <Route path="Staff" element={<Staff />}>
+        <Route index element={<Information />} />
+        <Route path="information" element={<Information />} />
+      </Route>
       <Route element={<AuthenticationRoutes />}>
         <Route path="User" element={<User />}>
+          <Route index element={<Information />} />
           <Route path="information" element={<Information />} />
           <Route path="Health" element={<Health />} />
           <Route path="MedicalHistory" element={<MedicalHistory />} />
@@ -64,15 +67,19 @@ const AppRouter = () => (
         <Route path="Assistant" element={<Assistant />}></Route>
 
         <Route path="Manager" element={<Manager />}>
+          <Route index element={<Sick />} />
           <Route path="Sick" element={<Sick />}>
+            <Route index element={<ListSick />} />
             <Route path="AddSick" element={<AddSick />} />
             <Route path="ListSick" element={<ListSick />} />
           </Route>
           <Route path="Room" element={<Room />}>
+            <Route index element={<ListRoom />} />
             <Route path="AddRoom" element={<AddRoom />} />
             <Route path="ListRoom" element={<ListRoom />} />
           </Route>
           <Route path="Sale" element={<Sale />}>
+            <Route index element={<Week />} />
             <Route path="AddSale" element={<AddSale />} />
             <Route path="Week" element={<Week />} />
           </Route>
@@ -80,10 +87,8 @@ const AppRouter = () => (
         </Route>
       </Route>
       <Route path="SignUp" element={<Signup />} />
-
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
-
       {/* <Route path="/products" element={<ListProduct />} /> */}
       {/* </Route> */}
     </Routes>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { NavLink } from "react-router-dom";
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   return (
@@ -61,8 +61,8 @@ export default function Sidebar() {
           <div className="flex-1">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
               <li className="rounded-sm">
-                <a
-                  href="/manager/room/ListRoom"
+                <NavLink
+                  to="/manager/room/ListRoom"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -80,11 +80,11 @@ export default function Sidebar() {
                     />
                   </svg>
                   <span className="text-gray-100">Room</span>
-                </a>
+                </NavLink>
               </li>
               <li className="rounded-sm">
-                <a
-                  href="/manager/Sick"
+                <NavLink
+                  to="/manager/Sick"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -102,11 +102,11 @@ export default function Sidebar() {
                     />
                   </svg>
                   <span className="text-gray-100">Sick</span>
-                </a>
+                </NavLink>
               </li>
               <li className="rounded-sm">
-                <a
-                  href="/manager/Sale"
+                <NavLink
+                  to="/manager/Sale"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -123,12 +123,14 @@ export default function Sidebar() {
                       d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                     />
                   </svg>
-                  <span className="text-gray-100">sales</span>
-                </a>
+                  <span className="text-gray-100">
+                    Sales analysis dashboard
+                  </span>
+                </NavLink>
               </li>
               <li className="rounded-sm">
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -150,12 +152,12 @@ export default function Sidebar() {
                       d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                     />
                   </svg>
-                  <span className="text-gray-100">Settings</span>
-                </a>
+                  <span className="text-gray-100">Staff Account</span>
+                </NavLink>
               </li>
               <li className="rounded-sm">
-                <a
-                  href="#"
+                <NavLink
+                  to="#"
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
                   <svg
@@ -173,7 +175,7 @@ export default function Sidebar() {
                     />
                   </svg>
                   <span className="text-gray-100">Logout</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

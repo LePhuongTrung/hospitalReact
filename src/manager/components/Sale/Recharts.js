@@ -13,7 +13,7 @@ const Recharts = forwardRef((props, ref) => {
   const { data } = props;
 
   return (
-    <LineChart width={600} height={300} data={data}>
+    <LineChart width={900} height={450} data={data}>
       <Line
         type="monotone"
         dataKey="internalDiseases"

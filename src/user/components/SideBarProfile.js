@@ -6,8 +6,9 @@ import {
 } from "@iconscout/react-unicons";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { logOut } from "../../redux/auth/AuthStatus";
+
 export default function SideBarProfile() {
   const dispatch = useDispatch();
 
@@ -20,13 +21,14 @@ export default function SideBarProfile() {
   };
 
   return (
-    <div class=" w-64 px-4">
-      <div class="px-2 pt-4 pb-8 border-r border-gray-300">
+    <aside class=" w-72 px-4">
+      <nav class="px-2 pt-4 pb-8 border-r border-gray-300">
         <ul class="space-y-4 h-555">
           <li>
-            <a
-              href="/user/information"
-              class="bg-gray-500 bg-opacity-30 text-blue-500 flex items-center justify-between py-1.5 px-4 rounded cursor-pointer"
+            <NavLink
+              to="/user/information"
+              className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2"
+              activeClassName="text-emerald-400 bg-slate-400"
             >
               <span class="flex items-center space-x-2">
                 <CgProfile
@@ -44,13 +46,14 @@ export default function SideBarProfile() {
                 </CgProfile>
                 <span>Profile</span>
               </span>
-            </a>
+            </NavLink>
           </li>
 
           <li>
-            <a
-              href="/user/ResetPassword"
-              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            <NavLink
+              to="/user/ResetPassword"
+              className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
+              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilKeySkeletonAlt
                 class="h-5 w-5"
@@ -66,12 +69,13 @@ export default function SideBarProfile() {
                 ></path>
               </UilKeySkeletonAlt>
               <span>Reset Password</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="/user/Health"
-              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            <NavLink
+              to="/user/Health"
+              className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
+              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilHeartMedical
                 class="h-5 w-5"
@@ -87,12 +91,13 @@ export default function SideBarProfile() {
                 ></path>
               </UilHeartMedical>
               <span>Health</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="/user/MedicalHistory"
-              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            <NavLink
+              to="/user/MedicalHistory"
+              className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
+              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilClipboardAlt
                 class="h-5 w-5"
@@ -108,12 +113,13 @@ export default function SideBarProfile() {
                 ></path>
               </UilClipboardAlt>
               <span>Medical History</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="/user/MedicalRegister"
-              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            <NavLink
+              to="/user/MedicalRegister"
+              className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
+              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilClipboardAlt
                 class="h-5 w-5"
@@ -129,7 +135,7 @@ export default function SideBarProfile() {
                 ></path>
               </UilClipboardAlt>
               <span>Medical register</span>
-            </a>
+            </NavLink>
           </li>
           <li>
             <div
@@ -153,7 +159,7 @@ export default function SideBarProfile() {
             </div>
           </li>
         </ul>
-      </div>
-    </div>
+      </nav>
+    </aside>
   );
 }

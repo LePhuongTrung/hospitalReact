@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PieChart from "../../components/Sale/PieCharts";
 import Recharts from "../../components/Sale/Recharts";
 
@@ -61,19 +61,7 @@ function Index() {
       Infectious: 0,
     },
   ];
-  useEffect(() => {
-    return () => {
-      calculation();
-    };
-  }, []);
-  const calculation = () => {
-    let sumInternalDiseases = 0;
-    data.forEach(myFunction);
 
-    function myFunction(item) {
-      sumInternalDiseases += item.internal;
-    }
-  };
   return (
     <>
       <div className="bg-white px-4 md:px-10 pb-5">

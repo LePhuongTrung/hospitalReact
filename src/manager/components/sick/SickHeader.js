@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 function SickHeader() {
   return (
@@ -11,20 +12,20 @@ function SickHeader() {
 
           <div className="mt-4 sm:mt-0">
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-              <a
-                href="/Manager/sick/ListSick"
+              <NavLink
+                to="/Manager/sick/ListSick"
                 className="text-sm font-medium leading-none text-white"
               >
                 List Sick
-              </a>
+              </NavLink>
             </button>
             <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-              <a
-                href="/Manager/sick/AddSick"
+              <NavLink
+                to="/Manager/sick/AddSick"
                 className="text-sm font-medium leading-none text-white"
               >
                 Add Sick
-              </a>
+              </NavLink>
             </button>
           </div>
         </div>
