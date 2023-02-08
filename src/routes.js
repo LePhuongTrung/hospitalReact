@@ -25,6 +25,7 @@ import ResetPasswordIdentify from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
 import Create from "./user/pages/Create";
+import Edit from "./user/pages/Edit";
 import Health from "./user/pages/Health";
 import Information from "./user/pages/information";
 import MedicalHistory from "./user/pages/MedicalHistory";
@@ -62,6 +63,7 @@ const AppRouter = () => (
           <Route index element={<Information />} />
           <Route path="information" element={<Information />} />
           <Route path="Create" element={<Create />} />
+          <Route path="Edit" element={<Edit />} />
           <Route path="Health" element={<Health />} />
           <Route path="MedicalHistory" element={<MedicalHistory />} />
           <Route path="ResetPassword" element={<ResetPassword />} />

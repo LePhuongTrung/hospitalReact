@@ -5,8 +5,7 @@ import { Read } from "../api/information";
 
 function Index() {
   const navigate = useNavigate();
-  const [data, setData] = useState("");
-  const [address, setAddress] = useState("");
+  const [data, setData] = useState();
 
   useEffect(() => {
     getData();
