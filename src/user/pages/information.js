@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomInput from "../../public/components/CustomInput";
 import { Read } from "../api/information";
 
 function Index() {
   const navigate = useNavigate();
+  const [data, setData] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
     getData();
@@ -13,9 +15,10 @@ function Index() {
     try {
       const response = await Read();
       console.log(
-        "🚀 ~ file: information.js:13 ~ getData ~ response",
-        response
+        "🚀 ~ file: information.js:15 ~ getData ~ response",
+        response.data
       );
+      setData(response.data);
 
       if (response.status !== 200) return;
     } catch (err) {
@@ -31,30 +34,26 @@ function Index() {
           <CustomInput
             label="Full Name"
             disabled="true"
-            value="Le Phuong Trung"
+            value={data.fullName}
           />
         </div>
         <div class="w-1/2">
           <CustomInput
             label="Phone Number"
             disabled="true"
-            value="0397569845"
+            value={data.phoneNumber}
           />
         </div>
       </div>
       <div class="flex space-x-10">
         <div class="w-1/2">
-          <CustomInput
-            label="Address"
-            disabled="true"
-            value="180 Nguyen Tri Phuong, DN"
-          />
+          <CustomInput label="Address" disabled="true" value={data.address} />
         </div>
         <div class="w-1/2">
           <CustomInput
             label="Emergency Contact"
             disabled="true"
-            value="0397569845"
+            value={data.emergencyContact}
           />
         </div>
       </div>
@@ -63,11 +62,11 @@ function Index() {
           <CustomInput
             label="Medicine Code"
             disabled="true"
-            value="648484554"
+            value={data.medicineCode}
           />
         </div>
         <div class="w-1/2">
-          <CustomInput label="CCCD" disabled="true" value="1231231312" />
+          <CustomInput label="CCCD" disabled="true" value={data.CCCD} />
         </div>
       </div>
       <div className="flex items-center justify-center mt-6">
