@@ -4,8 +4,9 @@ import axios from "axios";
 axios.interceptors.request.use(
   function (request) {
     // Do something before request is sent
-    const access_token = localStorage.getItem("access_token");
+    const user = JSON.parse(localStorage.getItem("user"));
 
+    const access_token = user.token;
     request.headers = { access_token };
 
     return request;

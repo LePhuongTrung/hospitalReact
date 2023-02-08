@@ -1,8 +1,29 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import CustomInput from "../../public/components/CustomInput";
+import { Read } from "../api/information";
 
 function Index() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    try {
+      const response = await Read();
+      console.log(
+        "🚀 ~ file: information.js:13 ~ getData ~ response",
+        response
+      );
+
+      if (response.status !== 200) return;
+    } catch (err) {
+      if (err.response.status === 404) {
+        navigate("/user/Create", { replace: true });
+      }
+    }
+  };
   return (
     <div class="w-full space-y-9 mt-10 mr-4">
       <div class="flex space-x-10">

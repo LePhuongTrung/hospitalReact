@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import VerificationFailed from "../../components/verificationFailed";
 import VerificationSuccess from "../../components/verificationSuccess";
 
-import { Confirm } from "../../api/auth.service";
+import { Confirm } from "../../api/auth";
 
 const VerificationPage = () => {
   const confirm = useRef(false);

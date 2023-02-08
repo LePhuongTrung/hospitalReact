@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../../../redux/auth/AuthStatus";
 
 /* Import service */
-import { login } from "../../../public/api/auth.service";
+import { login } from "../../../public/api/auth";
 
 /* Import component */
 import Alert from "../../components/AlertError";

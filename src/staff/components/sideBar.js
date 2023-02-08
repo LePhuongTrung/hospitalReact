@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <aside className="w-2/12 bg-gray-800 text-white absolute  py-4 h-screen">
+    <aside className="w-200 bg-gray-800 text-white py-4 fixed h-screen">
       <nav>
         <NavLink
           to="/staff/information"

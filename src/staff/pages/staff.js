@@ -4,7 +4,7 @@ import SideBar from "../components/sideBar";
 
 function Room() {
   return (
-    <div className="flex xl:w-3/4 2xl:w-4/5 w-full">
+    <div className="flex xl:w-3/4 2xl:w-4/5 w-full space-x-4">
       <SideBar />
       <Outlet />
     </div>

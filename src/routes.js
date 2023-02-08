@@ -24,6 +24,7 @@ import Login from "./public/pages/auth/Login";
 import ResetPasswordIdentify from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
+import Create from "./user/pages/Create";
 import Health from "./user/pages/Health";
 import Information from "./user/pages/information";
 import MedicalHistory from "./user/pages/MedicalHistory";
@@ -36,6 +37,7 @@ import Assistant from "./assistant/pages/assistant";
 
 import Doctor from "./doctor/pages/Doctor";
 
+import Profile from "./staff/pages/profile";
 import Staff from "./staff/pages/staff";
 
 import AuthenticationRoutes from "./redux/auth/authentication";
@@ -52,13 +54,14 @@ const AppRouter = () => (
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
       <Route path="Doctor" element={<Doctor />} />
       <Route path="Staff" element={<Staff />}>
-        <Route index element={<Information />} />
-        <Route path="information" element={<Information />} />
+        <Route index element={<Profile />} />
+        <Route path="Profile" element={<Profile />} />
       </Route>
       <Route element={<AuthenticationRoutes />}>
         <Route path="User" element={<User />}>
           <Route index element={<Information />} />
           <Route path="information" element={<Information />} />
+          <Route path="Create" element={<Create />} />
           <Route path="Health" element={<Health />} />
           <Route path="MedicalHistory" element={<MedicalHistory />} />
           <Route path="ResetPassword" element={<ResetPassword />} />
