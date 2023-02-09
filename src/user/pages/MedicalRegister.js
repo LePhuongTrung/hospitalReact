@@ -25,7 +25,7 @@ function Index() {
     return setTime(time);
   };
   return (
-    <div class="w-full space-y-9 mt-10 mr-4">
+    <div className="w-full space-y-9 mt-10 mr-4">
       {navbar === false ? (
         <Register />
       ) : (

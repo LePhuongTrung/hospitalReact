@@ -82,22 +82,22 @@ function Index() {
             <tbody>
               <tr className=" border-b-2  text-sm leading-none text-gray-600 h-16">
                 <td className="pl-8">
-                  <p class="font-bold">Room ID</p>
+                  <p className="font-bold">Room ID</p>
                 </td>
                 <td className="pl-16">
-                  <p class="font-bold">Faculty classification</p>
+                  <p className="font-bold">Faculty classification</p>
                 </td>
                 <td className="pl-16">
-                  <p class="font-bold">Doctor's name</p>{" "}
+                  <p className="font-bold">Doctor's name</p>{" "}
                 </td>
                 <td className="pl-16">
-                  <p class="font-bold">Current Number</p>{" "}
+                  <p className="font-bold">Current Number</p>{" "}
                 </td>
                 <td className="pl-16">
-                  <p class="font-bold">Total Number</p>{" "}
+                  <p className="font-bold">Total Number</p>{" "}
                 </td>
                 <td className="pl-8">
-                  <p class="font-bold">Priority room</p>{" "}
+                  <p className="font-bold">Priority room</p>{" "}
                 </td>
               </tr>
               {Rooms &&
@@ -126,7 +126,7 @@ function Index() {
             </tbody>
           </table>
         </div>
-        <div class="flex justify-center items-center	">
+        <div className="flex justify-center items-center	">
           <ReactPaginate
             className="flex justify-center"
             previousLabel={"Previous"}

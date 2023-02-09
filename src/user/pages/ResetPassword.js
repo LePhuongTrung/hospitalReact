@@ -2,14 +2,14 @@ import React from "react";
 import CustomInput from "../../public/components/CustomInput";
 function Index() {
   return (
-    <div class="w-full space-y-9 mt-10 mr-4">
-      <div class="flex space-x-10">
-        <div class="w-1/4 mx-auto">
-          <p class="text-center text-xl font-semibold">Change password</p>
-          <p class="text-center ">
+    <div className="w-full space-y-9 mt-10 mr-4">
+      <div className="flex space-x-10">
+        <div className="w-1/4 mx-auto">
+          <p className="text-center text-xl font-semibold">Change password</p>
+          <p className="text-center ">
             Create a new password that is at least 8 characters long.
           </p>
-          <div class="mt-4">
+          <div className="mt-4">
             <CustomInput
               label="Type your current password*"
               type="password"
@@ -28,7 +28,7 @@ function Index() {
               disabled="true"
               value="Le Phuong Trung"
             />
-            <div class="mt-4">
+            <div className="mt-4">
               <button
                 type="submit"
                 // onClick={handleLogin}

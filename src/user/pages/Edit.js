@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../../public/components/CustomInput";
-import { Create } from "../api/information";
+import { Update } from "../api/information";
 
 function Index() {
   const navigate = useNavigate();
@@ -10,10 +10,8 @@ function Index() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await Create(data);
+      const response = await Update(data);
       console.log("🚀 ~ file: Create.js:15 ~ onSubmit ~ response", response);
-      if (response.status === 200) {
-      }
     } catch (err) {
       console.error("🚀 ~ file: information.js:13 ~ getData ~ err", err);
       if (err.originalStatus === 404) {
@@ -22,32 +20,32 @@ function Index() {
     }
   };
   return (
-    <div class="w-full space-y-9 mt-10 mr-4">
+    <div className="w-full space-y-9 mt-10 mr-4">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Full Name" {...register("fullName")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput label="Phone Number" {...register("phoneNumber")} />
           </div>
         </div>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Address" {...register("address")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput
               label="Emergency Contact"
               {...register("emergencyContact")}
             />
           </div>
         </div>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Medicine Code" {...register("medicineCode")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput label="CCCD" {...register("CCCD")} />
           </div>
         </div>

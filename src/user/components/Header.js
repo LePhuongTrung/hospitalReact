@@ -9,7 +9,7 @@ export default function NavBar() {
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             <img
-              class="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full"
               src="https://i.pinimg.com/236x/42/91/b2/4291b20ea51111b355229602405ba1c3.jpg"
               alt="Rounded avatar"
             />
@@ -73,7 +73,7 @@ export default function NavBar() {
         <div className="hidden space-x-2 md:inline-block">
           <a href="/profile">
             <img
-              class="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full"
               src="https://photo-cms-plo.epicdn.me/w850/Uploaded/2022/tmuihk/2022_05_12/avt-stills1-8041.jpg"
               alt="Rounded avatar"
             />

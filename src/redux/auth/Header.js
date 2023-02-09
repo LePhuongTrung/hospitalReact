@@ -5,8 +5,11 @@ axios.interceptors.request.use(
   function (request) {
     // Do something before request is sent
     const user = JSON.parse(localStorage.getItem("user"));
-
-    const access_token = user.token;
+    var access_token;
+    if (user) {
+      access_token = user.token;
+    }
+    access_token = 1;
     request.headers = { access_token };
 
     return request;

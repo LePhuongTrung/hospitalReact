@@ -27,16 +27,16 @@ function Index() {
     }
   };
   return (
-    <div class="w-full space-y-9 mt-10 mr-4">
-      <div class="flex space-x-10">
-        <div class="w-1/2">
+    <div className="w-full space-y-9 mt-10 mr-4">
+      <div className="flex space-x-10">
+        <div className="w-1/2">
           <CustomInput
             label="Full Name"
             disabled="true"
             value={data.fullName}
           />
         </div>
-        <div class="w-1/2">
+        <div className="w-1/2">
           <CustomInput
             label="Phone Number"
             disabled="true"
@@ -44,11 +44,11 @@ function Index() {
           />
         </div>
       </div>
-      <div class="flex space-x-10">
-        <div class="w-1/2">
+      <div className="flex space-x-10">
+        <div className="w-1/2">
           <CustomInput label="Address" disabled="true" value={data.address} />
         </div>
-        <div class="w-1/2">
+        <div className="w-1/2">
           <CustomInput
             label="Emergency Contact"
             disabled="true"
@@ -56,15 +56,15 @@ function Index() {
           />
         </div>
       </div>
-      <div class="flex space-x-10">
-        <div class="w-1/2">
+      <div className="flex space-x-10">
+        <div className="w-1/2">
           <CustomInput
             label="Medicine Code"
             disabled="true"
             value={data.medicineCode}
           />
         </div>
-        <div class="w-1/2">
+        <div className="w-1/2">
           <CustomInput label="CCCD" disabled="true" value={data.CCCD} />
         </div>
       </div>

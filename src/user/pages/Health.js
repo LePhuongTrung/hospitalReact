@@ -95,7 +95,7 @@ function Index() {
   return (
     <div className="flex w-full">
       <div className="w-1/2 border-r-4">
-        <p class="text-center text-xl font-semibold mt-10">
+        <p className="text-center text-xl font-semibold mt-10">
           Healthy level of the body
         </p>
         <div className="mt-4 ml-32">
@@ -103,46 +103,46 @@ function Index() {
         </div>
       </div>
       <div className="w-1/2">
-        <div class="mx-4 mt-4 overflow-x-auto relative shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        <div className="mx-4 mt-4 overflow-x-auto relative shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
               Body information
-              <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+              <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                 you can change the test information for relatives{" "}
               </p>
             </caption>
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" className="py-3 px-6">
                   Properties
                 </th>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" className="py-3 px-6">
                   Parameter
                 </th>
-                <th scope="col" class="py-3 px-6">
-                  <span class="sr-only">Edit</span>
+                <th scope="col" className="py-3 px-6">
+                  <span className="sr-only">Edit</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Age
                 </th>
-                <td class="py-4 px-6">{age}</td>
+                <td className="py-4 px-6">{age}</td>
               </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Height(m)
                 </th>
 
-                <td class="py-4 px-6">
+                <td className="py-4 px-6">
                   <input
                     type="number"
                     onChange={changeHeight}
@@ -152,14 +152,14 @@ function Index() {
                   />
                 </td>
               </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Weight(kg)
                 </th>
-                <td class="py-4 px-6">
+                <td className="py-4 px-6">
                   <input
                     type="number"
                     onChange={changeWeight}
@@ -169,23 +169,23 @@ function Index() {
                   />
                 </td>
               </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   BMI
                 </th>
-                <td class="py-4 px-6">{BMI}</td>
+                <td className="py-4 px-6">{BMI}</td>
               </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th
                   scope="row"
-                  class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Recommendation
                 </th>
-                <td class="py-4 px-6">{recommendation}</td>
+                <td className="py-4 px-6">{recommendation}</td>
               </tr>
             </tbody>
           </table>

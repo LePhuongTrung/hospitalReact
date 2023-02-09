@@ -27,7 +27,7 @@ const VerificationPage = () => {
     }
   };
   return (
-    <div class="h-screen w-screen bg-sky-400 border-2">
+    <div className="h-screen w-screen bg-sky-400 border-2">
       {confirm.current === true ? (
         <VerificationSuccess />
       ) : (

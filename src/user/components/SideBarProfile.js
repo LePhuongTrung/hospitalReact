@@ -21,18 +21,17 @@ export default function SideBarProfile() {
   };
 
   return (
-    <aside class=" w-72 px-4">
-      <nav class="px-2 pt-4 pb-8 border-r border-gray-300">
-        <ul class="space-y-4 h-555">
+    <aside className=" w-72 px-4">
+      <nav className="px-2 pt-4 pb-8 border-r border-gray-300">
+        <ul className="space-y-4 h-555">
           <li>
             <NavLink
               to="/user/information"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2"
-              activeClassName="text-emerald-400 bg-slate-400"
             >
-              <span class="flex items-center space-x-2">
+              <span className="flex items-center space-x-2">
                 <CgProfile
-                  class="h-5 w-5"
+                  className="h-5 w-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -53,10 +52,9 @@ export default function SideBarProfile() {
             <NavLink
               to="/user/ResetPassword"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
-              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilKeySkeletonAlt
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -75,10 +73,9 @@ export default function SideBarProfile() {
             <NavLink
               to="/user/Health"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
-              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilHeartMedical
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -97,10 +94,9 @@ export default function SideBarProfile() {
             <NavLink
               to="/user/MedicalHistory"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
-              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilClipboardAlt
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -119,10 +115,9 @@ export default function SideBarProfile() {
             <NavLink
               to="/user/MedicalRegister"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
-              activeClassName="text-emerald-400 bg-slate-400"
             >
               <UilClipboardAlt
-                class="h-5 w-5"
+                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -140,10 +135,10 @@ export default function SideBarProfile() {
           <li>
             <div
               onClick={LogOut}
-              class="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+              className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
             >
               <UilSignout
-                class="h-5 w-5 slate-900"
+                className="h-5 w-5 slate-900"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

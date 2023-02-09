@@ -78,7 +78,7 @@ export default function Login() {
               <div>
                 {loading === true ? (
                   <FadeLoader
-                    class="mx-auto"
+                    className="mx-auto"
                     color="#36d7b7"
                     cssOverride={{}}
                   />

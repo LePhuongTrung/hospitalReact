@@ -22,32 +22,32 @@ function Index() {
     }
   };
   return (
-    <div class="w-full space-y-9 mt-10 mr-4">
+    <div className="w-full space-y-9 mt-10 mr-4">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Full Name" {...register("fullName")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput label="Phone Number" {...register("phoneNumber")} />
           </div>
         </div>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Address" {...register("address")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput
               label="Emergency Contact"
               {...register("emergencyContact")}
             />
           </div>
         </div>
-        <div class="flex space-x-10">
-          <div class="w-1/2">
+        <div className="flex space-x-10">
+          <div className="w-1/2">
             <CustomInput label="Medicine Code" {...register("medicineCode")} />
           </div>
-          <div class="w-1/2">
+          <div className="w-1/2">
             <CustomInput label="CCCD" {...register("CCCD")} />
           </div>
         </div>
