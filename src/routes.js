@@ -71,7 +71,6 @@ const AppRouter = () => (
           <Route path="MedicalRegister" element={<MedicalRegister />} />
         </Route>
         <Route path="Assistant" element={<Assistant />}></Route>
-        StaffAccount
         <Route path="Manager" element={<Manager />}>
           <Route index element={<Sick />} />
           <Route path="Sick" element={<Sick />}>
