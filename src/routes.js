@@ -5,6 +5,7 @@ import Report from "./manager/pages/report/ListReports";
 import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
+import StaffAccount from "./manager/pages/Staff/StaffAccount";
 
 import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
@@ -47,7 +48,7 @@ import AuthenticationRoutes from "./redux/auth/authentication";
 const AppRouter = () => (
   <Router>
     <Routes>
-      {/* <Route path="/"> */}
+      <Route index element={<Login />} />
       <Route path="Login" element={<Login />} />
       <Route path="CheckError" element={<CheckError />} />
       <Route path="identify" element={<ForgetPassword />} />
@@ -70,7 +71,7 @@ const AppRouter = () => (
           <Route path="MedicalRegister" element={<MedicalRegister />} />
         </Route>
         <Route path="Assistant" element={<Assistant />}></Route>
-
+        StaffAccount
         <Route path="Manager" element={<Manager />}>
           <Route index element={<Sick />} />
           <Route path="Sick" element={<Sick />}>
@@ -88,14 +89,14 @@ const AppRouter = () => (
             <Route path="AddSale" element={<AddSale />} />
             <Route path="Week" element={<Week />} />
           </Route>
-          <Route path="Report" element={<Report />}></Route>
+          <Route path="Report" element={<Report />} />
+          <Route path="StaffAccount" element={<StaffAccount />} />
         </Route>
       </Route>
       <Route path="SignUp" element={<Signup />} />
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
-      {/* <Route path="/products" element={<ListProduct />} /> */}
-      {/* </Route> */}
+      <Route errorElement element={ERROR} />
     </Routes>
   </Router>
 );
