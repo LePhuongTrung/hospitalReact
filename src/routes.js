@@ -5,13 +5,17 @@ import Report from "./manager/pages/report/ListReports";
 import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
-import UploadRoom from "./manager/pages/sick/UploadSick";
-import StaffAccount from "./manager/pages/Staff/StaffAccount";
-
 import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
 import Sick from "./manager/pages/sick/Sick";
-import UploadSick from "./manager/pages/sick/UploadSick";
+import {
+  default as UploadRoom,
+  default as UploadSick,
+} from "./manager/pages/sick/UploadSick";
+import AddStaff from "./manager/pages/Staff/AddStaff";
+import ListStaff from "./manager/pages/Staff/ListStaff";
+import StaffManager from "./manager/pages/Staff/Staff";
+import StaffAccount from "./manager/pages/Staff/StaffAccount";
 
 import AddSale from "./manager/pages/Sales/AddSales";
 import Sale from "./manager/pages/Sales/Sales";
@@ -92,8 +96,13 @@ const AppRouter = () => (
             <Route path="AddSale" element={<AddSale />} />
             <Route path="Week" element={<Week />} />
           </Route>
+          <Route path="StaffManager" element={<StaffManager />}>
+            <Route index element={<ListStaff />} />
+            <Route path="AddStaff" element={<AddStaff />} />
+            <Route path="ListStaff" element={<ListStaff />} />
+            <Route path="StaffAccount" element={<StaffAccount />} />
+          </Route>
           <Route path="Report" element={<Report />} />
-          <Route path="StaffAccount" element={<StaffAccount />} />
         </Route>
       </Route>
       <Route path="SignUp" element={<Signup />} />
