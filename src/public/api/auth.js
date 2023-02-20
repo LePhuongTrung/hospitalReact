@@ -1,9 +1,10 @@
 import axios from "axios";
-const API_URL = "http://localhost:3000/";
+const API_URL = "http://localhost:3001/";
 
-export const login = (data) => axios.post(API_URL + "user/Login", data);
+export const login = (data) => axios.post(API_URL + "account/Login", data);
 
-export const SignUp = (data) => axios.post(API_URL + "user/register", data);
+export const SignUp = (data) =>
+  axios.post(API_URL + "api/account/auth/register", data);
 
 export const ForgetPassword = (data) =>
   axios.post(API_URL + "user/forgetPassword", data);

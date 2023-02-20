@@ -27,6 +27,14 @@ function RoomHeader() {
                 Add room
               </NavLink>
             </button>
+            <button className="inline-flex sm:ml-3 items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
+              <NavLink
+                to="/Manager/room/UploadRoom"
+                className="text-sm font-medium leading-none text-white"
+              >
+                Upload excel
+              </NavLink>
+            </button>
           </div>
         </div>
       </div>

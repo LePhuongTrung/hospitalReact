@@ -5,11 +5,13 @@ import Report from "./manager/pages/report/ListReports";
 import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
+import UploadRoom from "./manager/pages/sick/UploadSick";
 import StaffAccount from "./manager/pages/Staff/StaffAccount";
 
 import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
 import Sick from "./manager/pages/sick/Sick";
+import UploadSick from "./manager/pages/sick/UploadSick";
 
 import AddSale from "./manager/pages/Sales/AddSales";
 import Sale from "./manager/pages/Sales/Sales";
@@ -77,11 +79,13 @@ const AppRouter = () => (
             <Route index element={<ListSick />} />
             <Route path="AddSick" element={<AddSick />} />
             <Route path="ListSick" element={<ListSick />} />
+            <Route path="UploadSick" element={<UploadSick />} />
           </Route>
           <Route path="Room" element={<Room />}>
             <Route index element={<ListRoom />} />
             <Route path="AddRoom" element={<AddRoom />} />
             <Route path="ListRoom" element={<ListRoom />} />
+            <Route path="UploadRoom" element={<UploadRoom />} />
           </Route>
           <Route path="Sale" element={<Sale />}>
             <Route index element={<Week />} />
