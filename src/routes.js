@@ -41,7 +41,7 @@ import MedicalRegister from "./user/pages/MedicalRegister";
 import ResetPassword from "./user/pages/ResetPassword";
 import User from "./user/pages/User";
 
-import Doctor from "./doctor/pages/Doctor";
+import Doctor from "./doctor/pages/DoctorLearn";
 
 import Profile from "./staff/pages/profile";
 import Staff from "./staff/pages/staff";
