@@ -41,8 +41,6 @@ import MedicalRegister from "./user/pages/MedicalRegister";
 import ResetPassword from "./user/pages/ResetPassword";
 import User from "./user/pages/User";
 
-import Assistant from "./assistant/pages/assistant";
-
 import Doctor from "./doctor/pages/Doctor";
 
 import Profile from "./staff/pages/profile";
@@ -76,7 +74,6 @@ const AppRouter = () => (
           <Route path="ResetPassword" element={<ResetPassword />} />
           <Route path="MedicalRegister" element={<MedicalRegister />} />
         </Route>
-        <Route path="Assistant" element={<Assistant />}></Route>
         <Route path="Manager" element={<Manager />}>
           <Route index element={<Sick />} />
           <Route path="Sick" element={<Sick />}>
