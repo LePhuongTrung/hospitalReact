@@ -13,6 +13,8 @@ const getData = async (setData, navigate) => {
   } catch (err) {
     if (err.response && err.response.status === 404) {
       navigate("/user/Create", { replace: true });
+    } else if (err.code === "ERR_NETWORK") {
+      navigate("/SERVERERROR", { replace: true });
     } else {
       navigate("/error", { replace: true });
     }

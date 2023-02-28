@@ -26,6 +26,7 @@ import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
 import ForgetPassword from "./public/pages/Error/forgetPassword";
 import ERROR1 from "./public/pages/Error/noPermission";
+import SERVERERROR from "./public/pages/Error/ServerNotWorking";
 
 import Login from "./public/pages/auth/Login";
 import ResetPasswordIdentify from "./public/pages/auth/ResetPassword";
@@ -41,7 +42,8 @@ import MedicalRegister from "./user/pages/MedicalRegister";
 import ResetPassword from "./user/pages/ResetPassword";
 import User from "./user/pages/User";
 
-import Doctor from "./doctor/pages/DoctorLearn";
+import Doctor from "./doctor/doctor";
+import Diagnosis from "./doctor/pages/DoctorLearn";
 
 import Profile from "./staff/pages/profile";
 import Staff from "./staff/pages/staff";
@@ -58,7 +60,10 @@ const AppRouter = () => (
       <Route path="identify" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
-      <Route path="Doctor" element={<Doctor />} />
+      <Route path="Doctor" element={<Doctor />}>
+        <Route index element={<Diagnosis />} />
+        <Route path="Diagnosis" element={<Diagnosis />} />
+      </Route>
       <Route path="Staff" element={<Staff />}>
         <Route index element={<Profile />} />
         <Route path="Profile" element={<Profile />} />
@@ -102,10 +107,12 @@ const AppRouter = () => (
           <Route path="Report" element={<Report />} />
         </Route>
       </Route>
+
       <Route path="SignUp" element={<Signup />} />
+      <Route path="SERVERERROR" element={<SERVERERROR />} />
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
-      <Route errorElement element={ERROR} />
+      {/* <Route errorElement element={ERROR} /> */}
     </Routes>
   </Router>
 );
