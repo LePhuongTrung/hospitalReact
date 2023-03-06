@@ -18,8 +18,8 @@ export default function SideBar() {
   return (
     <aside className=" w-72 px-4">
       <nav className="px-2 pt-4 pb-8 border-r border-gray-300 h-full">
-        <ul className=" align-item flex-1 flex-col justify-between h-555">
-          <li className="flex-grow ">
+        <ul className=" align-item flex flex-col justify-between h-full">
+          <li className="pt-8">
             <NavLink
               to="/user/information"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2"
@@ -42,7 +42,7 @@ export default function SideBar() {
               </span>
             </NavLink>
           </li>
-          <li className="flex-grow">
+          <line>
             <NavLink
               to="/user/ResetPassword"
               className="block py-2 pl-4 text-gray-900 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 font-normal h-1/2 flex"
@@ -62,8 +62,8 @@ export default function SideBar() {
               </UilKeySkeletonAlt>
               <span>Reset Password</span>
             </NavLink>
-          </li>
-          <li className="flex-grow">
+          </line>
+          <li className="pt-8">
             <div
               onClick={LogOut}
               className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
