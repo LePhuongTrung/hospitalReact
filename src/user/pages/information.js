@@ -11,6 +11,7 @@ const getData = async (setData, navigate) => {
 
     if (response.status !== 200) return;
   } catch (err) {
+    console.log("🚀 ~ file: information.js:14 ~ getData ~ err:", err);
     if (err.response && err.response.status === 404) {
       navigate("/user/Create", { replace: true });
     } else if (err.code === "ERR_NETWORK") {
