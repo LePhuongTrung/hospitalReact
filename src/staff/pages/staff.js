@@ -4,9 +4,13 @@ import SideBar from "../components/sideBar";
 
 function Room() {
   return (
-    <div className="flex xl:w-3/4 2xl:w-4/5 w-full space-x-4">
-      <SideBar />
-      <Outlet />
+    <div className="h-108 my-10 mx-10 bg-white shadow-xl rounded-lg flex">
+      <div className="w-2/12 h-full">
+        <SideBar />
+      </div>
+      <div className="w-10/12 h-full">
+        <Outlet />
+      </div>
     </div>
   );
 }

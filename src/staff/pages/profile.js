@@ -1,7 +1,7 @@
 import React from "react";
 function Index() {
   return (
-    <div className="w-full mt-10 absolute">
+    <div className="w-full h-full">
       <div className="flex items-center justify-center">
         <div className="h-32 w-32">
           <img

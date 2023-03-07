@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { diagnostic } from "../api/wait";
 import FormInputDotted from "../components/FormInputDotted";
 
 const BasicInfo = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const Data = [
       { Diagnosis: data.Diagnosis },
       {
@@ -38,6 +39,11 @@ const BasicInfo = () => {
         Dosage: data.Dosage5,
       },
     ];
+    const response = await diagnostic(Data);
+    console.log(
+      "🚀 ~ file: DoctorLearn.js:43 ~ onSubmit ~ response:",
+      response
+    );
   };
   return (
     <div className="mx-auto my-4 bg-white p-6 rounded-lg shadow-md w-650">
