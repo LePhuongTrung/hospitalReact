@@ -11,23 +11,12 @@ function Index() {
           </p>
           <div className="mt-4">
             <CustomInput
-              label="Type your current password*"
+              label="Your current password*"
               type="password"
-              disabled="true"
               value="Le Phuong Trung"
             />
-            <CustomInput
-              label="Type your new password*"
-              type="password"
-              disabled="true"
-              value="Le Phuong Trung"
-            />
-            <CustomInput
-              label="Retype your new password"
-              type="password"
-              disabled="true"
-              value="Le Phuong Trung"
-            />
+            <CustomInput label="Your new password*" type="password" />
+            <CustomInput label="Retype your new password" type="password" />
             <div className="mt-4">
               <button
                 type="submit"

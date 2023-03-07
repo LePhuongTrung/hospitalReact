@@ -41,8 +41,8 @@ export default function Login() {
   const onSubmit = async (data) => {
     try {
       const response = await login(data);
-      console.log("🚀 ~ file: Login.js:44 ~ onSubmit ~ response", response);
       if (response.status !== 200) return;
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       const token = response.data.token;
       const role = response.data.role;
