@@ -1,7 +1,7 @@
 import { UilSignout } from "@iconscout/react-unicons";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { logOut } from "../../redux/auth/AuthStatus";
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,6 @@ const Sidebar = () => {
     try {
       localStorage.removeItem("user");
       dispatch(logOut());
-      Navigate("/login", { replace: true });
     } catch (err) {
       console.log("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
     }
@@ -21,8 +20,8 @@ const Sidebar = () => {
         <ul className="space-y-4">
           <li>
             <NavLink
-              to="/staff/information"
-              className="block pt-6 text-gray-400 hover:text-white font-medium h-1/2 w-full text-center"
+              to="/staff/Profile"
+              className="block pt-6 text-gray-400 hover:text-black font-medium h-1/2 w-full text-center"
               activeClassName="text-white bg-gray-600"
             >
               About
@@ -31,7 +30,7 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/staff/Work"
-              className="block py-2 text-gray-400 hover:text-white font-medium h-1/2 w-full text-center"
+              className="block py-2 text-gray-400 hover:text-black font-medium h-1/2 w-full text-center"
               activeClassName="text-white bg-gray-600"
             >
               Work

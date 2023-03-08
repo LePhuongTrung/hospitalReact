@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { logOut } from "../../redux/auth/AuthStatus";
 export default function Sidebar() {
   const dispatch = useDispatch();
@@ -8,7 +8,6 @@ export default function Sidebar() {
     try {
       localStorage.removeItem("user");
       dispatch(logOut());
-      Navigate("/login", { replace: true });
     } catch (err) {}
   };
   return (

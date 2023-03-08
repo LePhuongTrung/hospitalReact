@@ -6,7 +6,7 @@ import {
 } from "@iconscout/react-unicons";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch } from "react-redux";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { logOut } from "../../redux/auth/AuthStatus";
 
 export default function SideBarProfile() {
@@ -16,8 +16,9 @@ export default function SideBarProfile() {
     try {
       localStorage.removeItem("user");
       dispatch(logOut());
-      Navigate("/login", { replace: true });
-    } catch (err) {}
+    } catch (err) {
+      console.log("🚀 ~ file: SideBarProfile.js:22 ~ LogOut ~ err:", err);
+    }
   };
 
   return (

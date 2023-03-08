@@ -59,15 +59,15 @@ const AppRouter = () => (
       <Route path="identify" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
-      <Route path="Doctor" element={<Doctor />}>
-        <Route index element={<Diagnosis />} />
-        <Route path="Diagnosis" element={<Diagnosis />} />
-      </Route>
-      <Route path="Staff" element={<Staff />}>
-        <Route index element={<Profile />} />
-        <Route path="Profile" element={<Profile />} />
-      </Route>
       <Route element={<AuthenticationRoutes />}>
+        <Route path="Doctor" element={<Doctor />}>
+          <Route index element={<Diagnosis />} />
+          <Route path="Diagnosis" element={<Diagnosis />} />
+        </Route>
+        <Route path="Staff" element={<Staff />}>
+          <Route index element={<Profile />} />
+          <Route path="Profile" element={<Profile />} />
+        </Route>
         <Route path="User" element={<User />}>
           <Route index element={<Information />} />
           <Route path="information" element={<Information />} />

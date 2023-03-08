@@ -51,6 +51,8 @@ export default function Login() {
         navigate("/user", { replace: true });
       } else if (role === "manager") {
         navigate("/manager", { replace: true });
+      } else if (role === "assistant") {
+        navigate("/staff", { replace: true });
       } else {
         navigate("/assistant", { replace: true });
       }

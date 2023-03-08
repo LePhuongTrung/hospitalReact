@@ -46,8 +46,8 @@ const BasicInfo = () => {
     );
   };
   return (
-    <div className="mx-auto my-4 bg-white p-6 rounded-lg shadow-md w-650">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="my-10 py-10 bg-white rounded-lg shadow-md h-full 2xl:w-650 xl:w-650 lg:w-10/12 md:w-full">
+      <form className="px-10 px-10" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex">
           <label
             htmlFor="text"
