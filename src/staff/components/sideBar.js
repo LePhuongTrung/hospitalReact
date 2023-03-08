@@ -21,8 +21,8 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/staff/Profile"
-              className="block pt-6 text-gray-400 hover:text-black font-medium h-1/2 w-full text-center"
-              activeClassName="text-white bg-gray-600"
+              className="block mt-4 py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
+              activeClassName="text-black bg-gray-600"
             >
               About
             </NavLink>
@@ -30,13 +30,13 @@ const Sidebar = () => {
           <li>
             <NavLink
               to="/staff/Work"
-              className="block py-2 text-gray-400 hover:text-black font-medium h-1/2 w-full text-center"
-              activeClassName="text-white bg-gray-600"
+              className="block py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
+              activeClassName="text-black bg-gray-600"
             >
               Work
             </NavLink>
           </li>
-          <li>
+          <li className="flex justify-center">
             <div
               onClick={LogOut}
               className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"

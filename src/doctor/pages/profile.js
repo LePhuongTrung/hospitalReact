@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentRole } from "../../redux/auth/AuthStatus";
 import { setWorkInUser } from "../../redux/auth/WorkingStatus";
-import { getStaff } from "../api/staff";
+
+import { getStaff } from "../../staff/api/staff";
 
 const getData = async (setData, navigate, dispatch) => {
   try {

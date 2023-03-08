@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const authSlice = createSlice({
-  name: "auth",
+const reduxSlice = createSlice({
+  name: "redux",
   initialState: { role: null, token: null },
   reducers: {
     setLoggedInUser: (state, action) => {
@@ -16,9 +16,9 @@ const authSlice = createSlice({
   },
 });
 
-export const { setLoggedInUser, logOut } = authSlice.actions;
+export const { setLoggedInUser, logOut } = reduxSlice.actions;
 
-export default authSlice.reducer;
+export default reduxSlice.reducer;
 
 export const selectCurrentRole = (state) => state.role;
 export const selectCurrentToken = (state) => state.token;
