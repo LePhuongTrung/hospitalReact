@@ -34,16 +34,7 @@ function Index() {
 
       /* Setting the text of the pagination buttons. */
       const i = response.data.page;
-      console.log("🚀 ~ file: ListRoom.js:34 ~ getRoom ~ i", i);
       setCurrentNumber(i);
-      console.log(
-        "🚀 ~ file: ListRoom.js:35 ~ getRoom ~ CurrentNumber",
-        CurrentNumber
-      );
-      console.log(
-        "🚀 ~ file: ListRoom.js:35 ~ getRoom ~ CurrentNumber",
-        response.data.page
-      );
 
       setTotalNumber(response.data.totalPages);
     } catch (error) {

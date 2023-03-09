@@ -23,7 +23,6 @@ function Index() {
   const CalculateBMI = () => {
     const heightM = (height / 100).toFixed(2);
     const bmi = weight / (heightM * heightM);
-    console.log("🚀 ~ file: Health.js:25 ~ CalculateBMI ~ bmi", bmi);
     setBMI(bmi.toFixed(3));
   };
 

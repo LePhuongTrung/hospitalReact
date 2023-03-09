@@ -11,7 +11,7 @@ const Sidebar = ({ to }) => {
       localStorage.removeItem("user");
       dispatch(logOut());
     } catch (err) {
-      console.log("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
+      console.error("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
     }
   };
   return (

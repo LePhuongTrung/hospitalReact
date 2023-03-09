@@ -17,15 +17,10 @@ function Index() {
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(
-      "🚀 ~ file: StaffAccount.js:19 ~ handleUpload ~ formData",
-      formData
-    );
 
     axios
       .post("http://localhost:3001/staff/addMany", formData)
       .then((response) => {
-        console.log("File uploaded successfully");
         setUploadComplete(true);
         setUploadedFileUrl(response.data.fileUrl);
       })
@@ -45,7 +40,10 @@ function Index() {
         // other data to be posted to the API
       })
       .then((response) => {
-        console.log("Data posted successfully");
+        console.info(
+          "🚀 ~ file: StaffAccount.js:43 ~ .then ~ response:",
+          response
+        );
       })
       .catch((error) => {
         console.error("Error posting data", error);

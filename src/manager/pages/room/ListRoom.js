@@ -32,19 +32,8 @@ function Index() {
       if (response.status !== 200) return;
       setRooms(response.data.docs);
 
-      /* Setting the text of the pagination buttons. */
       const i = response.data.page;
-      console.log("🚀 ~ file: ListRoom.js:34 ~ getRoom ~ i", i);
       setCurrentNumber(i);
-      console.log(
-        "🚀 ~ file: ListRoom.js:35 ~ getRoom ~ CurrentNumber",
-        CurrentNumber
-      );
-      console.log(
-        "🚀 ~ file: ListRoom.js:35 ~ getRoom ~ CurrentNumber",
-        response.data.page
-      );
-
       setTotalNumber(response.data.totalPages);
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);

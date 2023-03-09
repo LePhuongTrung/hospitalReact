@@ -42,21 +42,17 @@ export default function Login() {
     try {
       const response = await login(data);
       if (response.status !== 200) return;
-      console.log("🚀 ~ file: Login.js:45 ~ onSubmit ~ response:", response);
       localStorage.setItem("user", JSON.stringify(response.data));
 
       const token = response.data.token;
       const role = response.data.role;
-      console.log("🚀 ~ file: Login.js:49 ~ onSubmit ~ role:", role);
       dispatch(setLoggedInUser({ token, role }));
       if (role === "user") {
         navigate("/user", { replace: true });
       } else if (role === "manager") {
         navigate("/manager", { replace: true });
-      } else if (role === "assistant") {
-        navigate("/staff", { replace: true });
       } else {
-        navigate("/assistant", { replace: true });
+        navigate("/staff", { replace: true });
       }
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);

@@ -17,7 +17,7 @@ export default function SideBarProfile() {
       localStorage.removeItem("user");
       dispatch(logOut());
     } catch (err) {
-      console.log("🚀 ~ file: SideBarProfile.js:22 ~ LogOut ~ err:", err);
+      console.error("🚀 ~ file: SideBarProfile.js:22 ~ LogOut ~ err:", err);
     }
   };
 

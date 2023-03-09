@@ -7,7 +7,6 @@ import { Create, Read } from "../api/information";
 const getData = async (setData, setIsDataAvailable, navigate) => {
   try {
     const response = await Read();
-    console.log("🚀 ~ file: information.js:10 ~ getData ~ response:", response);
 
     if (response.status === 200) {
       setData(response.data);
@@ -34,10 +33,6 @@ function Index() {
   const onSubmit = async (data) => {
     try {
       const response = await Create(data);
-      console.log(
-        "🚀 ~ file: information.js:36 ~ onSubmit ~ response:",
-        response
-      );
       if (response.status === 200) {
         navigate("/user", { replace: true });
       }

@@ -2,11 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const workSlice = createSlice({
   name: "work",
-  initialState: { role: null, token: null },
+  initialState: { roomName: null },
   reducers: {
     setWorkInUser: (state, action) => {
       const { roomName } = action.payload;
-      console.log("🚀 ~ file: WorkingStatus.js:9 ~ roomName:", roomName);
       state.roomName = roomName;
     },
     checkOut: (state, action) => {

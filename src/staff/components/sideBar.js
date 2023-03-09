@@ -21,12 +21,12 @@ const Sidebar = () => {
       localStorage.removeItem("user");
       dispatch(logOut());
     } catch (err) {
-      console.log("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
+      console.error("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
     }
   };
   return (
-    <aside className=" w-full h-full px-4">
-      <nav className="px-2 w-full h-full pb-8 border-r border-gray-300">
+    <aside className=" w-full px-4">
+      <nav className="px-2 w-full h-full ">
         <ul className="space-y-4">
           <li>
             <NavLink
