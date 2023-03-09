@@ -12,6 +12,7 @@ const authSlice = createSlice({
     logOut: (state, action) => {
       state.role = null;
       state.token = null;
+      state.roomName = null;
     },
     setWorkInUser: (state, action) => {
       const { roomName } = action.payload;
@@ -26,3 +27,4 @@ export default authSlice.reducer;
 
 export const selectCurrentRole = (state) => state.role;
 export const selectCurrentToken = (state) => state.token;
+export const selectRoom = (state) => state.roomName;

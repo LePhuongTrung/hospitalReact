@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import FormInputDotted from "../../doctor/components/FormInputDotted";
-import { selectRoom } from "../../redux/auth/WorkingStatus";
+import { selectRoom } from "../../redux/auth/AuthStatus";
 import { getPatient } from "../api/room";
 import { diagnostic } from "../api/wait";
 

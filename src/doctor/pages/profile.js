@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCurrentRole } from "../../redux/auth/AuthStatus";
-import { setWorkInUser } from "../../redux/auth/WorkingStatus";
+import { selectCurrentRole, setWorkInUser } from "../../redux/auth/AuthStatus";
 
 import { getStaff } from "../../staff/api/staff";
 
