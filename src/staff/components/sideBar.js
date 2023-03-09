@@ -1,10 +1,20 @@
 import { UilSignout } from "@iconscout/react-unicons";
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logOut } from "../../redux/auth/AuthStatus";
+import { logOut, selectCurrentRole } from "../../redux/auth/AuthStatus";
+
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const role = useSelector(selectCurrentRole);
+
+  const [link, setLink] = useState(() => {
+    if (role === "assistant") {
+      return "/staff/Work";
+    } else {
+      return "/staff/Diagnosis";
+    }
+  });
 
   const LogOut = () => {
     try {
@@ -29,7 +39,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink
-              to="/staff/Work"
+              to={link}
               className="block py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
               activeClassName="text-black bg-gray-600"
             >

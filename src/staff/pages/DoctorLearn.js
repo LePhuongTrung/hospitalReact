@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import FormInputDotted from "../../doctor/components/FormInputDotted";
 import { diagnostic } from "../api/wait";
-import FormInputDotted from "../components/FormInputDotted";
 
 const BasicInfo = () => {
   const { register, handleSubmit } = useForm();

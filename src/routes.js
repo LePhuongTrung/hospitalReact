@@ -44,7 +44,7 @@ import User from "./user/pages/User";
 import Doctor from "./doctor/doctor";
 import DoctorInfor from "./doctor/pages/profile";
 
-import Diagnosis from "./doctor/pages/DoctorLearn";
+import Diagnosis from "./staff/pages/DoctorLearn";
 
 import Profile from "./staff/pages/profile";
 import Staff from "./staff/pages/staff";
@@ -70,6 +70,7 @@ const AppRouter = () => (
         <Route path="Staff" element={<Staff />}>
           <Route index element={<Profile />} />
           <Route path="Profile" element={<Profile />} />
+          <Route path="Diagnosis" element={<Diagnosis />} />
         </Route>
         <Route path="User" element={<User />}>
           <Route index element={<Information />} />
