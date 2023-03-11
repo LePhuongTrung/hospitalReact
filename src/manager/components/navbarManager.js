@@ -12,7 +12,7 @@ export default function Sidebar() {
   };
   return (
     <div className="flex">
-      <div className=" flex flex-col h-screen p-3 bg-gray-800 shadow duration-300">
+      <div className=" flex flex-col h-screen p-3 bg-gray-800 shadow duration-300 w-10/12">
         <div className="space-y-3">
           <div className="flex-1">
             <ul className="pt-10 pb-4 space-y-10 text-sm">

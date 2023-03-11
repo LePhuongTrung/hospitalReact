@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
@@ -7,27 +7,33 @@ import { selectRoom } from "../../redux/auth/AuthStatus";
 import { getPatient } from "../api/room";
 import { diagnostic } from "../api/wait";
 
-const getData = async (navigate, roomName) => {
-  try {
-    const response = await getPatient(roomName);
-    if (response.status === 200) {
-    }
-  } catch (err) {
-    if (err.response && err.response.status === 404) {
-    } else if (err.code === "ERR_NETWORK") {
-      navigate("/SERVERERROR", { replace: true });
-    } else {
-      navigate("/error", { replace: true });
-    }
-  }
-};
-
 const BasicInfo = () => {
   const roomName = useSelector(selectRoom);
+  const { register, handleSubmit } = useForm();
+  var [namePatient, setNamePatient] = useState();
+
+  const getData = async (navigate, roomName) => {
+    try {
+      const response = await getPatient(roomName);
+      console.log(
+        "🚀 ~ file: DoctorLearn.js:13 ~ getData ~ response:",
+        response.data.fullName
+      );
+      if (response.status === 200) {
+        setNamePatient(response.data.fullName);
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 404) {
+      } else if (err.code === "ERR_NETWORK") {
+        navigate("/SERVERERROR", { replace: true });
+      } else {
+        navigate("/error", { replace: true });
+      }
+    }
+  };
   useEffect(() => {
     getData(Navigate, roomName);
   }, [roomName]);
-  const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     const Data = [
       { Diagnosis: data.Diagnosis },
@@ -63,6 +69,9 @@ const BasicInfo = () => {
       },
     ];
     const response = await diagnostic(Data);
+    if (response.status === 200) {
+      setNamePatient(response.data.fullName);
+    }
   };
   return (
     <div className="flex">
@@ -467,7 +476,9 @@ const BasicInfo = () => {
       </div>
       <div className="w-5/12">
         <div className="mt-20 flex items-center justify-center">
-          <p className="font-mono text-2xl font-bold">Patient name: Lee Min</p>
+          <p className="font-mono text-2xl font-bold">
+            Patient name: {namePatient}
+          </p>
         </div>
         <div className="mt-4 flex items-center justify-center">
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
