@@ -2,16 +2,17 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Manager from "./manager/pages/Manager";
 import Report from "./manager/pages/report/ListReports";
+
 import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
+import UploadRoom from "./manager/pages/room/UploadRoom";
+
 import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
 import Sick from "./manager/pages/sick/Sick";
-import {
-  default as UploadRoom,
-  default as UploadSick,
-} from "./manager/pages/sick/UploadSick";
+import UploadSick from "./manager/pages/sick/UploadSick";
+
 import AddStaff from "./manager/pages/Staff/AddStaff";
 import ListStaff from "./manager/pages/Staff/ListStaff";
 import StaffManager from "./manager/pages/Staff/Staff";

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: { role: null, token: null, roomName: null },
+  initialState: { role: null, token: null, roomNumber: null },
   reducers: {
     setLoggedInUser: (state, action) => {
       const { token, role } = action.payload;
@@ -12,11 +12,11 @@ const authSlice = createSlice({
     logOut: (state, action) => {
       state.role = null;
       state.token = null;
-      state.roomName = null;
+      state.roomNumber = null;
     },
     setWorkInUser: (state, action) => {
-      const { roomName } = action.payload;
-      state.roomName = roomName;
+      const { roomNumber } = action.payload;
+      state.roomNumber = roomNumber;
     },
   },
 });
@@ -27,4 +27,4 @@ export default authSlice.reducer;
 
 export const selectCurrentRole = (state) => state.role;
 export const selectCurrentToken = (state) => state.token;
-export const selectRoom = (state) => state.roomName;
+export const selectRoom = (state) => state.roomNumber;

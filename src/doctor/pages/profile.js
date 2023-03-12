@@ -9,7 +9,7 @@ const getData = async (setData, navigate, dispatch) => {
     const response = await getStaff();
     if (response.status === 200) {
       setData(response.data);
-      dispatch(setWorkInUser({ roomName: response.data.roomName }));
+      dispatch(setWorkInUser({ roomNumber: response.data.roomNumber }));
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
@@ -55,7 +55,7 @@ function Index({ navigate }) {
           <div className="pt-10 pb-4 flex ml-10">
             <label className="font-mono text-xl font-bold">Room Name:</label>
             <label className="ml-4 font-mono text-xl font-bold">
-              {data?.roomName}
+              {data?.roomNumber}
             </label>
           </div>
           <div className="py-4 flex ml-10">

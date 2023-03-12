@@ -4,7 +4,7 @@ import RoomHeader from "../../components/room/RoomHeader";
 
 function Room() {
   return (
-    <div className="xl:w-3/4 2xl:w-4/5 w-full">
+    <div className="w-full pr-12">
       <RoomHeader />
       <Outlet />
     </div>

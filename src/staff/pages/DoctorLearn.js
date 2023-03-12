@@ -8,13 +8,13 @@ import { getPatient } from "../api/room";
 import { diagnostic } from "../api/wait";
 
 const BasicInfo = () => {
-  const roomName = useSelector(selectRoom);
+  const roomNumber = useSelector(selectRoom);
   const { register, handleSubmit } = useForm();
   var [namePatient, setNamePatient] = useState();
 
-  const getData = async (navigate, roomName) => {
+  const getData = async (navigate, roomNumber) => {
     try {
-      const response = await getPatient(roomName);
+      const response = await getPatient(roomNumber);
       console.log(
         "🚀 ~ file: DoctorLearn.js:13 ~ getData ~ response:",
         response.data.fullName
@@ -32,8 +32,8 @@ const BasicInfo = () => {
     }
   };
   useEffect(() => {
-    getData(Navigate, roomName);
-  }, [roomName]);
+    getData(Navigate, roomNumber);
+  }, [roomNumber]);
   const onSubmit = async (data) => {
     const Data = [
       { Diagnosis: data.Diagnosis },
