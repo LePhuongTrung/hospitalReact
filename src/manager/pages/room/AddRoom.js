@@ -1,12 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Radio } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-
-/* Import redux */
+import { typeSick } from "../../data/typeSick";
 
 /* Import component */
 import CustomInput from "../../../public/components/CustomInput";
-import RadioButton from "../../../public/components/RadioButton";
 import SelectComponent from "../../../public/components/SelectComponent";
 
 const schemaValidation = yup
@@ -34,25 +33,36 @@ export default function AddRoom() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <CustomInput
-              label="Room Number"
-              type="number"
+              label="Room Name"
+              type="string"
               errors={errors}
               {...register("roomNumber")}
             />
 
-            <SelectComponent errors={errors} {...register("type")} />
+            <SelectComponent
+              errors={errors}
+              options={typeSick}
+              {...register("type")}
+            />
             <CustomInput
               label="Doctor Name"
               type="name"
               errors={errors}
               {...register("DoctorName")}
             />
-            <RadioButton
-              label="Prioritized"
-              type="boolean"
-              errors={errors}
-              {...register("isPrioritized")}
-            />
+            <div>
+              <label
+                htmlFor="text"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Prioritized
+              </label>
+              <div className="flex space-x-10">
+                <Radio id="True" name="option1" label="Yes" />
+                <Radio id="False" name="option2" label="No" />
+              </div>
+              {errors && <p className="text-[#FF0000]">{errors.message}</p>}
+            </div>
             <div>
               <button
                 type="submit"
