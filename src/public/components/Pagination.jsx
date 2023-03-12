@@ -3,37 +3,51 @@ import React from "react";
 export default function Pagination({
   totalDocs,
   amount,
-  paginateFront,
-  paginateBack,
+  paginateEnd,
+  paginateStart,
+  paginateNumber,
   currentPage,
   totalPages,
 }) {
   const pageNumbers = [];
   const halfDisplayed = 2;
-  const startOffset = Math.min(
+  let startOffset = Math.min(
     halfDisplayed,
     Math.max(1, currentPage - halfDisplayed)
   );
-  const endOffset = Math.min(
+  let endOffset = Math.min(
     halfDisplayed,
     Math.max(1, totalPages - currentPage)
   );
-  const startPage = currentPage - startOffset;
-  const endPage = currentPage + endOffset;
+  let startPage = currentPage - startOffset;
+  let endPage = currentPage + endOffset;
+
+  if (totalPages <= 3) {
+    startPage = 1;
+    endPage = totalPages;
+  } else {
+    if (startOffset === 1 && endOffset === 1) {
+      startOffset = 2;
+      endOffset = 2;
+    }
+  }
 
   for (let i = startPage; i <= endPage; i++) {
     if (i > 0 && i <= totalPages) {
       pageNumbers.push(i);
     }
   }
-
-  const handlePreviousPage = () => {
-    paginateBack();
+  const handleStartPage = () => {
+    paginateStart();
   };
 
-  const handleNextPage = () => {
-    paginateFront();
+  const handleEndPage = () => {
+    paginateEnd();
   };
+  function handlePaginationClick(pageNumber) {
+    paginateNumber(pageNumber);
+  }
+
   return (
     <div class="w-full flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
@@ -54,11 +68,10 @@ export default function Pagination({
             aria-label="Pagination"
           >
             <button
-              onClick={handlePreviousPage}
+              onClick={handleStartPage}
               disabled={currentPage === 1}
-              class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+              class="hover:bg-blue-500 hover:text-white relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
-              <span class="sr-only">Previous</span>
               <svg
                 class="h-5 w-5"
                 viewBox="0 0 20 20"
@@ -75,22 +88,24 @@ export default function Pagination({
             {pageNumbers.map((number) => (
               <button
                 key={number}
-                onClick={() => paginateFront(number)}
+                onClick={() =>
+                  handlePaginationClick(number, totalPages, paginateNumber)
+                }
                 className={`relative z-10 inline-flex items-center ${
                   number === currentPage
                     ? "bg-blue-500 text-white"
-                    : "text-gray-900"
+                    : "hover:bg-blue-500 hover:text-white text-gray-900"
                 } px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
               >
                 {number}
               </button>
             ))}
+
             <button
-              onClick={handleNextPage}
+              onClick={handleEndPage}
               disabled={currentPage === totalPages}
-              class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+              class="hover:bg-blue-500 hover:text-white relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
             >
-              <span class="sr-only">Next</span>
               <svg
                 class="h-5 w-5"
                 viewBox="0 0 20 20"

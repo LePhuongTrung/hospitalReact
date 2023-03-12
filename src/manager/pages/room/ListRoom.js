@@ -34,24 +34,20 @@ function Index() {
     }
   };
 
-  const paginateFront = () => {
-    if (Rooms.hasNextPage) {
-      const nextPage = Rooms.nextPage;
-      setCurrentPage(nextPage);
-      getRoom(nextPage);
-    }
+  const paginateEnd = () => {
+    const nextPage = Rooms.totalPages;
+    getRoom(nextPage);
   };
 
-  const paginateBack = () => {
+  const paginateStart = () => {
     if (Rooms.hasPrevPage) {
-      const prevPage = Rooms.prevPage;
-      setCurrentPage(prevPage);
-      getRoom(prevPage);
+      getRoom(1);
     }
   };
 
-  const [currentPage, setCurrentPage] = useState(Rooms.page);
-
+  const paginateNumber = (pageNumber) => {
+    getRoom(pageNumber);
+  };
   return (
     <>
       <div className=" bg-slate-200 px-4 md:px-10 pb-5 h-full">
@@ -60,7 +56,7 @@ function Index() {
             <tbody>
               <tr className=" border-b-2  text-sm leading-none text-gray-600 h-16">
                 <td className="pl-8">
-                  <p className="font-bold">Room ID</p>
+                  <p className="font-bold">Room Name</p>
                 </td>
                 <td className="pl-16">
                   <p className="font-bold">Faculty classification</p>
@@ -79,7 +75,7 @@ function Index() {
                 Rooms.docs.map((room) => (
                   <tr className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100 ">
                     <td className="pl-12">
-                      <p>{room?.roomName}</p>
+                      <p>{room?.roomNumber}</p>
                     </td>
                     <td className="pl-16">
                       <p>{room?.type}</p>
@@ -102,10 +98,11 @@ function Index() {
         <Pagination
           totalDocs={Rooms.totalDocs}
           amount={Rooms.docs.length}
-          paginateBack={paginateBack}
-          paginateFront={paginateFront}
+          paginateStart={paginateStart}
+          paginateEnd={paginateEnd}
           currentPage={Rooms.page}
           totalPages={Rooms.totalPages}
+          paginateNumber={paginateNumber}
         />
       </div>
     </>
