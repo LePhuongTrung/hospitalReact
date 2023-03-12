@@ -1,51 +1,33 @@
-import axios from "axios";
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { CreateMany } from "../../api/room.service";
 
 function Index() {
   const [file, setFile] = useState(null);
   const [uploadComplete, setUploadComplete] = useState(false);
-  const [uploadedFileUrl, setUploadedFileUrl] = useState(null);
 
   function handleFileSelect(event) {
     setFile(event.target.files[0]);
     setUploadComplete(false);
-    setUploadedFileUrl(null);
   }
-
   function handleUpload(event) {
     event.preventDefault();
 
     const formData = new FormData();
     formData.append("file", file);
-    console.log(
-      "🚀 ~ file: StaffAccount.js:19 ~ handleUpload ~ formData",
-      formData
-    );
 
-    axios
-      .post("http://localhost:3001/staff/addMany", formData)
+    CreateMany(formData)
       .then((response) => {
-        console.log("File uploaded successfully");
         setUploadComplete(true);
-        setUploadedFileUrl(response.data.fileUrl);
+        toast.success("Upload complete!");
       })
       .catch((error) => {
-        console.error("Error uploading file", error);
-      });
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    axios
-      .post("/api/post", {
-        fileUrl: uploadedFileUrl,
-      })
-      .then((response) => {
-        console.log("Data posted successfully");
-      })
-      .catch((error) => {
-        console.error("Error posting data", error);
+        console.error(
+          "🚀 ~ file: UploadRoom.js:26 ~ handleUpload ~ error:",
+          error
+        );
+        toast.error("Wow so easy!");
       });
   }
 
@@ -84,36 +66,18 @@ function Index() {
             )}
           </div>
         </form>
-        {uploadedFileUrl && (
-          <form
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-            onSubmit={handleSubmit}
-          >
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-bold mb-2"
-                htmlFor="fileUrl"
-              >
-                Uploaded file URL:
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="fileUrl"
-                type="text"
-                value={uploadedFileUrl}
-                readOnly
-              />
-            </div>
-            <div className="flex items-center justify-center mt-6">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Confirm
-              </button>
-            </div>
-          </form>
-        )}
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </div>
   );

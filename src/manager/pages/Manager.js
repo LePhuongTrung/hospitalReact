@@ -5,9 +5,12 @@ import NavbarManager from "../components/navbarManager";
 function Manager() {
   return (
     <div className="flex">
-      <NavbarManager />
-
-      <Outlet />
+      <div className="w-2/12">
+        <NavbarManager />
+      </div>
+      <div className="w-10/12">
+        <Outlet />
+      </div>
     </div>
   );
 }

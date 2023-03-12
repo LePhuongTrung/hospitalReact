@@ -15,7 +15,6 @@ const VerificationPage = () => {
   });
   const Verification = async () => {
     const link = "?email=" + Gmail + "&token=" + Code;
-    console.log("🚀 ~ file: Verification.js:18 ~ GetParams ~ link", link);
     try {
       const response = await Confirm(link);
 

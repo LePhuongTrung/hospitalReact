@@ -1,20 +1,10 @@
 import { UilSignout } from "@iconscout/react-unicons";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logOut, selectCurrentRole } from "../../redux/auth/AuthStatus";
-
-const Sidebar = () => {
+import { logOut } from "../../redux/auth/AuthStatus";
+const Sidebar = ({ to }) => {
   const dispatch = useDispatch();
-  const role = useSelector(selectCurrentRole);
-
-  const [link, setLink] = useState(() => {
-    if (role === "assistant") {
-      return "/staff/Work";
-    } else {
-      return "/staff/Diagnosis";
-    }
-  });
 
   const LogOut = () => {
     try {
@@ -25,31 +15,32 @@ const Sidebar = () => {
     }
   };
   return (
-    <aside className=" w-full px-4">
-      <nav className="px-2 w-full h-full ">
+    <aside className=" w-full h-full px-4">
+      <nav className="px-2 w-full h-full pb-8 border-r border-gray-300">
         <ul className="space-y-4">
           <li>
             <NavLink
-              to="/staff/Profile"
-              className="block mt-4 py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
-              activeClassName="text-black bg-gray-600"
+              to="/doctor/Diagnosis"
+              className="block py-2 text-gray-400 hover:text-black hover:bg-gray-600 hover:rounded-lg font-medium h-1/2 w-full text-center transition-colors duration-300 rounded-lg"
+              activeClassName="text-black bg-gray-600 rounded-lg !important"
             >
               About
             </NavLink>
           </li>
+
           <li>
             <NavLink
-              to={link}
-              className="block py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
-              activeClassName="text-black bg-gray-600"
+              to="/staff/Work"
+              className="block py-2 text-gray-400 hover:text-black hover:bg-gray-600 hover:rounded-lg font-medium h-1/2 w-full text-center transition-colors duration-300 rounded-lg"
+              activeClassName="text-black	 bg-gray-600"
             >
               Work
             </NavLink>
           </li>
-          <li className="flex justify-center">
+          <li>
             <div
               onClick={LogOut}
-              className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+              className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center justify-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer text-center"
             >
               <UilSignout
                 className="h-5 w-5 slate-900"

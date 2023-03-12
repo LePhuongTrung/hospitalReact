@@ -1,21 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomInput from "../../public/components/CustomInput";
 import { Update } from "../api/information";
 
 function Index() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm({});
-
+  const location = useLocation();
+  const { data } = location.state;
   const onSubmit = async (data) => {
     try {
       const response = await Update(data);
-      console.log("🚀 ~ file: Create.js:15 ~ onSubmit ~ response", response);
+      if (response.status === 200) {
+        navigate("/user", { replace: true });
+      }
     } catch (err) {
       console.error("🚀 ~ file: information.js:13 ~ getData ~ err", err);
       if (err.originalStatus === 404) {
-        navigate("/user", { replace: true });
+        navigate("/error", { replace: true });
       }
     }
   };
@@ -24,29 +27,50 @@ function Index() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex space-x-10">
           <div className="w-1/2">
-            <CustomInput label="Full Name" {...register("fullName")} />
+            <CustomInput
+              label="Full Name"
+              defaultValue={data?.fullName}
+              {...register("fullName")}
+            />
           </div>
           <div className="w-1/2">
-            <CustomInput label="Phone Number" {...register("phoneNumber")} />
+            <CustomInput
+              label="Phone Number"
+              defaultValue={data?.phoneNumber}
+              {...register("phoneNumber")}
+            />
           </div>
         </div>
         <div className="flex space-x-10">
           <div className="w-1/2">
-            <CustomInput label="Address" {...register("address")} />
+            <CustomInput
+              label="Address"
+              defaultValue={data?.address}
+              {...register("address")}
+            />
           </div>
           <div className="w-1/2">
             <CustomInput
               label="Emergency Contact"
+              defaultValue={data?.emergencyContact}
               {...register("emergencyContact")}
             />
           </div>
         </div>
         <div className="flex space-x-10">
           <div className="w-1/2">
-            <CustomInput label="Medicine Code" {...register("medicineCode")} />
+            <CustomInput
+              label="Medicine Code"
+              defaultValue={data?.medicineCode}
+              {...register("medicineCode")}
+            />
           </div>
           <div className="w-1/2">
-            <CustomInput label="CCCD" {...register("CCCD")} />
+            <CustomInput
+              label="CCCD"
+              defaultValue={data?.CCCD}
+              {...register("CCCD")}
+            />
           </div>
         </div>
         <div className="flex items-center justify-center mt-6">
@@ -54,7 +78,7 @@ function Index() {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Create
+            Update
           </button>
         </div>
       </form>

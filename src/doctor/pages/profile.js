@@ -1,7 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentRole, setWorkInUser } from "../../redux/auth/AuthStatus";
-import { getStaff } from "../api/staff";
+
+import { getStaff } from "../../staff/api/staff";
+
+const getData = async (setData, navigate, dispatch) => {
+  try {
+    const response = await getStaff();
+    if (response.status === 200) {
+      setData(response.data);
+      dispatch(setWorkInUser({ roomNumber: response.data.roomNumber }));
+    }
+  } catch (err) {
+    if (err.response && err.response.status === 404) {
+    } else if (err.code === "ERR_NETWORK") {
+      navigate("/SERVERERROR", { replace: true });
+    } else {
+      navigate("/error", { replace: true });
+    }
+  }
+};
 
 function Index({ navigate }) {
   const dispatch = useDispatch();
@@ -10,26 +28,8 @@ function Index({ navigate }) {
 
   const role = useSelector(selectCurrentRole);
 
-  const getData = async (setData) => {
-    try {
-      const response = await getStaff();
-      if (response.status === 200) {
-        const roomNumber = response.data.roomNumber;
-        setData(response.data);
-        dispatch(setWorkInUser({ roomNumber }));
-      }
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-      } else if (err.code === "ERR_NETWORK") {
-        navigate("/SERVERERROR", { replace: true });
-      } else {
-        navigate("/error", { replace: true });
-      }
-    }
-  };
-
   useEffect(() => {
-    getData(setData);
+    getData(setData, navigate, dispatch);
   }, [setData]);
   return (
     <div className=" flex w-full h-full">

@@ -8,7 +8,6 @@ const BasicInfo = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     // data.preventDefault();
-    console.log("🚀 ~ file: Doctor.js:14 ~ onSubmit ~ data", data);
   };
   return (
     <div className="mx-auto my-4 bg-white p-6 rounded-lg shadow-md w-650">

@@ -9,9 +9,9 @@ const RadioButton = forwardRef((props, ref) => {
       <label htmlFor="text" className="block text-sm font-medium text-gray-700">
         {label}
       </label>
-      <div className="flex gap-10">
-        <Radio id="True" name="type" label="Yes" />
-        <Radio id="False" name="type" label="No" defaultChecked />
+      <div className="flex space-x-10">
+        <Radio id="True" name="option1" label="Yes" />
+        <Radio id="False" name="option2" label="No" />
       </div>
       {errors && <p className="text-[#FF0000]">{errors.message}</p>}
     </div>

@@ -2,16 +2,17 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Manager from "./manager/pages/Manager";
 import Report from "./manager/pages/report/ListReports";
+
 import AddRoom from "./manager/pages/room/AddRoom";
 import ListRoom from "./manager/pages/room/ListRoom";
 import Room from "./manager/pages/room/Room";
+import UploadRoom from "./manager/pages/room/UploadRoom";
+
 import AddSick from "./manager/pages/sick/AddSick";
 import ListSick from "./manager/pages/sick/ListSick";
 import Sick from "./manager/pages/sick/Sick";
-import {
-  default as UploadRoom,
-  default as UploadSick,
-} from "./manager/pages/sick/UploadSick";
+import UploadSick from "./manager/pages/sick/UploadSick";
+
 import AddStaff from "./manager/pages/Staff/AddStaff";
 import ListStaff from "./manager/pages/Staff/ListStaff";
 import StaffManager from "./manager/pages/Staff/Staff";
@@ -26,12 +27,12 @@ import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
 import ForgetPassword from "./public/pages/Error/forgetPassword";
 import ERROR1 from "./public/pages/Error/noPermission";
+import SERVERERROR from "./public/pages/Error/ServerNotWorking";
 
 import Login from "./public/pages/auth/Login";
 import ResetPasswordIdentify from "./public/pages/auth/ResetPassword";
 import Signup from "./public/pages/auth/SignUp";
 
-import Create from "./user/pages/Create";
 import Edit from "./user/pages/Edit";
 import Health from "./user/pages/Health";
 import Information from "./user/pages/information";
@@ -41,7 +42,10 @@ import MedicalRegister from "./user/pages/MedicalRegister";
 import ResetPassword from "./user/pages/ResetPassword";
 import User from "./user/pages/User";
 
-import Doctor from "./doctor/pages/Doctor";
+import Doctor from "./doctor/doctor";
+import DoctorInfor from "./doctor/pages/profile";
+
+import Diagnosis from "./staff/pages/DoctorLearn";
 
 import Profile from "./staff/pages/profile";
 import Staff from "./staff/pages/staff";
@@ -58,16 +62,20 @@ const AppRouter = () => (
       <Route path="identify" element={<ForgetPassword />} />
       <Route path="verification" element={<VerificationSuccess />} />
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
-      <Route path="Doctor" element={<Doctor />} />
-      <Route path="Staff" element={<Staff />}>
-        <Route index element={<Profile />} />
-        <Route path="Profile" element={<Profile />} />
-      </Route>
       <Route element={<AuthenticationRoutes />}>
+        <Route path="Doctor" element={<Doctor />}>
+          <Route index element={<DoctorInfor />} />
+          <Route path="Diagnosis" element={<Diagnosis />} />
+          <Route path="DoctorInfor" element={<DoctorInfor />} />
+        </Route>
+        <Route path="Staff" element={<Staff />}>
+          <Route index element={<Profile />} />
+          <Route path="Profile" element={<Profile />} />
+          <Route path="Diagnosis" element={<Diagnosis />} />
+        </Route>
         <Route path="User" element={<User />}>
           <Route index element={<Information />} />
           <Route path="information" element={<Information />} />
-          <Route path="Create" element={<Create />} />
           <Route path="Edit" element={<Edit />} />
           <Route path="Health" element={<Health />} />
           <Route path="MedicalHistory" element={<MedicalHistory />} />
@@ -102,10 +110,12 @@ const AppRouter = () => (
           <Route path="Report" element={<Report />} />
         </Route>
       </Route>
+
       <Route path="SignUp" element={<Signup />} />
+      <Route path="SERVERERROR" element={<SERVERERROR />} />
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
-      <Route errorElement element={ERROR} />
+      {/* <Route errorElement element={ERROR} /> */}
     </Routes>
   </Router>
 );

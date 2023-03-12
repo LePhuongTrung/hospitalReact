@@ -31,9 +31,7 @@ export default function AddRoom() {
     resolver: yupResolver(schemaValidation),
   });
 
-  const onSubmit = async (data) => {
-    console.log("🚀 ~ file: Login.js ~ line 38 ~ onSubmit ~ data", data);
-  };
+  const onSubmit = async (data) => {};
 
   return (
     <>

@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
 import CustomInput from "../../public/components/CustomInput";
-import { Read } from "../api/information";
+import { Create, Read } from "../api/information";
 
-const getData = async (setData, navigate) => {
+const getData = async (setData, setIsDataAvailable, navigate) => {
   try {
     const response = await Read();
-    console.log("🚀 ~ file: information.js:15 ~ getData ~ response", response);
-    setData(response.data);
 
-    if (response.status !== 200) return;
+    if (response.status === 200) {
+      setData(response.data);
+      setIsDataAvailable(true);
+    }
   } catch (err) {
     if (err.response && err.response.status === 404) {
-      navigate("/user/Create", { replace: true });
+      setIsDataAvailable(false);
+    } else if (err.code === "ERR_NETWORK") {
+      navigate("/SERVERERROR", { replace: true });
     } else {
       navigate("/error", { replace: true });
     }
@@ -22,62 +26,106 @@ const getData = async (setData, navigate) => {
 function Index() {
   const navigate = useNavigate();
   const [data, setData] = useState();
+  const [isDataAvailable, setIsDataAvailable] = useState(false);
 
+  const { register, handleSubmit } = useForm({});
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await Create(data);
+      if (response.status === 200) {
+        navigate("/user", { replace: true });
+      }
+    } catch (err) {
+      console.error("🚀 ~ file: information.js:13 ~ getData ~ err", err);
+      if (err.originalStatus === 404) {
+        navigate("/error", { replace: true });
+      }
+    }
+  };
   useEffect(() => {
-    getData(setData, navigate);
-  }, [getData]);
+    getData(setData, setIsDataAvailable, navigate);
+  }, [setIsDataAvailable, navigate]);
 
   return (
     <div className="w-full space-y-9 mt-10 mr-4">
-      <div className="flex space-x-10">
-        <div className="w-1/2">
-          <CustomInput
-            label="Full Name"
-            disabled="true"
-            value={data?.fullName}
-          />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex space-x-10">
+          <div className="w-1/2">
+            <CustomInput
+              label="Full Name"
+              disabled={!isDataAvailable}
+              value={data?.fullName}
+              {...register("fullName")}
+            />
+          </div>
+          <div className="w-1/2">
+            <CustomInput
+              label="Phone Number"
+              disabled={!isDataAvailable}
+              value={data?.phoneNumber}
+              {...register("phoneNumber")}
+            />
+          </div>
         </div>
-        <div className="w-1/2">
-          <CustomInput
-            label="Phone Number"
-            disabled="true"
-            value={data?.phoneNumber}
-          />
+        <div className="flex space-x-10">
+          <div className="w-1/2">
+            <CustomInput
+              label="Address"
+              disabled={!isDataAvailable}
+              value={data?.address}
+              {...register("address")}
+            />
+          </div>
+          <div className="w-1/2">
+            <CustomInput
+              label="Emergency Contact"
+              disabled={!isDataAvailable}
+              value={data?.emergencyContact}
+              {...register("emergencyContact")}
+            />
+          </div>
         </div>
-      </div>
-      <div className="flex space-x-10">
-        <div className="w-1/2">
-          <CustomInput label="Address" disabled="true" value={data?.address} />
+        <div className="flex space-x-10">
+          <div className="w-1/2">
+            <CustomInput
+              label="Medicine Code"
+              disabled={!isDataAvailable}
+              value={data?.medicineCode}
+              {...register("medicineCode")}
+            />
+          </div>
+          <div className="w-1/2">
+            <CustomInput
+              label="CCCD"
+              disabled={!isDataAvailable}
+              value={data?.CCCD}
+              {...register("CCCD")}
+            />
+          </div>
         </div>
-        <div className="w-1/2">
-          <CustomInput
-            label="Emergency Contact"
-            disabled="true"
-            value={data?.emergencyContact}
-          />
+        <div className="flex items-center justify-center mt-6">
+          {isDataAvailable ? (
+            <NavLink
+              to="/user/edit"
+              state={{ data }}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              activeClassName="text-white bg-gray-600"
+            >
+              edit
+            </NavLink>
+          ) : (
+            <div className="flex items-center justify-center mt-6">
+              <button
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                type="submit"
+              >
+                Create
+              </button>
+            </div>
+          )}
         </div>
-      </div>
-      <div className="flex space-x-10">
-        <div className="w-1/2">
-          <CustomInput
-            label="Medicine Code"
-            disabled="true"
-            value={data?.medicineCode}
-          />
-        </div>
-        <div className="w-1/2">
-          <CustomInput label="CCCD" disabled="true" value={data?.CCCD} />
-        </div>
-      </div>
-      <div className="flex items-center justify-center mt-6">
-        <NavLink
-          to="/user/edit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          activeClassName="text-white bg-gray-600"
-        >
-          edit
-        </NavLink>
-      </div>
+      </form>
     </div>
   );
 }

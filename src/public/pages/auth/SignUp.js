@@ -29,7 +29,6 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: SignUp.js:29 ~ onSubmit ~ data", data);
     try {
       const response = await SignUp(data);
 
