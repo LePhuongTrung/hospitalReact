@@ -32,7 +32,7 @@ const Sidebar = () => {
             <NavLink
               to="/staff/Profile"
               className="block mt-4 py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
-              activeClassName="text-black bg-gray-600"
+              activeClassName="selected text-black bg-gray-600"
             >
               About
             </NavLink>
@@ -41,7 +41,7 @@ const Sidebar = () => {
             <NavLink
               to={link}
               className="block py-2 text-gray-400 hover:text-black  font-medium h-1/2 w-full text-center"
-              activeClassName="text-black bg-gray-600"
+              activeClassName="selected text-black bg-gray-600"
             >
               Work
             </NavLink>

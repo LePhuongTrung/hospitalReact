@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 import { SignUp } from "../../../public/api/auth";
 
@@ -33,10 +35,17 @@ export default function Login() {
       const response = await SignUp(data);
 
       if (response.status !== 200) return;
-
+      toast.success("Sign up successfully");
       navigate("/Login", { replace: true });
     } catch (error) {
+      if (error.code == "ERR_NETWORK") {
+        toast.error("ERR_NETWORK");
+      }
       console.error("🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error", error);
+      console.error(
+        "🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error",
+        error.response.data
+      );
     }
   };
 
@@ -196,6 +205,18 @@ export default function Login() {
             </div>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );
