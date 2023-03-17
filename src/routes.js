@@ -38,8 +38,8 @@ import Health from "./user/pages/Health";
 import Information from "./user/pages/information";
 import MedicalHistory from "./user/pages/MedicalHistory";
 import MedicalRegister from "./user/pages/MedicalRegister";
-
 import ResetPassword from "./user/pages/ResetPassword";
+
 import User from "./user/pages/User";
 
 import Doctor from "./doctor/doctor";

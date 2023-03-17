@@ -1,5 +1,4 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Radio } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { typeSick } from "../../data/typeSick";
@@ -44,12 +43,6 @@ export default function AddRoom() {
               options={typeSick}
               {...register("type")}
             />
-            <CustomInput
-              label="Doctor Name"
-              type="name"
-              errors={errors}
-              {...register("DoctorName")}
-            />
             <div>
               <label
                 htmlFor="text"
@@ -57,10 +50,39 @@ export default function AddRoom() {
               >
                 Prioritized
               </label>
-              <div className="flex space-x-10">
-                <Radio id="True" name="option1" label="Yes" />
-                <Radio id="False" name="option2" label="No" />
+
+              <div class="flex items-center mb-4">
+                <input
+                  id="default-radio-1"
+                  type="radio"
+                  value=""
+                  name="default-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-radio-1"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Yes
+                </label>
               </div>
+              <div class="flex items-center">
+                <input
+                  checked
+                  id="default-radio-2"
+                  type="radio"
+                  value=""
+                  name="default-radio"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                <label
+                  for="default-radio-2"
+                  class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  No
+                </label>
+              </div>
+
               {errors && <p className="text-[#FF0000]">{errors.message}</p>}
             </div>
             <div>

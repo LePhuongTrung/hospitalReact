@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 import { SignUp } from "../../../public/api/auth";
 
@@ -10,7 +12,14 @@ const schemaValidation = yup
   .object()
   .shape({
     email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
+    password: yup
+      .string()
+      .min(6)
+      .required()
+      .matches(
+        /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+      ),
     retypePassword: yup
       .string()
       .required("Please retype your password.")
@@ -33,9 +42,12 @@ export default function Login() {
       const response = await SignUp(data);
 
       if (response.status !== 200) return;
-
+      toast.success("Sign up successfully");
       navigate("/Login", { replace: true });
     } catch (error) {
+      if (error.code === "ERR_NETWORK") {
+        toast.error("ERR_NETWORK");
+      }
       console.error("🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error", error);
     }
   };
@@ -196,6 +208,18 @@ export default function Login() {
             </div>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

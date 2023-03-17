@@ -26,7 +26,6 @@ function Index() {
         page = 1;
       }
       const response = await findAll(page);
-      console.log("🚀 ~ file: ListRoom.js:17 ~ getRoom ~ response:", response);
       if (response.status !== 200) return;
       setRooms(response.data);
     } catch (error) {
@@ -50,7 +49,7 @@ function Index() {
   };
   return (
     <>
-      <div className=" bg-slate-200 px-4 md:px-10 pb-5 h-full">
+      <div className="px-4 md:px-10 pb-5 h-full">
         <div className="overflow-x-auto h-800">
           <table className="w-full whitespace-nowrap">
             <tbody>

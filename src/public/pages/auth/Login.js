@@ -1,18 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
 
-/* Import redux */
 import { useDispatch } from "react-redux";
 import { setLoggedInUser } from "../../../redux/auth/AuthStatus";
 
-/* Import service */
 import { login } from "../../../public/api/auth";
 
-/* Import component */
-import Alert from "../../components/AlertError";
 import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
@@ -24,9 +21,6 @@ const schemaValidation = yup
   .required();
 
 export default function Login() {
-  const [error, setError] = useState("");
-  const [open, setOpen] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -46,7 +40,8 @@ export default function Login() {
 
       const token = response.data.token;
       const role = response.data.role;
-      dispatch(setLoggedInUser({ token, role }));
+      const email = data.email;
+      dispatch(setLoggedInUser({ token, role, email }));
       if (role === "user") {
         navigate("/user", { replace: true });
       } else if (role === "manager") {
@@ -55,42 +50,14 @@ export default function Login() {
         navigate("/staff", { replace: true });
       }
     } catch (error) {
+      toast.error(error.message);
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
-      if (!error?.originalStatus) {
-        setError("No Server Response!");
-        setOpen(true);
-        setTimeout(() => {
-          setOpen(false);
-        }, 5000);
-      } else if (error.originalStatus === 400) {
-        setError("Missing Username or Password");
-        setOpen(true);
-        setTimeout(() => {
-          setOpen(false);
-        }, 5000);
-      } else if (error.originalStatus === 401) {
-        setError("Unauthorized");
-        setOpen(true);
-        setTimeout(() => {
-          setOpen(false);
-        }, 5000);
-      } else {
-        setError("Login Failed");
-        setOpen(true);
-        setTimeout(() => {
-          setOpen(false);
-        }, 5000);
-      }
     }
   };
 
   return (
     <>
       <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div onClick={() => setOpen(false)}>
-          <Alert text={error} display={open} />
-        </div>
-
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img
             className="mx-auto h-28 w-auto"
@@ -237,6 +204,18 @@ export default function Login() {
             </div>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

@@ -54,7 +54,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="Full Name"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.fullName}
               {...register("fullName")}
             />
@@ -62,7 +62,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="Phone Number"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.phoneNumber}
               {...register("phoneNumber")}
             />
@@ -72,7 +72,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="Address"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.address}
               {...register("address")}
             />
@@ -80,7 +80,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="Emergency Contact"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.emergencyContact}
               {...register("emergencyContact")}
             />
@@ -90,7 +90,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="Medicine Code"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.medicineCode}
               {...register("medicineCode")}
             />
@@ -98,7 +98,7 @@ function Index() {
           <div className="w-1/2">
             <CustomInput
               label="CCCD"
-              disabled={!isDataAvailable}
+              disabled={isDataAvailable}
               value={data?.CCCD}
               {...register("CCCD")}
             />
