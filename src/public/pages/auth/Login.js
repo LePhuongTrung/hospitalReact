@@ -40,7 +40,8 @@ export default function Login() {
 
       const token = response.data.token;
       const role = response.data.role;
-      dispatch(setLoggedInUser({ token, role }));
+      const email = data.email;
+      dispatch(setLoggedInUser({ token, role, email }));
       if (role === "user") {
         navigate("/user", { replace: true });
       } else if (role === "manager") {
@@ -49,16 +50,8 @@ export default function Login() {
         navigate("/staff", { replace: true });
       }
     } catch (error) {
+      toast.error(error.message);
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
-      if (!error?.originalStatus) {
-        toast.error("No Server Response!");
-      } else if (error.originalStatus === 400) {
-        toast.error("Missing Username or Password");
-      } else if (error.originalStatus === 401) {
-        toast.error("Unauthorized");
-      } else {
-        toast.error("Login Failed");
-      }
     }
   };
 

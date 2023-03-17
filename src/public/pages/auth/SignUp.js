@@ -38,14 +38,10 @@ export default function Login() {
       toast.success("Sign up successfully");
       navigate("/Login", { replace: true });
     } catch (error) {
-      if (error.code == "ERR_NETWORK") {
+      if (error.code === "ERR_NETWORK") {
         toast.error("ERR_NETWORK");
       }
       console.error("🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error", error);
-      console.error(
-        "🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error",
-        error.response.data
-      );
     }
   };
 
