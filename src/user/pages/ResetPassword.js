@@ -54,16 +54,11 @@ function Index() {
   const email = useSelector(selectCurrentEmail);
 
   const onSubmit = async (data) => {
-    console.log("Button clicked");
     try {
       if (data.password === data.newPassword) {
         toast.warning("New password must be different from current password");
       } else {
         const response = await ResetPassword(data, email);
-        console.log(
-          "🚀 ~ file: ResetPassword.js:43 ~ onSubmit ~ response:",
-          response
-        );
         toast.success(response.data);
       }
     } catch (err) {

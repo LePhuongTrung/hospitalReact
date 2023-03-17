@@ -10,7 +10,7 @@ export const ForgetPassword = (data) =>
 export const ResetPassword = (data, email) =>
   axios.get(
     API_URL +
-      `account/resetPassword?email=${email}&password=${data.Password}&newPassword=${data.newPassword}`
+      `account/resetPassword?email=${email}&password=${data.currentPassword}&newPassword=${data.newPassword}`
   );
 
 export const Confirm = async (Link) => {
