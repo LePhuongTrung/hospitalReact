@@ -12,7 +12,14 @@ const schemaValidation = yup
   .object()
   .shape({
     email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
+    password: yup
+      .string()
+      .min(6)
+      .required()
+      .matches(
+        /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+      ),
     retypePassword: yup
       .string()
       .required("Please retype your password.")

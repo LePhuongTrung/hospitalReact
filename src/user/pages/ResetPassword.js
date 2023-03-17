@@ -11,12 +11,37 @@ import CustomInput from "../../public/components/CustomInput";
 import { selectCurrentEmail } from "../../redux/auth/AuthStatus";
 
 const schemaValidation = yup.object().shape({
-  currentPassword: yup.string().min(6).required(),
-  enterPassword: yup.string().min(6).required(),
+  currentPassword: yup
+    .string()
+    .min(6)
+    .required()
+    .matches(
+      /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+      "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+    ),
+  enterPassword: yup
+    .string()
+    .min(6)
+    .required()
+    .matches(
+      /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+      "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+    )
+    .test(
+      "passwords-match",
+      "New password must be different from current password",
+      function (value) {
+        return value !== this.parent.currentPassword;
+      }
+    ),
   newPassword: yup
     .string()
     .min(6)
     .required()
+    .matches(
+      /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+      "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+    )
     .oneOf([yup.ref("enterPassword"), null], "Passwords must match"),
 });
 
