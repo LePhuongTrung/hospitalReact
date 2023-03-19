@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "../../../public/components/Pagination";
-import { findAll } from "../../api/room.service";
+import { findAll } from "../../api/sick.service";
 
 function Index() {
-  const [Rooms, setRooms] = useState({
+  const [sicks, setSicks] = useState({
     docs: [],
     totalDocs: 0,
     limit: 10,
@@ -26,20 +26,21 @@ function Index() {
         page = 1;
       }
       const response = await findAll(page);
+      console.log("🚀 ~ file: ListSick.js:29 ~ getRoom ~ response:", response);
       if (response.status !== 200) return;
-      setRooms(response.data);
+      setSicks(response.data);
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }
   };
 
   const paginateEnd = () => {
-    const nextPage = Rooms.totalPages;
+    const nextPage = sicks.totalPages;
     getRoom(nextPage);
   };
 
   const paginateStart = () => {
-    if (Rooms.hasPrevPage) {
+    if (sicks.hasPrevPage) {
       getRoom(1);
     }
   };
@@ -54,39 +55,27 @@ function Index() {
           <table className="w-full whitespace-nowrap">
             <tbody>
               <tr className=" border-b-2  text-sm leading-none text-gray-600 h-16">
-                <td className="pl-8">
-                  <p className="font-bold">Room Name</p>
+                <td className="pl-9">
+                  <p className="font-bold">No</p>
+                </td>
+                <td className="pl-12">
+                  <p className="font-bold">Sick Name</p>
                 </td>
                 <td className="pl-16">
-                  <p className="font-bold">Faculty classification</p>
-                </td>
-                <td className="pl-16">
-                  <p className="font-bold">Current Number</p>
-                </td>
-                <td className="pl-16">
-                  <p className="font-bold">Total Number</p>
-                </td>
-                <td className="pl-8">
-                  <p className="font-bold">Priority room</p>
+                  <p className="font-bold">Sick Type</p>
                 </td>
               </tr>
-              {Rooms.docs.length > 0 &&
-                Rooms.docs.map((room) => (
+              {sicks.docs.length > 0 &&
+                sicks.docs.map((sick, index) => (
                   <tr className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100 ">
                     <td className="pl-12">
-                      <p>{room?.roomNumber}</p>
+                      <p>{index}</p>
+                    </td>
+                    <td className="pl-12">
+                      <p>{sick?.name}</p>
                     </td>
                     <td className="pl-16">
-                      <p>{room?.type}</p>
-                    </td>
-                    <td>
-                      <p className="pl-28">{room?.CurrentNumber}</p>
-                    </td>
-                    <td>
-                      <p className="pl-24">{room?.TotalNumber}</p>
-                    </td>
-                    <td>
-                      <p className="pl-16">{String(room?.isPrioritized)}</p>
+                      <p>{sick?.type}</p>
                     </td>
                   </tr>
                 ))}
@@ -95,12 +84,12 @@ function Index() {
         </div>
 
         <Pagination
-          totalDocs={Rooms.totalDocs}
-          amount={Rooms.docs.length}
+          totalDocs={sicks.totalDocs}
+          amount={sicks.docs.length}
           paginateStart={paginateStart}
           paginateEnd={paginateEnd}
-          currentPage={Rooms.page}
-          totalPages={Rooms.totalPages}
+          currentPage={sicks.page}
+          totalPages={sicks.totalPages}
           paginateNumber={paginateNumber}
         />
       </div>
