@@ -4,7 +4,7 @@ import SickHeader from "../../components/sick/SickHeader";
 
 function Sick() {
   return (
-    <div className="xl:w-3/4 2xl:w-4/5 w-full">
+    <div className="w-full pr-12">
       <SickHeader />
       <Outlet />
     </div>

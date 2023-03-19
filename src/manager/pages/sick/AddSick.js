@@ -1,37 +1,36 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { Data } from "./typeSickData";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-/* Import component */
-import { useEffect, useState } from "react";
+import { typeSick } from "../../data/typeSick";
+
 import CustomInput from "../../../public/components/CustomInput";
-
-const schemaValidation = yup
-  .object()
-  .shape({
-    email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
-  })
-  .required();
+import SelectComponent from "../../../public/components/SelectComponent";
+import { create } from "../../api/sick.service";
 
 export default function AddRoom() {
-  const [sickData, setData] = useState([]);
-  useEffect(() => {
-    getData();
-  }, []);
-  const getData = async () => {
-    setData(Data);
-  };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schemaValidation),
-  });
+  const { register, handleSubmit } = useForm({});
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    try {
+      if (!data.name) {
+        toast.warning("Missing Room Name");
+        return;
+      }
+      if (!data.type || typeof data.type === "undefined") {
+        toast.warning("Please select type again");
+        return;
+      }
+      console.log("🚀 ~ file: AddSick.js:26 ~ onSubmit ~ data:", data);
+
+      const result = await create(data);
+      if (result.status === 200) {
+        toast.success("Add new room successfully");
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -42,8 +41,7 @@ export default function AddRoom() {
             <CustomInput
               label="Sick Name"
               type="string"
-              errors={errors}
-              {...register("roomNumber")}
+              {...register("name")}
             />
             <div>
               <label
@@ -52,18 +50,7 @@ export default function AddRoom() {
               >
                 Type Sick
               </label>
-              <select
-                id="countries"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              >
-                <option value="internal diseases" selected>
-                  internal diseases
-                </option>
-                {sickData &&
-                  sickData.map((data) => (
-                    <option value={data.type}>{data.type}</option>
-                  ))}
-              </select>
+              <SelectComponent options={typeSick} {...register("type")} />
             </div>
             <div>
               <button
@@ -76,6 +63,18 @@ export default function AddRoom() {
             </div>
           </form>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );
