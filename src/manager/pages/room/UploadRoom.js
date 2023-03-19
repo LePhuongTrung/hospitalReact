@@ -14,6 +14,21 @@ function Index() {
   function handleUpload(event) {
     event.preventDefault();
 
+    if (!file) {
+      toast.error("Please select a file to upload.");
+      return;
+    }
+
+    const fileType = file.type;
+    if (
+      fileType !== "application/vnd.ms-excel" &&
+      fileType !==
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ) {
+      toast.error("Please upload an Excel file.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("file", file);
 
