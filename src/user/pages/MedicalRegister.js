@@ -12,10 +12,6 @@ const getData = async (
 ) => {
   try {
     const response = await GetWait();
-    console.log(
-      "🚀 ~ file: MedicalRegister.js:9 ~ getData ~ response:",
-      response
-    );
     if (response.status === 200) {
       setIsRegister(true);
       setRoom(response.data.room.roomNumber);
