@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Data } from "./Data";
+import { GetAllWait } from "../api/wait";
 
 function Index() {
   const [historyData, setData] = useState([]);
@@ -7,7 +7,12 @@ function Index() {
     getHistory();
   }, []);
   const getHistory = async () => {
-    setData(Data);
+    const response = await GetAllWait();
+    console.log(
+      "🚀 ~ file: MedicalHistory.js:12 ~ getHistory ~ response:",
+      response
+    );
+    setData(response.data.docs);
   };
 
   return (
@@ -41,10 +46,10 @@ function Index() {
                     scope="row"
                     className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {data.date}
+                    {data?.date}
                   </th>
-                  <td className="py-4 px-6">{data.room}</td>
-                  <td className="py-4 px-6">{data.Diagnostic}</td>
+                  <td className="py-4 px-6">{data?.room}</td>
+                  <td className="py-4 px-6">{data?.Diagnostic}</td>
                 </tr>
               ))}
           </tbody>
