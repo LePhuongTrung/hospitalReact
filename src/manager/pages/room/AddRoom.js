@@ -20,7 +20,6 @@ export default function AddRoom() {
         toast.warning("Please select type again");
         return;
       }
-      console.log("🚀 ~ file: AddRoom.js:20 ~ onSubmit ~ data:", data);
 
       const result = await create(data);
       if (result.status === 200) {

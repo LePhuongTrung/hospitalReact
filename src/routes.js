@@ -83,18 +83,18 @@ const AppRouter = () => (
           <Route path="MedicalRegister" element={<MedicalRegister />} />
         </Route>
         <Route path="Manager" element={<Manager />}>
-          <Route index element={<Sick />} />
-          <Route path="Sick" element={<Sick />}>
-            <Route index element={<ListSick />} />
-            <Route path="AddSick" element={<AddSick />} />
-            <Route path="ListSick" element={<ListSick />} />
-            <Route path="UploadSick" element={<UploadSick />} />
-          </Route>
+          <Route index element={<Room />} />
           <Route path="Room" element={<Room />}>
             <Route index element={<ListRoom />} />
             <Route path="AddRoom" element={<AddRoom />} />
             <Route path="ListRoom" element={<ListRoom />} />
             <Route path="UploadRoom" element={<UploadRoom />} />
+          </Route>
+          <Route path="Sick" element={<Sick />}>
+            <Route index element={<ListSick />} />
+            <Route path="AddSick" element={<AddSick />} />
+            <Route path="ListSick" element={<ListSick />} />
+            <Route path="UploadSick" element={<UploadSick />} />
           </Route>
           <Route path="Sale" element={<Sale />}>
             <Route index element={<Week />} />
