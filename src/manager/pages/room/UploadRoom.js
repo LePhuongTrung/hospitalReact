@@ -27,7 +27,7 @@ function Index() {
           "🚀 ~ file: UploadRoom.js:26 ~ handleUpload ~ error:",
           error
         );
-        toast.error("Wow so easy!");
+        toast.error(error.message);
       });
   }
 
