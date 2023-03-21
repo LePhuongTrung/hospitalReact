@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import CustomInput from "../../../public/components/CustomInput";
 import Dialog from "../../../public/components/Dialog";
 import SelectComponent from "../../../public/components/SelectComponent";
@@ -28,13 +27,12 @@ export default function AddRoom() {
 
   const [Rooms, setRooms] = useState([]);
   const [roomFilter, setRoomFilter] = useState([]);
-  const [uploadComplete, setUploadComplete] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState("");
+  const [previewUrl, setPreviewUrl] = useState(
+    "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=612x612&w=0&k=20&c=qA6GUTalFyrBCRVUzQgp2B5zODxmOA4NXTBcw9notYY="
+  );
 
   const onSubmit = async (data) => {
     try {
-      toast.success(data);
-
       if (!data.roomNumber) {
         toast.warning("Missing room Number");
         return;
@@ -48,14 +46,14 @@ export default function AddRoom() {
         toast.warning("Missing required information");
         return;
       }
-      if (!data.type || typeof data.type === "undefined") {
-        toast.warning("Please select type again");
+      if (!data.role || typeof data.role === "undefined") {
+        toast.warning("Please select role again");
         return;
       }
       const email = await generateEmail(data.fullName, data.identifierCode);
-      toast.success(email);
       data.password = "Abc@123";
       data.email = email;
+      data.ImgUrl = previewUrl;
       const string = `Full name: ${data.fullName}\n
       identifierCode: ${data.identifierCode}\n
       email: ${data.email}\n
@@ -74,14 +72,10 @@ export default function AddRoom() {
     try {
       const response = await getAll();
       if (response.status !== 200) return;
-      const object = response.data;
-      let room = [];
-      for (let i = 0; i < Object.keys(object).length; i++) {
-        room.push(object[i]);
-      }
-      setRooms(room);
+      const rooms = Object.values(response.data);
+      setRooms(rooms);
 
-      const internalRooms = room.filter(
+      const internalRooms = rooms.filter(
         (room) => room.type === "internal diseases"
       );
       setRoomFilter(internalRooms);
@@ -108,57 +102,46 @@ export default function AddRoom() {
   const handleConfirm = async () => {
     try {
       setShowDialog(false);
-
-      try {
-        const response = await fetch(previewUrl);
-        const blob = await response.blob();
-        const formData = new FormData();
-        formData.append("file", blob, "image.png");
-        formData.append("upload_preset", "hospital");
-        const uploadResponse = await fetch(
-          "https://api.cloudinary.com/v1_1/dd9ain71r/image/upload",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        console.log(
-          "🚀 ~ file: AddStaff.js:127 ~ handleConfirm ~ uploadResponse:",
-          uploadResponse
-        );
-        const data = await uploadResponse.json();
-        console.log("🚀 ~ file: AddStaff.js:129 ~ handleConfirm ~ data:", data);
-      } catch (error) {
-        console.error(
-          "🚀 ~ file: AddStaff.js:133 ~ handleConfirm ~ error:",
-          error
-        );
-      }
-
       const result = await create(data);
       if (result.status === 200) {
         toast.success("Add new room successfully");
       }
     } catch (error) {
-      console.error(
-        "🚀 ~ file: AddStaff.js:119 ~ handleConfirm ~ error:",
-        error
-      );
-      toast.error(error.message);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 
   const handleCancel = () => {
     setShowDialog(false);
   };
-  function handleFileSelect(event) {
-    setUploadComplete(false);
-    const reader = new FileReader();
-    reader.onload = () => {
-      setPreviewUrl(reader.result);
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  }
+  var handleFileSelect = async (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "my-uploads");
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/djvkmuflt/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      setPreviewUrl(data.url);
+    } catch (error) {
+      console.log("🚀 ~ handleFileSelect ~ error", error);
+    }
+  };
   const { register, handleSubmit } = useForm({});
 
   return (
@@ -169,10 +152,7 @@ export default function AddRoom() {
             <div className="w-full flex items-center justify-center">
               <div className="h-40 w-40 relative">
                 <img
-                  src={
-                    previewUrl ||
-                    "https://media.istockphoto.com/id/1305665241/vector/anonymous-gender-neutral-face-avatar-incognito-head-silhouette-stock-illustration.jpg?s=612x612&w=0&k=20&c=qA6GUTalFyrBCRVUzQgp2B5zODxmOA4NXTBcw9notYY="
-                  }
+                  src={previewUrl}
                   className="object-contain w-40 h-40 rounded-full shadow-xl"
                   alt="Avatar"
                 />
@@ -303,7 +283,11 @@ export default function AddRoom() {
                   value="Abc@123"
                   {...register("password")}
                 />
-                <SelectComponent options={Role} {...register("type")} />
+                <SelectComponent
+                  label="Role"
+                  options={Role}
+                  {...register("role")}
+                />
               </div>
             </div>
 
