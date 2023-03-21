@@ -45,7 +45,7 @@ export default function Login() {
       if (role === "user") {
         navigate("/user", { replace: true });
       } else if (role === "manager") {
-        navigate("/manager", { replace: true });
+        navigate("/manager/room/ListRoom", { replace: true });
       } else {
         navigate("/staff", { replace: true });
       }
