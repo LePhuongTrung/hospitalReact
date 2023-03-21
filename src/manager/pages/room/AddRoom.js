@@ -26,7 +26,15 @@ export default function AddRoom() {
         toast.success("Add new room successfully");
       }
     } catch (error) {
-      toast.error(error.message);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 

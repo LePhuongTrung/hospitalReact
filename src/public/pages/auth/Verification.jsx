@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Confirm } from "../../api/auth";
 import VerificationFailed from "../../components/verificationFailed";
 import VerificationSuccess from "../../components/verificationSuccess";
-
-import { Confirm } from "../../api/auth";
 
 const VerificationPage = () => {
   const confirm = useRef(false);
@@ -22,7 +23,15 @@ const VerificationPage = () => {
         confirm.current = true;
       }
     } catch (error) {
-      console.error("🚀 ~ file: Verification.js:25 ~ GetParams ~ error", error);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
   return (
@@ -32,6 +41,18 @@ const VerificationPage = () => {
       ) : (
         <VerificationFailed />
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

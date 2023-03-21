@@ -1,10 +1,10 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { message } from "antd";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FadeLoader } from "react-spinners";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
-
 /* Import service */
 import { ForgetPassword } from "../../../public/api/auth";
 
@@ -33,27 +33,21 @@ export default function Login() {
     try {
       const response = await ForgetPassword(data);
       if (response.status === 200) {
-        setTimeout(() => {
-          message.success(
-            "Register reset password successfully, please check your email."
-          );
-        }, 2000);
+        toast.success(
+          "Register reset password successfully, please check your email."
+        );
       }
       setLoading(false);
     } catch (error) {
-      error.response.status === 403
-        ? setTimeout(() => {
-            message.warning("Email not registered account");
-          }, 2000)
-        : setTimeout(() => {
-            message.error("Register reset password failed!");
-          }, 2000);
-      setLoading(false);
-
-      console.error(
-        "🚀 ~ file: forgetPassword.js:61 ~ onSubmit ~ error",
-        error
-      );
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 
@@ -94,6 +88,18 @@ export default function Login() {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

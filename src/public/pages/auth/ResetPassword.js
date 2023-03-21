@@ -1,15 +1,15 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { message } from "antd";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FadeLoader } from "react-spinners";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as yup from "yup";
-
 /* Import service */
 import { ResetPassword } from "../../../public/api/auth";
+import CustomInput from "../../components/CustomInput";
 
 /* Import component */
-import CustomInput from "../../components/CustomInput";
 
 const schemaValidation = yup
   .object()
@@ -40,30 +40,19 @@ export default function Login() {
       const response = await ResetPassword(data, email);
 
       if (response.status === 200) {
-        setTimeout(() => {
-          message.success("Reset Password successfully");
-        }, 2000);
+        toast.success("Reset Password successfully");
       }
       setLoading(false);
     } catch (error) {
-      if (error.response.status === 412) {
-        setTimeout(() => {
-          message.warning("Email not registered account");
-        }, 2000);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
       }
-      error.response.status === 403
-        ? setTimeout(() => {
-            message.warning("Email not registered account");
-          }, 2000)
-        : setTimeout(() => {
-            message.error("Register reset password failed!");
-          }, 2000);
-      setLoading(false);
-
-      console.error(
-        "🚀 ~ file: forgetPassword.js:61 ~ onSubmit ~ error",
-        error
-      );
     }
   };
 
@@ -119,6 +108,18 @@ export default function Login() {
             </form>
           </div>
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
     </>
   );

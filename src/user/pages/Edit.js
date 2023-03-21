@@ -1,6 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CustomInput from "../../public/components/CustomInput";
 import { Update } from "../api/information";
 
@@ -15,10 +17,15 @@ function Index() {
       if (response.status === 200) {
         navigate("/user", { replace: true });
       }
-    } catch (err) {
-      console.error("🚀 ~ file: information.js:13 ~ getData ~ err", err);
-      if (err.originalStatus === 404) {
-        navigate("/error", { replace: true });
+    } catch (error) {
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
       }
     }
   };
@@ -82,6 +89,18 @@ function Index() {
           </button>
         </div>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

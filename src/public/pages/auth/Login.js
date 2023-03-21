@@ -50,8 +50,15 @@ export default function Login() {
         navigate("/staff", { replace: true });
       }
     } catch (error) {
-      toast.error(error.message);
-      console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 

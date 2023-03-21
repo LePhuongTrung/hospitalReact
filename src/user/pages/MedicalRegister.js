@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { GetWait } from "../api/wait";
 import Register from "../components/Register";
 import Wait from "../components/WaitDetails";
@@ -23,8 +25,16 @@ const getData = async (
         10;
       setTime(time);
     }
-  } catch (err) {
-    console.log("🚀 ~ file: MedicalRegister.js:12 ~ getData ~ err:", err);
+  } catch (error) {
+    if (error.response && error.response.data) {
+      const html = error.response.data;
+      const startIndex = html.indexOf("Error: ") + 7;
+      const endIndex = html.indexOf("<br>", startIndex);
+      const errorMessage = html.slice(startIndex, endIndex);
+      toast.error(errorMessage);
+    } else {
+      toast.error(error.message);
+    }
   }
 };
 
@@ -51,6 +61,18 @@ function Index() {
           time={time}
         />
       )}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

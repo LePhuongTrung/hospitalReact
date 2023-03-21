@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CustomInput from "../../public/components/CustomInput";
 import { Create, Read } from "../api/information";
 
@@ -12,13 +14,15 @@ const getData = async (setData, setIsDataAvailable, navigate) => {
       setData(response.data);
       setIsDataAvailable(true);
     }
-  } catch (err) {
-    if (err.response && err.response.status === 404) {
-      setIsDataAvailable(false);
-    } else if (err.code === "ERR_NETWORK") {
-      navigate("/SERVERERROR", { replace: true });
+  } catch (error) {
+    if (error.response && error.response.data) {
+      const html = error.response.data;
+      const startIndex = html.indexOf("Error: ") + 7;
+      const endIndex = html.indexOf("<br>", startIndex);
+      const errorMessage = html.slice(startIndex, endIndex);
+      toast.error(errorMessage);
     } else {
-      navigate("/error", { replace: true });
+      toast.error(error.message);
     }
   }
 };
@@ -126,6 +130,18 @@ function Index() {
           )}
         </div>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

@@ -45,10 +45,15 @@ export default function Login() {
       toast.success("Sign up successfully");
       navigate("/Login", { replace: true });
     } catch (error) {
-      if (error.code === "ERR_NETWORK") {
-        toast.error("ERR_NETWORK");
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
       }
-      console.error("🚀 ~ file: SignUp.js:39 ~ onSubmit ~ error", error);
     }
   };
 
