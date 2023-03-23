@@ -1,14 +1,14 @@
 import { forwardRef } from "react";
 
 const CustomInput = forwardRef((props, ref) => {
-  const { label, type, errors, disabled, value } = props;
+  let { label, type, errors, disabled, value } = props;
 
   return (
     <div>
       <label htmlFor="text" className="block text-sm font-medium text-gray-700">
         {label}
       </label>
-      <div className="mt-1">
+      <div className="mt-1 relative">
         <input
           type={type}
           disabled={disabled}

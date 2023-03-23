@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import FormInputDotted from "../../doctor/components/FormInputDotted";
 import { selectRoom } from "../../redux/auth/AuthStatus";
 import { getPatient } from "../api/room";
@@ -12,7 +14,7 @@ const BasicInfo = () => {
   const { register, handleSubmit } = useForm();
   var [namePatient, setNamePatient] = useState();
 
-  const getData = async (navigate, roomNumber) => {
+  const getData = async (roomNumber) => {
     try {
       const response = await getPatient(roomNumber);
       console.log(
@@ -22,12 +24,16 @@ const BasicInfo = () => {
       if (response.status === 200) {
         setNamePatient(response.data.fullName);
       }
-    } catch (err) {
-      if (err.response && err.response.status === 404) {
-      } else if (err.code === "ERR_NETWORK") {
-        navigate("/SERVERERROR", { replace: true });
+    } catch (error) {
+      console.log("🚀 ~ file: DoctorLearn.js:28 ~ getData ~ error:", error);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
       } else {
-        navigate("/error", { replace: true });
+        toast.error(error.message);
       }
     }
   };
@@ -35,42 +41,55 @@ const BasicInfo = () => {
     getData(Navigate, roomNumber);
   }, [roomNumber]);
   const onSubmit = async (data) => {
-    const Data = [
-      { Diagnosis: data.Diagnosis },
-      {
-        DrugName: data.DrugName1,
-        Amount: data.Amount1,
-        timesPerDay: data.timesPerDay1,
-        Dosage: data.Dosage1,
-      },
-      {
-        DrugName: data.DrugName2,
-        Amount: data.Amount2,
-        timesPerDay: data.timesPerDay2,
-        Dosage: data.Dosage2,
-      },
-      {
-        DrugName: data.DrugName3,
-        Amount: data.Amount3,
-        timesPerDay: data.timesPerDay3,
-        Dosage: data.Dosage3,
-      },
-      {
-        DrugName: data.DrugName4,
-        Amount: data.Amount4,
-        timesPerDay: data.timesPerDay4,
-        Dosage: data.Dosage4,
-      },
-      {
-        DrugName: data.DrugName5,
-        Amount: data.Amount5,
-        timesPerDay: data.timesPerDay5,
-        Dosage: data.Dosage5,
-      },
-    ];
-    const response = await diagnostic(Data);
-    if (response.status === 200) {
-      setNamePatient(response.data.fullName);
+    try {
+      const Data = [
+        { Diagnosis: data.Diagnosis },
+        {
+          DrugName: data.DrugName1,
+          Amount: data.Amount1,
+          timesPerDay: data.timesPerDay1,
+          Dosage: data.Dosage1,
+        },
+        {
+          DrugName: data.DrugName2,
+          Amount: data.Amount2,
+          timesPerDay: data.timesPerDay2,
+          Dosage: data.Dosage2,
+        },
+        {
+          DrugName: data.DrugName3,
+          Amount: data.Amount3,
+          timesPerDay: data.timesPerDay3,
+          Dosage: data.Dosage3,
+        },
+        {
+          DrugName: data.DrugName4,
+          Amount: data.Amount4,
+          timesPerDay: data.timesPerDay4,
+          Dosage: data.Dosage4,
+        },
+        {
+          DrugName: data.DrugName5,
+          Amount: data.Amount5,
+          timesPerDay: data.timesPerDay5,
+          Dosage: data.Dosage5,
+        },
+      ];
+      const response = await diagnostic(Data);
+      if (response.status === 200) {
+        setNamePatient(response.data.fullName);
+      }
+    } catch (error) {
+      console.log("🚀 ~ file: DoctorLearn.js:82 ~ onSubmit ~ error:", error);
+      if (error.response && error.response.data) {
+        const html = error.response.data;
+        const startIndex = html.indexOf("Error: ") + 7;
+        const endIndex = html.indexOf("<br>", startIndex);
+        const errorMessage = html.slice(startIndex, endIndex);
+        toast.error(errorMessage);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
   return (
@@ -486,6 +505,18 @@ const BasicInfo = () => {
           </button>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

@@ -35,11 +35,11 @@ function Index({ navigate }) {
     <div className=" flex w-full h-full">
       <div className="w-4/12 mt-20 flex flex-col items-center ">
         <div className="flex items-center justify-center">
-          <div className="h-82 w-82">
+          <div className="h-40 w-40 relative">
             <img
               src={data?.ImgUrl}
-              className="max-w-full h-auto rounded-full shadow-xl "
-              alt=""
+              className="object-contain w-40 h-40 rounded-full shadow-xl"
+              alt="Avatar"
             />
           </div>
         </div>
