@@ -17,7 +17,14 @@ const schemaValidation = yup
   .object()
   .shape({
     email: yup.string().email().required(),
-    password: yup.string().min(6).required(),
+    password: yup
+      .string()
+      .min(6)
+      .required()
+      .matches(
+        /^(?=.*[!@#$%^&*])(?=.*[A-Z])(?=.*[a-z])/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one special character"
+      ),
   })
   .required();
 
@@ -54,6 +61,7 @@ export default function Login() {
         navigate("/staff", { replace: true });
       }
     } catch (error) {
+      console.log("🚀 ~ file: Login.js:57 ~ onSubmit ~ error:", error.response);
       if (error.response && error.response.data) {
         const html = error.response.data;
         const startIndex = html.indexOf("Error: ") + 7;
@@ -111,7 +119,9 @@ export default function Login() {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     {...register("password")}
                   />
-
+                  {errors.password && (
+                    <p className="text-[#FF0000]">{errors.password.message}</p>
+                  )}
                   {open === false ? (
                     <div className="absolute inset-y-0 right-0 flex items-center pr-4">
                       <svg
@@ -154,8 +164,6 @@ export default function Login() {
                       </svg>
                     </div>
                   )}
-
-                  {errors && <p className="text-[#FF0000]">{errors.message}</p>}
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-4">

@@ -42,8 +42,10 @@ export default function Login() {
       const response = await SignUp(data);
 
       if (response.status !== 200) return;
-      toast.success("Sign up successfully");
       navigate("/Login", { replace: true });
+      toast.success(
+        "Sign up successfully, please check mail to Active account"
+      );
     } catch (error) {
       if (error.response && error.response.data) {
         const html = error.response.data;

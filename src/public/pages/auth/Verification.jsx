@@ -9,13 +9,12 @@ const VerificationPage = () => {
   const confirm = useRef(false);
   const queryParams = new URLSearchParams(window.location.search);
   const Gmail = queryParams.get("email");
-  const Code = queryParams.get("token");
 
   useEffect(() => {
     Verification();
   });
   const Verification = async () => {
-    const link = "?email=" + Gmail + "&token=" + Code;
+    const link = "?email=" + Gmail;
     try {
       const response = await Confirm(link);
 

@@ -7,4 +7,4 @@ export const Create = (data) =>
   axios.post(API_URL + "account/information/create", data);
 
 export const Update = (data) =>
-  axios.post(API_URL + "account/information/update", data);
+  axios.put(API_URL + "account/information/update", data);
