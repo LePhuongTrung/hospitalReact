@@ -1,25 +1,32 @@
-import React, { useEffect, useRef } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Confirm } from "../../api/auth";
 import VerificationFailed from "../../components/verificationFailed";
 import VerificationSuccess from "../../components/verificationSuccess";
 
 const VerificationPage = () => {
-  const confirm = useRef(false);
+  let [confirm, isConfirm] = useState(false);
+
   const queryParams = new URLSearchParams(window.location.search);
   const Gmail = queryParams.get("email");
 
   useEffect(() => {
     Verification();
-  });
+  }, []);
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: Verification.jsx:10 ~ VerificationPage ~ confirm:",
+      confirm
+    );
+  }, [confirm]);
   const Verification = async () => {
     const link = "?email=" + Gmail;
+    console.log("🚀 ~ file: Verification.jsx:18 ~ Verification ~ link:", link);
     try {
       const response = await Confirm(link);
-
       if (response.status === 200) {
-        confirm.current = true;
+        isConfirm(true);
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -35,11 +42,7 @@ const VerificationPage = () => {
   };
   return (
     <div className="h-screen w-screen bg-sky-400 border-2">
-      {confirm.current === true ? (
-        <VerificationSuccess />
-      ) : (
-        <VerificationFailed />
-      )}
+      {confirm === true ? <VerificationSuccess /> : <VerificationFailed />}
       <ToastContainer
         position="top-center"
         autoClose={5000}
