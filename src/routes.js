@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 import Manager from "./manager/pages/Manager";
 import Report from "./manager/pages/report/ListReports";
@@ -17,10 +17,6 @@ import AddStaff from "./manager/pages/Staff/AddStaff";
 import ListStaff from "./manager/pages/Staff/ListStaff";
 import StaffManager from "./manager/pages/Staff/Staff";
 import StaffAccount from "./manager/pages/Staff/StaffAccount";
-
-import AddSale from "./manager/pages/Sales/AddSales";
-import Sale from "./manager/pages/Sales/Sales";
-import Week from "./manager/pages/Sales/Week";
 
 import CheckError from "./CheckError";
 import VerificationSuccess from "./public/pages/auth/Verification";
@@ -95,11 +91,6 @@ const AppRouter = () => (
             <Route path="AddSick" element={<AddSick />} />
             <Route path="ListSick" element={<ListSick />} />
             <Route path="UploadSick" element={<UploadSick />} />
-          </Route>
-          <Route path="Sale" element={<Sale />}>
-            <Route index element={<Week />} />
-            <Route path="AddSale" element={<AddSale />} />
-            <Route path="Week" element={<Week />} />
           </Route>
           <Route path="StaffManager" element={<StaffManager />}>
             <Route index element={<ListStaff />} />
