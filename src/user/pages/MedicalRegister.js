@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetWait } from "../api/wait";
 import Register from "../components/Register";
@@ -26,12 +26,9 @@ const getData = async (
       setTime(time);
     }
   } catch (error) {
+    console.log("🚀 ~ file: MedicalRegister.js:29 ~ error:", error);
     if (error.response && error.response.data) {
-      const html = error.response.data;
-      const startIndex = html.indexOf("Error: ") + 7;
-      const endIndex = html.indexOf("<br>", startIndex);
-      const errorMessage = html.slice(startIndex, endIndex);
-      toast.error(errorMessage);
+      toast.error(error.response.data);
     } else {
       toast.error(error.message);
     }
