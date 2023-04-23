@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentRole, setWorkInUser } from "../../redux/auth/AuthStatus";
+
 import { getStaff } from "../api/staff";
 
 function Index({ navigate }) {
@@ -27,10 +28,9 @@ function Index({ navigate }) {
       }
     }
   };
-
   useEffect(() => {
     getData(setData);
-  }, [setData]);
+  }, [data]);
   return (
     <div className=" flex w-full h-full">
       <div className="w-4/12 mt-20 flex flex-col items-center ">

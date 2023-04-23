@@ -26,12 +26,10 @@ export default function AddRoom() {
         toast.success("Add new room successfully");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        const html = error.response.data;
-        const startIndex = html.indexOf("Error: ") + 7;
-        const endIndex = html.indexOf("<br>", startIndex);
-        const errorMessage = html.slice(startIndex, endIndex);
-        toast.error(errorMessage);
+      if (error.response.status === 404) {
+        toast.error(error.message);
+      } else if (error.response && error.response.data) {
+        toast.error(error.response.data);
       } else {
         toast.error(error.message);
       }

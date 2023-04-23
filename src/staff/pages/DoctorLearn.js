@@ -1,45 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FormInputDotted from "../../doctor/components/FormInputDotted";
 import { selectRoom } from "../../redux/auth/AuthStatus";
 import { getPatient } from "../api/room";
-import { diagnostic } from "../api/wait";
+import { diagnostic, nextNumber } from "../api/wait";
 
 const BasicInfo = () => {
   const roomNumber = useSelector(selectRoom);
   const { register, handleSubmit } = useForm();
-  var [namePatient, setNamePatient] = useState();
+  var [namePatient, setNamePatient] = useState(
+    "There are currently no patients"
+  );
+  var [PatientID, setPatientID] = useState();
+  var [waitID, setWaitID] = useState();
+  var [medicalHistory, setMedicalHistory] = useState();
 
-  const getData = async (roomNumber) => {
+  var [number, setNumber] = useState(0);
+
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
     try {
       const response = await getPatient(roomNumber);
       console.log(
-        "🚀 ~ file: DoctorLearn.js:13 ~ getData ~ response:",
-        response.data.fullName
+        "🚀 ~ file: DoctorLearn.js:23 ~ getData ~ response:",
+        response
       );
       if (response.status === 200) {
-        setNamePatient(response.data.fullName);
+        setNamePatient(response.data[0].fullName);
+        setPatientID(response.data[0].AccountID);
+        setNumber(response.data[2].CurrentNumber);
+        setWaitID(response.data[2].id);
+        setMedicalHistory(response.data[1].docs);
+        console.log(
+          "🚀 ~ file: DoctorLearn.js:558 ~ BasicInfo ~ medicalHistory:",
+          medicalHistory
+        );
       }
     } catch (error) {
       console.log("🚀 ~ file: DoctorLearn.js:28 ~ getData ~ error:", error);
       if (error.response && error.response.data) {
-        const html = error.response.data;
-        const startIndex = html.indexOf("Error: ") + 7;
-        const endIndex = html.indexOf("<br>", startIndex);
-        const errorMessage = html.slice(startIndex, endIndex);
-        toast.error(errorMessage);
+        toast.error(error.response.data);
+        if (error.response.data.error === "Has not wait") {
+          setNumber(error.response.data.numericalOrder);
+        }
       } else {
         toast.error(error.message);
       }
     }
   };
-  useEffect(() => {
-    getData(Navigate, roomNumber);
-  }, [roomNumber]);
+
+  const next = async () => {
+    try {
+      console.log("🚀 ~ file: DoctorLearn.js:54 ~ next ~ number:", number);
+
+      const response = await nextNumber({
+        roomNumber: roomNumber,
+        numericalOrder: number + 1,
+      });
+      setNumber(number + 1);
+      window.location.reload();
+      console.log("🚀 ~ file: DoctorLearn.js:49 ~ next ~ response:", response);
+    } catch (error) {
+      console.log("🚀 ~ file: DoctorLearn.js:51 ~ next ~ error:", error);
+      if (error.response && error.response.data) {
+        toast.error(error.response.data);
+      } else {
+        toast.error(error.message);
+      }
+    }
+  };
   const onSubmit = async (data) => {
     try {
       const Data = [
@@ -75,13 +109,26 @@ const BasicInfo = () => {
           Dosage: data.Dosage5,
         },
       ];
-      const response = await diagnostic(Data);
-      if (response.status === 200) {
-        setNamePatient(response.data.fullName);
-      }
+      const response = await diagnostic({
+        Data,
+        AccountID: PatientID,
+        id: waitID,
+      });
+      console.log(
+        "🚀 ~ file: DoctorLearn.js:101 ~ onSubmit ~ response:",
+        response
+      );
+      window.location.reload();
+      // if (response.status === 200) {
+      //   setNamePatient(response.data.fullName);
+      // }
     } catch (error) {
-      console.log("🚀 ~ file: DoctorLearn.js:82 ~ onSubmit ~ error:", error);
-      if (error.response && error.response.data) {
+      console.error("🚀 ~ file: DoctorLearn.js:82 ~ onSubmit ~ error:", error);
+      if (error.response.data.error) {
+        toast.warning(error.response.data.error);
+        setNumber(error.response.data.numericalOrder);
+        window.location.reload();
+      } else if (error.response && error.response.data) {
         const html = error.response.data;
         const startIndex = html.indexOf("Error: ") + 7;
         const endIndex = html.indexOf("<br>", startIndex);
@@ -500,9 +547,31 @@ const BasicInfo = () => {
           </p>
         </div>
         <div className="mt-4 flex items-center justify-center">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4"
+            onClick={next}
+          >
+            Next Number
+          </button>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Medical record
           </button>
+        </div>
+        <div className="mt-2 pr-4 h-555 overflow-y-scroll">
+          {medicalHistory?.length > 0 &&
+            medicalHistory.map((data, Index) => (
+              <tr className="flex items-center text-lg leading-none h-16 border-b hover:bg-gray-100 ">
+                <td className="pl-20 pr-20">
+                  <p>{Index}</p>
+                </td>
+                <td className="pl-24">
+                  <p>{new Date(data?.createdAt).toLocaleDateString()}</p>
+                </td>
+                <td className="pl-24">
+                  <p>{data?.MedicalForm.Diagnostic}</p>
+                </td>
+              </tr>
+            ))}
         </div>
       </div>
       <ToastContainer

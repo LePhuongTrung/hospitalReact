@@ -14,7 +14,12 @@ function Index() {
     );
     setData(response.data.docs);
   };
-
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: MedicalHistory.js:6 ~ Index ~ historyData:",
+      historyData[0]?.MedicalForm.Diagnostic
+    );
+  }, [historyData]);
   return (
     <div className="w-full mt-6">
       <div className="overflow-x-auto relative shadow-md sm:rounded-lg mx-10">
@@ -38,18 +43,18 @@ function Index() {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {historyData &&
-              historyData.map((data) => (
+              historyData?.map((data, Index) => (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <th
                     scope="row"
                     className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {data?.date}
+                    {Index + 1}
                   </th>
-                  <td className="py-4 px-6">{data?.room}</td>
-                  <td className="py-4 px-6">{data?.Diagnostic}</td>
+                  <td className="py-4 px-6">{data?.roomNumber}</td>
+                  <td className="py-4 px-6">{data?.MedicalForm?.Diagnostic}</td>
                 </tr>
               ))}
           </tbody>

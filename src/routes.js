@@ -106,7 +106,7 @@ const AppRouter = () => (
       <Route path="SERVERERROR" element={<SERVERERROR />} />
       <Route path="ERROR" element={<ERROR />} />
       <Route path="NoPermission" element={<ERROR1 />} />
-      {/* <Route errorElement element={ERROR} /> */}
+      <Route path="*" element={<ERROR />} />
     </Routes>
   </Router>
 );

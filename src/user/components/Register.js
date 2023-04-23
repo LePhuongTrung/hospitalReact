@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GetNumber } from "../api/wait";
 import { typeSick } from "../pages/Data";
@@ -41,6 +41,7 @@ export default function NavBar() {
         response
       );
       toast.success("Success");
+      window.location.reload();
     } catch (error) {
       toast.error(error.message);
       console.log("🚀 ~ file: Register.js:44 ~ handleSubmit ~ error:", error);
