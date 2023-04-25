@@ -38,9 +38,6 @@ import ResetPassword from "./user/pages/ResetPassword";
 
 import User from "./user/pages/User";
 
-import Doctor from "./doctor/doctor";
-import DoctorInfor from "./doctor/pages/profile";
-
 import Diagnosis from "./staff/pages/DoctorLearn";
 
 import Profile from "./staff/pages/profile";
@@ -59,11 +56,6 @@ const AppRouter = () => (
       <Route path="verification" element={<VerificationSuccess />} />
       <Route path="ResetPasswordIdentify" element={<ResetPasswordIdentify />} />
       <Route element={<AuthenticationRoutes />}>
-        <Route path="Doctor" element={<Doctor />}>
-          <Route index element={<DoctorInfor />} />
-          <Route path="Diagnosis" element={<Diagnosis />} />
-          <Route path="DoctorInfor" element={<DoctorInfor />} />
-        </Route>
         <Route path="Staff" element={<Staff />}>
           <Route index element={<Profile />} />
           <Route path="Profile" element={<Profile />} />

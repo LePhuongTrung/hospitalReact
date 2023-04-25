@@ -1,5 +1,5 @@
 import { UilSignout } from "@iconscout/react-unicons";
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logOut, selectCurrentRole } from "../../redux/auth/AuthStatus";
@@ -8,13 +8,13 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const role = useSelector(selectCurrentRole);
 
-  const [link, setLink] = useState(() => {
+  const link = () => {
     if (role === "assistant") {
       return "/staff/Work";
     } else {
       return "/staff/Diagnosis";
     }
-  });
+  };
 
   const LogOut = () => {
     try {

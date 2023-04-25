@@ -1,12 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FormInputDotted from "../../doctor/components/FormInputDotted";
 import { selectRoom } from "../../redux/auth/AuthStatus";
 import { getPatient } from "../api/room";
 import { diagnostic, nextNumber } from "../api/wait";
+import FormInputDotted from "../components/FormInputDotted";
 
 const BasicInfo = () => {
   const roomNumber = useSelector(selectRoom);
