@@ -79,9 +79,7 @@ export default function Sidebar() {
                       d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                     />
                   </svg>
-                  <span className="text-gray-100">
-                    Sales analysis dashboard
-                  </span>
+                  <span className="text-gray-100">Device</span>
                 </NavLink>
               </li>
               <li className="rounded-sm">
