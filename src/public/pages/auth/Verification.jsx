@@ -14,12 +14,7 @@ const VerificationPage = () => {
   useEffect(() => {
     Verification();
   }, []);
-  useEffect(() => {
-    console.log(
-      "🚀 ~ file: Verification.jsx:10 ~ VerificationPage ~ confirm:",
-      confirm
-    );
-  }, [confirm]);
+
   const Verification = async () => {
     const link = "?email=" + Gmail;
     console.log("🚀 ~ file: Verification.jsx:18 ~ Verification ~ link:", link);
