@@ -18,6 +18,11 @@ import ListStaff from "./manager/pages/Staff/ListStaff";
 import StaffManager from "./manager/pages/Staff/Staff";
 import StaffAccount from "./manager/pages/Staff/StaffAccount";
 
+import AddDevice from "./manager/pages/device/AddDevice";
+import DeviceManager from "./manager/pages/device/Device";
+import ListDevice from "./manager/pages/device/ListDevice";
+import UploadDevice from "./manager/pages/device/UploadDevice";
+
 import CheckError from "./CheckError";
 import VerificationSuccess from "./public/pages/auth/Verification";
 import ERROR from "./public/pages/Error/404";
@@ -79,10 +84,16 @@ const AppRouter = () => (
             <Route path="UploadRoom" element={<UploadRoom />} />
           </Route>
           <Route path="Sick" element={<Sick />}>
+            <Route index element={<ListDevice />} />
+            <Route path="AddSick" element={<AddDevice />} />
+            <Route path="ListSick" element={<ListDevice />} />
+            <Route path="UploadSick" element={<UploadDevice />} />
+          </Route>
+          <Route path="device" element={<DeviceManager />}>
             <Route index element={<ListSick />} />
-            <Route path="AddSick" element={<AddSick />} />
-            <Route path="ListSick" element={<ListSick />} />
-            <Route path="UploadSick" element={<UploadSick />} />
+            <Route path="add" element={<AddSick />} />
+            <Route path="list" element={<ListSick />} />
+            <Route path="Upload" element={<UploadSick />} />
           </Route>
           <Route path="StaffManager" element={<StaffManager />}>
             <Route index element={<ListStaff />} />

@@ -24,6 +24,12 @@ const Sidebar = () => {
       console.error("🚀 ~ file: sideBar.js:12 ~ LogOut ~ err:", err);
     }
   };
+  const game = () => {
+    window
+      .open("https://angular-game.vercel.app/home", "_blank")
+      ?.location.assign("https://angular-game.vercel.app/home");
+  };
+
   return (
     <aside className=" w-full px-4">
       <nav className="px-2 w-full h-full ">
@@ -45,6 +51,14 @@ const Sidebar = () => {
             >
               Work
             </NavLink>
+          </li>
+          <li className="flex justify-center">
+            <div
+              onClick={game}
+              className="hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500 flex items-center text-gray-700 py-1.5 px-4 rounded space-x-2 cursor-pointer"
+            >
+              <span>Game</span>
+            </div>
           </li>
           <li className="flex justify-center">
             <div
