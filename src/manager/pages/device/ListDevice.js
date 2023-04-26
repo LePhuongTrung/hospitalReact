@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Pagination from "../../../public/components/Pagination";
-import { findAll } from "../../api/room.service";
+import { findAll } from "../../api/device.service";
 
 function Index() {
+  const navigate = useNavigate();
+
   const [Devices, setDevices] = useState({
     docs: [],
     totalDocs: 0,
@@ -26,8 +30,8 @@ function Index() {
         page = 1;
       }
       const response = await findAll(page);
-      if (response.status !== 200) return;
-      setDevices(response.data);
+      if (response.status === 200) setDevices(response.data);
+      return;
     } catch (error) {
       console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
     }
@@ -44,6 +48,10 @@ function Index() {
     }
   };
 
+  function detail(element) {
+    navigate("/manager/device/detail", { state: element });
+  }
+
   const paginateNumber = (pageNumber) => {
     getDevice(pageNumber);
   };
@@ -58,35 +66,38 @@ function Index() {
                   <p className="font-bold"> Index</p>
                 </td>
                 <td className="pl-16">
-                  <p className="font-bold">Faculty classification</p>
+                  <p className="font-bold">Device Name</p>
                 </td>
                 <td className="pl-16">
-                  <p className="font-bold">Current Number</p>
+                  <p className="font-bold">Device type</p>
                 </td>
                 <td className="pl-16">
-                  <p className="font-bold">Total Number</p>
+                  <p className="font-bold">classification</p>
                 </td>
                 <td className="pl-8">
-                  <p className="font-bold">Priority room</p>
+                  <p className="font-bold">quantity</p>
                 </td>
               </tr>
               {Devices.docs.length > 0 &&
                 Devices.docs.map((element, Index) => (
-                  <tr className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100 ">
+                  <tr
+                    className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100 "
+                    onClick={() => detail(element)}
+                  >
                     <td className="pl-12">
-                      <p>{Index}</p>
+                      <p>{Index + 1}</p>
                     </td>
                     <td className="pl-16">
-                      <p>{element?.type}</p>
+                      <p>{element?.name}</p>
                     </td>
                     <td>
-                      <p className="pl-28">{element?.CurrentNumber}</p>
+                      <p className="pl-16">{element?.deviceType}</p>
                     </td>
                     <td>
-                      <p className="pl-24">{element?.TotalNumber}</p>
+                      <p className="pl-16">{element?.classification}</p>
                     </td>
                     <td>
-                      <p className="pl-16">{String(element?.isPrioritized)}</p>
+                      <p className="pl-8">{String(element?.quantity)}</p>
                     </td>
                   </tr>
                 ))}

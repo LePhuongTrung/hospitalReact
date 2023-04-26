@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { CreateMany } from "../../api/room.service";
+import { CreateMany } from "../../api/device.service";
 
 function Index() {
   const [file, setFile] = useState(null);
@@ -34,10 +34,18 @@ function Index() {
 
     CreateMany(formData)
       .then((response) => {
+        console.log(
+          "🚀 ~ file: UploadDevice.js:37 ~ .then ~ response:",
+          response
+        );
         setUploadComplete(true);
         toast.success("Upload complete!");
       })
       .catch((error) => {
+        console.log(
+          "🚀 ~ file: UploadDevice.js:45 ~ handleUpload ~ error:",
+          error
+        );
         toast.error(error.message);
       });
   }

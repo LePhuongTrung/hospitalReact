@@ -59,6 +59,10 @@ function Index() {
         toast.warning("New password must be different from current password");
       } else {
         const response = await ResetPassword(data, email);
+        console.log(
+          "🚀 ~ file: ResetPassword.js:62 ~ onSubmit ~ response:",
+          response
+        );
         toast.success(response.data);
       }
     } catch (error) {
@@ -79,7 +83,7 @@ function Index() {
         <div className="w-1/4 mx-auto">
           <p className="text-center text-xl font-semibold">Change password</p>
           <p className="text-center ">
-            Create a new password that is at least 8 characters long.
+            Create a new password that is at least 6 characters long.
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mt-4">

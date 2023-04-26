@@ -14,11 +14,13 @@ import Sick from "./manager/pages/sick/Sick";
 import UploadSick from "./manager/pages/sick/UploadSick";
 
 import AddStaff from "./manager/pages/Staff/AddStaff";
+import DetailStaff from "./manager/pages/Staff/Detail";
 import ListStaff from "./manager/pages/Staff/ListStaff";
 import StaffManager from "./manager/pages/Staff/Staff";
 import StaffAccount from "./manager/pages/Staff/StaffAccount";
 
 import AddDevice from "./manager/pages/device/AddDevice";
+import Detail from "./manager/pages/device/Detail";
 import DeviceManager from "./manager/pages/device/Device";
 import ListDevice from "./manager/pages/device/ListDevice";
 import UploadDevice from "./manager/pages/device/UploadDevice";
@@ -84,20 +86,22 @@ const AppRouter = () => (
             <Route path="UploadRoom" element={<UploadRoom />} />
           </Route>
           <Route path="Sick" element={<Sick />}>
-            <Route index element={<ListDevice />} />
-            <Route path="AddSick" element={<AddDevice />} />
-            <Route path="ListSick" element={<ListDevice />} />
-            <Route path="UploadSick" element={<UploadDevice />} />
+            <Route index element={<ListSick />} />
+            <Route path="AddSick" element={<AddSick />} />
+            <Route path="ListSick" element={<ListSick />} />
+            <Route path="UploadSick" element={<UploadSick />} />
           </Route>
           <Route path="device" element={<DeviceManager />}>
-            <Route index element={<ListSick />} />
-            <Route path="add" element={<AddSick />} />
-            <Route path="list" element={<ListSick />} />
-            <Route path="Upload" element={<UploadSick />} />
+            <Route index element={<ListDevice />} />
+            <Route path="Detail" element={<Detail />} />
+            <Route path="add" element={<AddDevice />} />
+            <Route path="list" element={<ListDevice />} />
+            <Route path="Upload" element={<UploadDevice />} />
           </Route>
           <Route path="StaffManager" element={<StaffManager />}>
             <Route index element={<ListStaff />} />
             <Route path="AddStaff" element={<AddStaff />} />
+            <Route path="Detail" element={<DetailStaff />} />
             <Route path="ListStaff" element={<ListStaff />} />
             <Route path="StaffAccount" element={<StaffAccount />} />
           </Route>

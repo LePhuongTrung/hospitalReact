@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Pagination from "../../../public/components/Pagination";
 import { findAll } from "../../api/staff.service";
 
 function Index() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     docs: [],
     totalDocs: 0,
@@ -47,6 +50,9 @@ function Index() {
   const paginateNumber = (pageNumber) => {
     getRoom(pageNumber);
   };
+  function detail(element) {
+    navigate("/manager/StaffManager/detail", { state: element });
+  }
   return (
     <>
       <div className="px-4 md:px-10 pb-5 h-full">
@@ -79,6 +85,7 @@ function Index() {
                 <tr
                   className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100"
                   key={element?._id}
+                  onClick={() => detail(element)}
                 >
                   <td className="pl-6">
                     <img
