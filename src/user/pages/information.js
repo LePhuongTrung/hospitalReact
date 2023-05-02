@@ -32,11 +32,9 @@ function Index() {
       if (response.status === 200) {
         navigate("/user", { replace: true });
       }
-    } catch (err) {
-      console.error("🚀 ~ file: information.js:13 ~ getData ~ err", err);
-      if (err.originalStatus === 404) {
-        navigate("/error", { replace: true });
-      }
+    } catch (error) {
+      console.error("🚀 ~ file: information.js:13 ~ getData ~ err", error);
+      toast.error(error.response.data.message);
     }
   };
   useEffect(() => {

@@ -46,7 +46,7 @@ function Index() {
           "🚀 ~ file: UploadDevice.js:45 ~ handleUpload ~ error:",
           error
         );
-        toast.error(error.message);
+        toast.error(error.response.data.message);
       });
   }
 

@@ -9,7 +9,6 @@ export default function AddDevice() {
   const { register, handleSubmit } = useForm({});
 
   const onSubmit = async (data) => {
-    console.log("🚀 ~ file: AddDevice.js:12 ~ onSubmit ~ data:", data);
     try {
       if (
         !data.name ||
@@ -27,11 +26,14 @@ export default function AddDevice() {
 
       const result = await create(data);
       console.log("🚀 ~ file: AddDevice.js:29 ~ onSubmit ~ result:", result);
-      if (result.status === 201) {
-        toast.success("Add new device successfully");
-      }
+      toast.success("Add new device successfully");
     } catch (error) {
-      toast.error(error.message);
+      console.log("🚀 ~ file: AddDevice.js:33 ~ onSubmit ~ error:", error);
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error(error.message);
+      }
     }
   };
 

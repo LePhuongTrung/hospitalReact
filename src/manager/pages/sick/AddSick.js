@@ -8,7 +8,7 @@ import CustomInput from "../../../public/components/CustomInput";
 import SelectComponent from "../../../public/components/SelectComponent";
 import { create } from "../../api/sick.service";
 
-export default function AddRoom() {
+export default function AddSick() {
   const { register, handleSubmit } = useForm({});
 
   const onSubmit = async (data) => {
@@ -21,22 +21,15 @@ export default function AddRoom() {
         toast.warning("Please select type again");
         return;
       }
-      console.log("🚀 ~ file: AddSick.js:26 ~ onSubmit ~ data:", data);
 
       const result = await create(data);
+      console.log("🚀 ~ file: AddSick.js:26 ~ onSubmit ~ result:", result);
       if (result.status === 200) {
         toast.success("Add new room successfully");
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        const html = error.response.data;
-        const startIndex = html.indexOf("Error: ") + 7;
-        const endIndex = html.indexOf("<br>", startIndex);
-        const errorMessage = html.slice(startIndex, endIndex);
-        toast.error(errorMessage);
-      } else {
-        toast.error(error.message);
-      }
+      console.log("🚀 ~ file: AddSick.js:31 ~ onSubmit ~ error:", error);
+      toast.error(error.response.data.message);
     }
   };
 

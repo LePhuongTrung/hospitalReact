@@ -44,14 +44,7 @@ const BasicInfo = () => {
       }
     } catch (error) {
       console.log("🚀 ~ file: DoctorLearn.js:28 ~ getData ~ error:", error);
-      if (error.response && error.response.data) {
-        toast.error(error.response.data);
-        if (error.response.data.error === "Has not wait") {
-          setNumber(error.response.data.numericalOrder);
-        }
-      } else {
-        toast.error(error.message);
-      }
+      toast.error(error.response.data.message);
     }
   };
 

@@ -17,36 +17,36 @@ function Index() {
   });
 
   useEffect(() => {
-    getRoom();
+    getSick();
   }, []);
 
-  const getRoom = async (page) => {
+  const getSick = async (page) => {
     try {
       if (!page) {
         page = 1;
       }
       const response = await findAll(page);
-      console.log("🚀 ~ file: ListSick.js:29 ~ getRoom ~ response:", response);
+      console.log("🚀 ~ file: ListSick.js:29 ~ getSick ~ response:", response);
       if (response.status !== 200) return;
       setSicks(response.data);
     } catch (error) {
-      console.error("🚀 ~ file: Login.js ~ line 52 ~ onSubmit ~ error", error);
+      console.log("🚀 ~ file: ListSick.js:33 ~ getSick ~ error:", error);
     }
   };
 
   const paginateEnd = () => {
     const nextPage = sicks.totalPages;
-    getRoom(nextPage);
+    getSick(nextPage);
   };
 
   const paginateStart = () => {
     if (sicks.hasPrevPage) {
-      getRoom(1);
+      getSick(1);
     }
   };
 
   const paginateNumber = (pageNumber) => {
-    getRoom(pageNumber);
+    getSick(pageNumber);
   };
   return (
     <>
@@ -69,7 +69,7 @@ function Index() {
                 sicks.docs.map((sick, index) => (
                   <tr className=" text-sm leading-none text-gray-600 h-16 border-b hover:bg-gray-100 ">
                     <td className="pl-12">
-                      <p>{index}</p>
+                      <p>{index + 1}</p>
                     </td>
                     <td className="pl-12">
                       <p>{sick?.name}</p>

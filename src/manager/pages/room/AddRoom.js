@@ -26,13 +26,8 @@ export default function AddRoom() {
         toast.success("Add new room successfully");
       }
     } catch (error) {
-      if (error.response.status === 404) {
-        toast.error(error.message);
-      } else if (error.response && error.response.data) {
-        toast.error(error.response.data);
-      } else {
-        toast.error(error.message);
-      }
+      console.log("🚀 ~ file: AddRoom.js:29 ~ onSubmit ~ error:", error);
+      toast.error(error.response.data.message);
     }
   };
 

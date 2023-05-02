@@ -66,15 +66,7 @@ function Index() {
         toast.success(response.data);
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        const html = error.response.data;
-        const startIndex = html.indexOf("Error: ") + 7;
-        const endIndex = html.indexOf("<br>", startIndex);
-        const errorMessage = html.slice(startIndex, endIndex);
-        toast.error(errorMessage);
-      } else {
-        toast.error(error.message);
-      }
+      toast.error(error.response.data.message);
     }
   };
   return (

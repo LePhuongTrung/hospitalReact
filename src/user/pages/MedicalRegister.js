@@ -27,11 +27,7 @@ const getData = async (
     }
   } catch (error) {
     console.log("🚀 ~ file: MedicalRegister.js:29 ~ error:", error);
-    if (error.response && error.response.data) {
-      toast.error(error.response.data);
-    } else {
-      toast.error(error.message);
-    }
+    toast.error(error.response.data.message);
   }
 };
 

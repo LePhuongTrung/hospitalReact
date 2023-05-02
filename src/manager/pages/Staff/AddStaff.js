@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomInput from "../../../public/components/CustomInput";
 import Dialog from "../../../public/components/Dialog";
@@ -140,6 +140,7 @@ export default function AddRoom() {
       setPreviewUrl(data.url);
     } catch (error) {
       console.log("🚀 ~ handleFileSelect ~ error", error);
+      toast.error(error.response.data.message);
     }
   };
   const { register, handleSubmit } = useForm({});

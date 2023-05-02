@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomInput from "../../public/components/CustomInput";
 import { Update } from "../api/information";
@@ -18,15 +18,7 @@ function Index() {
         navigate("/user", { replace: true });
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        const html = error.response.data;
-        const startIndex = html.indexOf("Error: ") + 7;
-        const endIndex = html.indexOf("<br>", startIndex);
-        const errorMessage = html.slice(startIndex, endIndex);
-        toast.error(errorMessage);
-      } else {
-        toast.error(error.message);
-      }
+      toast.error(error.response.data.message);
     }
   };
   return (

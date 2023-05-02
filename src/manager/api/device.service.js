@@ -5,9 +5,9 @@ export const findAll = (page) =>
 
 export const get = (id) => axios.get(API_URL + `/devices/${id}`);
 
-export const create = (data) => axios.post(API_URL + `devices`, data);
+export const create = (data) => axios.post(API_URL + `/devices`, data);
 
-export const change = (data, id) => axios.put(API_URL + `devices/${id}`, data);
+export const change = (data, id) => axios.put(API_URL + `/devices/${id}`, data);
 
 export const deleteDevice = (id) => axios.delete(API_URL + `/devices/${id}`);
 

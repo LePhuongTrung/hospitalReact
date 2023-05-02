@@ -38,11 +38,12 @@ function Index() {
         toast.success("Upload complete!");
       })
       .catch((error) => {
-        console.error(
-          "🚀 ~ file: UploadRoom.js:26 ~ handleUpload ~ error:",
+        console.log(
+          "🚀 ~ file: UploadRoom.js:41 ~ handleUpload ~ error:",
           error
         );
-        toast.error(error.message);
+
+        toast.error(error.response.data.message);
       });
   }
 
