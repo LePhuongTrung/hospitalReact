@@ -1,5 +1,5 @@
 import axios from "../../redux/auth/Header";
-const API_URL = "http://localhost:3000/";
+const API_URL = "http://localhost:3003/";
 
 export const GetNumber = (data) =>
   axios.post(API_URL + "room/wait/getNumber", data);
