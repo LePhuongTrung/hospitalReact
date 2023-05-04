@@ -138,7 +138,10 @@ export default function SideBarProfile() {
               <span>Medical register</span>
             </NavLink>
           </li>
-          <li className="flex space-x-2 pl-4" onClick={game}>
+          <li
+            className="flex space-x-2 pl-4 hover:bg-gray-500 hover:bg-opacity-10 hover:text-blue-500"
+            onClick={game}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
